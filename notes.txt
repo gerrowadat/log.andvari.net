@@ -1,0 +1,4 @@
+If this is a clean repo/machine, make it useful after cloning with:
+
+  - sudo pip3 install pelican
+  - git clone https://github.com/getpelican/pelican-plugins plugins
