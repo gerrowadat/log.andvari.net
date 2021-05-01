@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>log.andvari.net - Meta</title>
+        <link rel="stylesheet" href="https://log.andvari.net/theme/css/main.css" />
+        <link href="https://log.andvari.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="log.andvari.net Atom Feed" />
+
+
+        <link rel="stylesheet" href="https://log.andvari.net/static/css/colorbox.css"/>
+        <script src="/static/js/jquery-1.11.1.min.js"></script>
+        <script src="/static/js/jquery.colorbox-min.js"></script>
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://log.andvari.net/">log.andvari.net </a></h1>
+                <nav><ul>
+                    <li><a href="https://log.andvari.net/category/log.html">Log</a></li>
+                    <li class="active"><a href="https://log.andvari.net/category/meta.html">Meta</a></li>
+                    <li><a href="https://log.andvari.net/category/tech.html">Tech</a></li>
+                    <li><a href="https://log.andvari.net/category/writing.html">Writing</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://log.andvari.net/the-technical-contrarian.html">The Technical Contrarian</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2016-04-16T22:17:00+01:00">
+                Sat 16 April 2016
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="https://log.andvari.net/author/dave-oconnor.html">Dave O'Connor</a>
+        </address>
+<p>In <a href="https://log.andvari.net/category/meta.html">Meta</a>. </p>
+<p>tags: <a href="https://log.andvari.net/tag/meta.html">meta</a><a href="https://log.andvari.net/tag/writing.html">writing</a><a href="https://log.andvari.net/tag/brains.html">brains</a></p>
+</footer><!-- /.post-info --><p>So, case in point (since we love examples).</p>
+<p>A couple of years ago, when I first started fiddling with <a href="http://blog.getpelican.com">Pelican</a>, one of the first 
+things in the docs was 'okay, set up virtualenv and do such a thing'. My initial reaction, as an old-skool sysadmin weenie who hasn't 
+had to actually run a linux install that I care about in many years, was to go 'pfft', and just get python going on the machine 
+I wanted to use pelican on (i.e. my macbook). This, of course, resulted in a world of hurt, as the first thing you do is pick between pip and easy_install, and your first step being to pick a package manager is never a good sign (I've used python for years, so I'm kinda familiar with its vagaries, but y'know. All the same.).</p>
+<p>But, step one for me was to run into virtualenv, declare it to be newfangled, and do what I know. I don't feel like I'm a person who rejects things out of hand for being newfangled all on their own. However, that was my initial instinct. </p>
+<p>So, when I decided I'd do a bit more writing a few weeks back, I threw ludditism to the wind, and said "OK, let's use virtualenv'. <strong>I was up and running in less than 5 minutes</strong>. Now I have a (kind of, I assume) idempotent virtual environment for python sitting in dropbox, that I assume will work on other OSX installs. Or maybe elsewhere. Have yet to test.</p>
+<p>But the point is, it was quick, painless, and I probably could have done the same thing a few years ago and saved a bunch of hassle. But I didn't -- and I'm interested in why. </p>
+<p>It may, of course, go back to one of the truisms I like to come out with, which is <em>People enjoy things they remember</em>. I remember how to install stuff from source, how <strong>./configure &amp;&amp; make &amp;&amp; make install</strong> was the old <strong>curl blah | bash</strong>, and even though the logical brain knows that the thing that's had thousands of hours of work, and tens of thousands of hours of nerd scrutiny applied to it, and is <em>what the software maintainer recommends</em> will probably work, and may surprise you, you're still gonna go "Install packages? Yeah, I've done that. I'll take it from here, documentation". It's like following the first half of the IKEA instructions and then reckoning you can wing it from there.</p>
+<p>Nothing like new ways of doing things to make you feel a bit left behind, eh?</p>
+<p>But, it's hard to see what's actually a good way of doing things, and what's generally a bad idea. This varies by your risk aversion, and how bothered you are, and how much you like/trust/care for the community behind this stuff. You used to be able to get a good feel for what's a decent idea as far as sysadmin goes. Now it seems more like you have to be careful about picking your poison.</p>
+<p>Other case in point! -- Docker Hub.</p>
+<p>I've been playing a bit with <a href="http://www.docker.com">Docker</a> for a while, and I've been happy enough with how it functions so far. I haven't in any way stressed it as far as functionality goes (mainly I've been using it at home for Plex, Sonarr, SabNZBd, for, uh, reasons). However, one of the first things you get exposed to is docker hub -- which is basically a giant Makefile repository for docker images.</p>
+<p>It gives me the fear.</p>
+<p>I don't know why it gives me the fear in a more substantial way than, say, <em>running any software</em>, but I'm still kinda finding it hard in my brain to distinguish it from the <strong>sudo | bash</strong> school of package management, in terms of trusting your machine to a random thing from internet strangers.</p>
+<p>But, we run software written by strangers all the time, right? There's no 'score' assigned to any of this software like docker images from docker hub, right? I've spent long enough reading occasional stories about how some prominent OSS people are deranged maniacs to know that the scrutiny leveled at, say, the sabnzbd or sonarr software itself is far less than the <a href="https://hub.docker.com/r/timhaak/plex/">111 stars and 100k+ pulls</a> that the highest-rated plex Dockerfile has. Hell, Plex is closed source so who knows what it's doing?</p>
+<p>You might trust the crowd. That's fine, too. It might result in just as simple a life as only trusting yourself, all things considered.</p>
+<p>I guess it comes back to one of the key interests I have, that I've yet to tease out into an 'area of study', really -- the effect of human instinct, emotion and judgement on how we go about interacting with software, especially software we rely on to stay working. People mistake 'correct' for 'safe' or 'familiar' or 'comfortable' all the time, and there's very little acknowledgement of the basic emotions at play. People imagine it as a very dry, scientific discipline -- but some of the most strident arguments I've encountered have been over two perfectly fine methods, software elements, processes, or whatever you run into when dealing with these ridiculous computer contraptions we deal with.</p>
+<p>Maybe you think vi is better than emacs because you have muscle memory, or because your girlfriend tought you to use it and that's a happy memory, or you personally have it set up just-so, and it's a classic nerd-brain trope to imagine everyone is just like you, because things are simpler that way?</p>
+<p>Or maybe vi's better than emacs because it just is and I'm tired of this argument, so shut your damn hell mouth.</p><p><a href="https://log.andvari.net/the-technical-contrarian.html#disqus_thread">comments</a></p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://log.andvari.net/tap-tap-tap.html" rel="bookmark"
+                           title="Permalink to Tap tap tap">Tap tap tap</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-06-18T21:39:00+01:00">
+                Wed 18 June 2014
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="https://log.andvari.net/author/dave-oconnor.html">Dave O'Connor</a>
+        </address>
+<p>In <a href="https://log.andvari.net/category/meta.html">Meta</a>. </p>
+<p>tags: <a href="https://log.andvari.net/tag/meta.html">meta</a></p>
+</footer><!-- /.post-info -->                <p>So here's another attempt at keeping a log of some kind. <a href="http://blog.swearing.org/">the last one</a> died because I stopped having (what I saw as) interesting things on it, blogger's editor bugged the fuck out of me, and general forgetting.</p>
+<p>Part of my problem with having a web log is in the …</p>
+                <a class="readmore" href="https://log.andvari.net/tap-tap-tap.html">read more</a>
+<p><a href="https://log.andvari.net/tap-tap-tap.html#disqus_thread">comments</a></p>                </div><!-- /.entry-content -->
+            </article></li>
+            </ol><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+            </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>stuff</h2>
+                        <ul>
+                            <li><a href="/pages/about.html">About</a></li>
+                            <li><a href="http://github.com/gerrowadat">GitHub</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://log.andvari.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="http://www.twitter.com/gerrowadat">twitter</a></li>
+                            <li><a href="http://ie.linkedin.com/in/gerrowadat/">linkedin</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <!--
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address>
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer>
+        -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52089607-1', 'andvari.net');
+  ga('send', 'pageview');
+
+</script><script type="text/javascript">
+    var disqus_shortname = 'andvarilog';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>

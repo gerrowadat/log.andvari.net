@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>log.andvari.net - Writing</title><link href="https://log.andvari.net/" rel="alternate"></link><link href="https://log.andvari.net/feeds/writing.atom.xml" rel="self"></link><id>https://log.andvari.net/</id><updated>2016-09-26T11:22:00+01:00</updated><entry><title>Everybody's Free (To Use Their Best Judgement)</title><link href="https://log.andvari.net/everybodys-free-to-use-their-best-judgement.html" rel="alternate"></link><published>2016-09-26T11:22:00+01:00</published><updated>2016-09-26T11:22:00+01:00</updated><author><name>Dave O'Connor</name></author><id>tag:log.andvari.net,2016-09-26:/everybodys-free-to-use-their-best-judgement.html</id><summary type="html">&lt;p&gt;&lt;em&gt;(This is something I wrote for new Googlers, drinking from the information hose.)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;(With Apologies to Mary Schmich)&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Ladies and Gentlemen of the Noogler classes of $YEAR:&lt;/p&gt;
+&lt;p&gt;Use your Best Judgement.&lt;/p&gt;
+&lt;p&gt;If I could offer one tip for your present and future career, it would be this: Robots can be …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;(This is something I wrote for new Googlers, drinking from the information hose.)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;(With Apologies to Mary Schmich)&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Ladies and Gentlemen of the Noogler classes of $YEAR:&lt;/p&gt;
+&lt;p&gt;Use your Best Judgement.&lt;/p&gt;
+&lt;p&gt;If I could offer one tip for your present and future career, it would be this: Robots can be taught to follow policy and do things mostly properly, and you’ve been hired because you’re empirically not a robot. The rest of this advice has no basis more reliable than my own meandering experience...I will dispense this advice now.&lt;/p&gt;
+&lt;p&gt;Enjoy, treasure, and fully use the time you spend being useless. Oh, never mind -- you won’t appreciate that time until a year from now, when you’re the subject of an innocent but terrifying question about GSLB or something. “I wish I had time to read about GSLB and play with it so I’d know this stuff, even though I don’t deal with it every day,” you’ll think. Your uselessness will pass, embracing it by learning breadth-first opens up more possibilities than you can possibly fathom. Being too useful too early means there’s no going back to full-time, wide-open learning. Don’t try to be useful because you’re wondering if you’re fired. You’re not fired.&lt;/p&gt;
+&lt;p&gt;While there’s a lot to think about and learn, remember that even if we had the technology to insert facts into your brain, the facts are not what we’re interested in. We’ve already got lots of those. We’re interested in how you apply them, and how you deal with them changing, sometimes quickly and unexpectedly. Knowing things is normal. Doing things is skill. Invention is Art.&lt;/p&gt;
+&lt;p&gt;Get out of the office sometimes. In fact, get out a lot of the time.&lt;/p&gt;
+&lt;p&gt;Respect useful precedent, but challenge the status quo. One of the best questions a new person can ask is “Why is this the way it is?”. One of the worst responses to being told “Just Because...” is acceptance. If you don’t get a good answer, keep asking.&lt;/p&gt;
+&lt;p&gt;Talk to someone from another team occasionally. Chances are they’re either doing something way better or worse than you are, or you have problems you didn’t know you shared.&lt;/p&gt;
+&lt;p&gt;Get enough sleep.&lt;/p&gt;
+&lt;p&gt;Remember that if co-workers think differently from you, it probably means they’re better than you at something. We’re all here because we’re curious about the world, and want to do the right thing. Despite what your Sunday night terrors are telling you, these people you’re thinking of don’t spend their free time steepling their fingers and wondering how best to make your life difficult.&lt;/p&gt;
+&lt;p&gt;Occasionally wonder if you’re one of those people.&lt;/p&gt;
+&lt;p&gt;Maybe you’ll stick around a long time, maybe you won’t. Maybe you’ll work on the same thing for a long time, maybe you won’t. Maybe you’ll be telling people to get off your lawn 10 years from now, smiling knowingly as people charter projects to deprecate technology that is the New Hotness today; in favour of The New New Hotness. Be humble; your experience is a responsibility: to stay hungry, to pry yourself out of pigeonholes, to do the right thing. Any day now, a new person will ask “Why is this the way it is?”. Have a good answer.&lt;/p&gt;
+&lt;p&gt;Policy is as powerful as Code. But remember that most Policy was written for and applies to the general case. Think about why we felt we needed one.&lt;/p&gt;
+&lt;p&gt;Accept certain inalienable truths: Software has a lifecycle; there will always be a features/stability tradeoff; there will always be a moonshot happening; we will never be finished. Someday you’ll find yourself yearning for a simpler time when this wasn’t the case. Were you paying attention?&lt;/p&gt;
+&lt;p&gt;Spend 5 minutes away from your desk, really thinking about what made you happy this week. Write it down. Do more of that next week.&lt;/p&gt;
+&lt;p&gt;Every day is a school day. &lt;/p&gt;
+&lt;p&gt;As obnoxious as it sounds, there really is no substitute for being right, and empirical rightness is the most effective form. Be patient in explaining yourself, and remember that the definition of “right” can also change (sometimes it’s “cheapest”, sometimes it’s “whatever doesn’t drive your team insane”). Sometimes it’s just as hard to figure out the question as it is the answer. That’s why you’ll never be replaced by robots.&lt;/p&gt;
+&lt;p&gt;Remember that, above all else, we’re here to do the right thing. &lt;/p&gt;
+&lt;p&gt;(Trust me on the Best Judgement thing.)&lt;/p&gt;</content><category term="Writing"></category><category term="writing"></category></entry><entry><title>Conferences for Introverts</title><link href="https://log.andvari.net/conferences-for-introverts.html" rel="alternate"></link><published>2016-08-20T17:29:00+01:00</published><updated>2016-08-20T17:29:00+01:00</updated><author><name>Dave O'Connor</name></author><id>tag:log.andvari.net,2016-08-20:/conferences-for-introverts.html</id><summary type="html">&lt;p&gt;&lt;em&gt;(This is a paper I wrote for consumption of people doing conferences and trainings at Google. I figured it was more generally applicable, so here it is)&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1&gt;Conferences for Introverts&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;Last Update: September 2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2&gt;Preamble: What is an Introvert?&lt;/h2&gt;
+&lt;p&gt;Let’s get this out of the way first so we …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;(This is a paper I wrote for consumption of people doing conferences and trainings at Google. I figured it was more generally applicable, so here it is)&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1&gt;Conferences for Introverts&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;Last Update: September 2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2&gt;Preamble: What is an Introvert?&lt;/h2&gt;
+&lt;p&gt;Let’s get this out of the way first so we know what this document is about.&lt;/p&gt;
+&lt;p&gt;‘Introvert’ is an overloaded term. It can mean anything from pretty much its direct meaning (which we’ll get to in a minute), to the stereotype of the sullen teenager or loner. For the purposes of this document, we’ll use this definition:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;An Introvert is someone who regains emotional energy from being alone.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;An extrovert, as you might guess, is a person who gains energy from interacting with others. It’s that simple. How a person ‘recharges their batteries’ is a personality facet that usually doesn’t change much, and is pretty difficult to try to change on purpose. Thinking about it for a second, you can probably tell which you are. Humans seem to be roughly split down the middle.&lt;/p&gt;
+&lt;p&gt;So, when I say that most engineers are introverts, please know that I’m not making any pejorative as to what they’re like. All I’m saying is that they need certain things to function well.&lt;/p&gt;
+&lt;h2&gt;What this Document is&lt;/h2&gt;
+&lt;p&gt;This is a collection of tips and advice on how to run a successful gathering (i.e. conference, training, offsite) for a set of people who include introverted people (hint: that is most gatherings). &lt;/p&gt;
+&lt;h2&gt;Why I should Listen to You&lt;/h2&gt;
+&lt;p&gt;Hi, I’m Dave. I’ve been at Google since 2004. For most of that time, I’ve been an Engineering manager. I was a junior one, and then I was a senior one (I started as a junior sysadmin, I’m now a Director). I am enormously introverted. I will actively avoid talking to people I don’t strictly need to talk to. I am stupendously inept at small talk. I’m okay with this.&lt;/p&gt;
+&lt;p&gt;Aside from the usual bouts with imposter syndrome that we all face, the idea (knowing myself as I like to think I do) that I interact with, talk to and manage people for a living is a deep and powerful mystery to me.&lt;/p&gt;
+&lt;p&gt;I’ve been to many, many training courses, both internal and external to Google (and at previous jobs). I’ve also designed conferences of various sizes (everything from 7-person team forming/development style things, to 200-person multi-day offsites). These were mostly for engineers, who seem to have a higher population of introverts than is normal (in the statistical sense). For many of these, I’ve had the opportunity to structure agendas and content so it’s a conference I’d like to attend.&lt;/p&gt;
+&lt;p&gt;Also, I have opinions and a text editor, so get comfy.&lt;/p&gt;
+&lt;h2&gt;Why in-person Gatherings are a Good Idea&lt;/h2&gt;
+&lt;p&gt;Summits are great, right? Yay summits. We’re going to have a summit. Or we’re going to do a training course or a team-building event. Won’t it be jolly? We’re going to have the best of fun.&lt;/p&gt;
+&lt;h3&gt;Team Cohesion&lt;/h3&gt;
+&lt;p&gt;The ‘full mesh’ of a team interacting at a personal level isn’t something you can replicate with any level of technology. You can install 4K resolution videoconference units on every flat surface in the office, but it still doesn’t beat having a large, high-bandwidth conversation in person. Maybe you, as the conference organiser, have a big announcement or a big program to charter. Maybe there’s a discrete thing to get done. Great, these are good when they can be done in person. Picking up on nuances of what people think is way easier in person. You don’t get the 5 minutes of unfiltered chat on one side, after the conference call shuts down - it’s all in the room.&lt;/p&gt;
+&lt;h3&gt;Accidental Collaboration&lt;/h3&gt;
+&lt;p&gt;If this is a team meeting, you often get sidebar conversations that happen outside the core agenda. A lot of good stuff happens here. Ask yourself this:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If your conference had no agenda, and you just put the people in a large space with the tools to work together, would it have been a useful time?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If so, this is a useful cohort. This is a good use of everyone’s time and you’re already winning just by having this cohort spend time together. Any agenda on top is gravy. Pat yourself on the back.&lt;/p&gt;
+&lt;h3&gt;Personal Connections&lt;/h3&gt;
+&lt;p&gt;Even if someone doesn’t share much about their life outside work, it’s good to ‘reset the clock’ and get some face time anyway. It can be hard to maintain an interpersonal relationship when all your interactions (i.e. meetings) are preambled with an implicit “We’re going to have this necessary conversation and then we’ll go do other things”.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;After 6-9 months of no unnecessary social contact, a person stops being a person and starts being email.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It’s true. I’ve been on both ends of the equation. You start to mischaracterise people, to question motives, and to ‘debug’ them when they do something you might see as unexpected.&lt;/p&gt;
+&lt;h2&gt;Why in-person conferences are tiresome and costly&lt;/h2&gt;
+&lt;p&gt;I guess append “If not chartered or run properly”.&lt;/p&gt;
+&lt;h3&gt;Assuming Full Engagement&lt;/h3&gt;
+&lt;p&gt;This especially applies to introverts - since time is usually at a premium, there’s the temptation to cram as much content in as possible. 9am starts, working lunches, late finishes, pre-arranged dinner, drinks, etc. It isn’t that half of us are secretly suffering inexorable internal torture or anything - it’s just really, really tiring and takes it out of you. If you’re combining that with expecting top quality &lt;a href="https://www.youtube.com/watch?v=GyV_UG60dD4"&gt;synergies&lt;/a&gt; from people, it’s not always going to end well.&lt;/p&gt;
+&lt;h3&gt;Getting the Content right is hard&lt;/h3&gt;
+&lt;p&gt;It’s difficult to stay engaged if the content isn’t interesting or engaging. If things are in the wrong order, or the pacing is off, or it isn’t presented engagingly, it can end up being a place people don’t want to be. Obviously the art and science of running good meetings is an entire career unto itself, but try to get it right-ish, eh?&lt;/p&gt;
+&lt;h3&gt;The Formal Persona&lt;/h3&gt;
+&lt;p&gt;Meetings are pretty easy. They’re usually short, and for a particular purpose. It is pretty easy to have a conversation about a thing, end that conversation, and move on. When you put the same people into a much less formal situation, where they have to keep their ‘game face’ on for hours or days at a time, it can be emotionally jarring. Remember, people usually have the means to escape, mull over what’s happened, absorb, and respond. You’re removing that option for them, at least for this event. &lt;/p&gt;
+&lt;h2&gt;Making things Bearable&lt;/h2&gt;
+&lt;p&gt;Here’s where it gets specific. Remember, this is what has worked for me when organising, and what I’ve really appreciated when attending. YMMV, and this is by no means a complete list for all introverts.&lt;/p&gt;
+&lt;p&gt;The overarching goal for the preparation part is to allow people to build a mental picture of what the gathering is going to look like - who’ll be there, what will generally be discussed, what the format is, what degree of participation is needed from them.&lt;/p&gt;
+&lt;h3&gt;Preparation and Planning&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;DO&lt;/b&gt;: Have a Charter Document&lt;/li&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Be forthright as to why this meeting is a good idea. Publish what you want to get done. Remember, this is a sales job as much as anything. Make it compelling.&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;li&gt;&lt;b&gt;DO&lt;/b&gt;: Have sounding boards for your agenda and plans&lt;/li&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Obviously these should be people who are prepared to tell you you’re full of it (if you are).&lt;/li&gt;
+        &lt;li&gt;It might be a good idea to invite a ‘conference skeptic’ to comment (we’ve all got one).&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;li&gt;&lt;b&gt;DO&lt;/b&gt;: Allow people to build their own mental picture of what the summit might be like.&lt;/li&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Publish a schedule as early as humanly possible.&lt;/li&gt;
+        &lt;li&gt;Even if it’s incomplete, or has “Insert external speaker here” placeholders.&lt;/li&gt;
+        &lt;li&gt;Getting used to the ideas inside, building a mental picture, and mentally preparing is super important.&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;li&gt;&lt;b&gt;DO&lt;/b&gt;: Arrange to record talks if you can, and share content afterwards&lt;/li&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Even though people being there is important, it should not be essential absolutely all of the time&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;li&gt;&lt;b&gt;DON'T&lt;/b&gt;: Generate ‘buzz’ by keeping important things secret.&lt;/li&gt;
+    &lt;ul&gt;
+        &lt;li&gt;“We have a special secret ice-breaker planned for the wednesday evening, it’s going to be super fun!”&lt;/li&gt;
+        &lt;li&gt;Haha. How about no. Things that make you interact with strangers in surprising ways are to be avoided.&lt;/li&gt;
+        &lt;li&gt;It’s OK to have surprises (Schwag, special appearances, etc.), once it’s a passive event from the cohort’s point of view.&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Determining the Agenda&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;DO&lt;/b&gt;: Make sure there’s enough time for each item.&lt;/li&gt;
+  &lt;ul&gt;&lt;li&gt;Be generous with time, make sure you’re able to cover everything.&lt;/li&gt;&lt;/ul&gt;
+&lt;li&gt;&lt;b&gt;DO&lt;/b&gt;: Schedule breaks generously.&lt;/li&gt;
+  &lt;ul&gt;&lt;li&gt;Long enough that people can actually escape.&lt;/li&gt;&lt;/ul&gt;
+&lt;li&gt;&lt;b&gt;DO&lt;/b&gt;: Think about the flow of the agenda.&lt;/li&gt;
+  &lt;ul&gt;&lt;li&gt;Is it all super-serious decision-making all the time? Could we break it up a bit?&lt;/li&gt;&lt;/ul&gt;
+&lt;li&gt;&lt;b&gt;DO&lt;/b&gt;: Consider the expected energy in the room.&lt;/li&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Do we want to make all our decisions in the morning? The afternoon?
+    &lt;li&gt;Are decisions made at 4:30pm after a full day good quality decisions?
+  &lt;/ul&gt;
+&lt;li&gt;&lt;b&gt;DON’T&lt;/b&gt;: Assume ‘breakout groups’ are a break from the larger conference.
+  &lt;ul&gt;&lt;li&gt;They’re often more stressful, as they force interaction with strangers.&lt;/li&gt;&lt;/ul&gt;
+&lt;li&gt;&lt;b&gt;DON’T&lt;/b&gt;: Assume anything about breakfast, lunch, or evenings&lt;/li&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Lunch is an hour to escape the cohort. Let people do it.
+    &lt;li&gt;Yes, I’ve had ‘tasks’ set with a small group of people I’d met that day, that I was supposed to do with them over lunch.
+    &lt;li&gt;I’ve also had ‘expected’ pre-arranged dinner and drinks attendance. Please don’t do this.
+  &lt;/ul&gt;
+&lt;li&gt;&lt;b&gt;DON’T&lt;/b&gt;: Plan ‘ice-breakers’ that require divulging personal information.
+  &lt;ul&gt;
+    &lt;li&gt;People should not feel pressured into sharing anything they don’t feel like sharing. &lt;/li&gt;
+    &lt;li&gt;Yes, this might include things you think are innocuous.
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;On the Day&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;DO&lt;/b&gt;: Read the Room!
+  &lt;ul&gt;
+    &lt;li&gt;If the energy level is dropping, have a break. Even an unscheduled one.
+    &lt;li&gt;If a conversation is going nowhere, watch for people disengaging. Move on or reset.
+  &lt;/ul&gt;
+&lt;li&gt;&lt;b&gt;DO&lt;/b&gt;: Offer disengagement as an option
+  &lt;ul&gt;
+    &lt;li&gt;If someone wants to bow out, let them actively disengage (i.e. leave).
+    &lt;li&gt;They should respect the process by letting you know (afterwards) their reasons.
+  &lt;/ul&gt;
+&lt;li&gt;&lt;b&gt;DON’T&lt;/b&gt;: Skimp on break times.
+  &lt;ul&gt;&lt;li&gt;Breaks should be 15 minutes, at least. Enough time to go for a short walk, sit somewhere quiet, do a quick email check. Even longer if there are logistical things (bathrooms are far away or not plentiful (especially if your conference is gender-skewed), local cafe is busy, singleton coffee machine, etc.).&lt;/li&gt;&lt;/ul&gt;
+&lt;li&gt;&lt;b&gt;DON’T&lt;/b&gt;: Try to include everyone equally
+  &lt;ul&gt;
+    &lt;li&gt;Some people are talkers, some listeners and chimers-in.
+    &lt;li&gt;While you want to make sure everyone has the opportunity to collaborate and participate, try to strike a balance between letting the talkers talk, and giving quieter people an opening.
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2&gt;Making things Excellent&lt;/h2&gt;
+&lt;p&gt;All the above might seem like introverts should be coddled, or need special treatment. This isn’t especially the case -- as noted before, we’re talking about half of all people, here.&lt;/p&gt;
+&lt;p&gt;Conferences should push people, to an extent. In many cases, you may be introducing people to concepts and conversations that challenge them. There should be a certain amount of discomfort, without it being enough that someone chooses to revert and disengage. This is difficult to get right -- hopefully some of the above tips will get you a lot of the way there. &lt;/p&gt;</content><category term="Writing"></category><category term="writing"></category><category term="conferences"></category><category term="introverts"></category></entry></feed>
