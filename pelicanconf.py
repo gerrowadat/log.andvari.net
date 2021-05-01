@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Dave O\'Connor'
 SITENAME = u'log.andvari.net'
-SITEURL = 'https://log.andvari.net'
+SITEURL = 'http://localhost:8888'
 
 THEME = 'theme'
 
@@ -36,7 +36,7 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 # Blogroll
-LINKS =  (('Emauton', 'http://www.emauton.org/'),
+LINKS =  (('About', '/pages/about.html'),
           ('GitHub', 'http://github.com/gerrowadat'),)
 
 # Social widget
