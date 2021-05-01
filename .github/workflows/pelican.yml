@@ -14,7 +14,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: nelsonjchen/gh-pages-pelican-action@0.1.5
+    - uses: gerrowadat/gh-pages-pelican-action
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         PELICAN_CONFIG_FILE: publishconf.py
+        GH_PAGES_CNAME: log.andvari.net
