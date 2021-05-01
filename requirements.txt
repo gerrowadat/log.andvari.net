@@ -1,4 +1,9 @@
 pelican==4.6.0
 Markdown==3.3.4
 Pillow==8.1.2
-pelican-thumbnailer
+six==1.15.0
+pytz=2020.1
+Pygments==2.8.1
+Markupsafe==1.1.1
+pelican-thumbnailer==1.0.0
+Jinja2==2.11.3
