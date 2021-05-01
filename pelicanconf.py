@@ -14,8 +14,8 @@ DEFAULT_LANG = u'en'
 
 STATIC_PATHS = ['static', 'images']
 
-PLUGIN_PATHS = ['plugins']
-PLUGINS = ['gallery', 'thumbnailer']
+#PLUGIN_PATHS = ['plugins']
+PLUGINS = ['thumbnailer']
 # 'optimize_images'
 
 # Thumbnailer
