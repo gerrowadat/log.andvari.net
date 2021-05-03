@@ -6,7 +6,7 @@ AUTHOR = u'Dave O\'Connor'
 SITENAME = u'log.andvari.net'
 SITEURL = 'http://localhost:8888'
 
-THEME = 'theme'
+THEME = 'themes/zurb-F5-basic'
 
 TIMEZONE = 'Europe/Dublin'
 
@@ -42,5 +42,7 @@ LINKS =  (('About', '/pages/about.html'),
 # Social widget
 SOCIAL = (('twitter', 'http://www.twitter.com/gerrowadat'),
         ('linkedin', 'http://ie.linkedin.com/in/gerrowadat/'),)
+
+TWITTER_USERNAME = 'gerrowadat'
 
 DEFAULT_PAGINATION = 5
