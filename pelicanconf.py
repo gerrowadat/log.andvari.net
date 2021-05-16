@@ -12,7 +12,17 @@ TIMEZONE = 'Europe/Dublin'
 
 DEFAULT_LANG = u'en'
 
-STATIC_PATHS = ['static', 'images']
+STATIC_PATHS = ['static', 'images', 'favicon']
+
+EXTRA_PATH_METADATA = {
+        'favicon/favicon.ico': {'path': 'favicon.ico'},
+        'favicon/site.webmanifest': {'path': 'site.webmanifest'},
+        'favicon/android-chrome-192x192.png': {'path': 'android-chrome-192x192.png'},
+        'favicon/android-chrome-512x512.png': {'path': 'android-chrome-512x512.png'},
+        'favicon/apple-touch-icon.png': {'path': 'apple-touch-icon.png'},
+        'favicon/favicon-16x16.png': {'path': 'favicon-16x16.png'},
+        'favicon/favicon-32x32.png': {'path': 'favicon-32x32.png'},
+}
 
 #PLUGIN_PATHS = ['plugins']
 PLUGINS = ['thumbnailer']
