@@ -1,10 +1,12 @@
 Title: About
-Modified: 2021-05-01 01:50
+Modified: 2021-09-17 00:14
 Authors: DoC
 
 <a href="/images/daveoc-typewriter.png"><img src="/images/daveoc-typewriter.png"/></a>
 
-Dave O'Connor is an [SRE][sre] Leadership practitioner based in Dublin, Ireland. He's currently Sr. Director of Engineering at [elastic.co](https://www.elastic.co), building and scaling Elastic Cloud.
+Dave O'Connor is an [SRE][sre] Leadership practitioner based in Dublin, Ireland. He's currently VP of Engineering at [Twilio](https://www.twilio.com/), working on reliability and leading the SRE group there.
+
+Previous to that, he was Sr. Director of Engineering at [elastic.co](https://www.elastic.co), building and scaling Elastic Cloud.
 
 He was a Site Reliability Engineer/Manager/Director at Google from 2004 to 2021. As well as techical and management/leadership work on products such as GMail and Google Analytics, Dave was the global lead for Storage and Databases SRE at Google, as well as the head of Engineering at Google Ireland for a time.
 
