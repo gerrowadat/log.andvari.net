@@ -1,9 +1,9 @@
-pelican==4.6.0
-Markdown==3.3.4
-Pillow>=7.2
-six==1.15.0
-pytz==2020.1
-Pygments==2.8.1
-Markupsafe==1.1.1
+pelican==4.7.1
+Markdown==3.3.6
+Pillow==9.0.1
+six==1.16.0
+pytz==2022.1
+Pygments==2.11.2
 pelican-thumbnailer==1.0.0
-Jinja2==2.11.3
+Jinja2==3.0.3
+importlib-metadata==4.6.4
