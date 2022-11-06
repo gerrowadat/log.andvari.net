@@ -22,4 +22,4 @@ DELETE_OUTPUT_DIRECTORY = False
 # Following items are often useful when publishing
 
 DISQUS_SITENAME = "andvarilog"
-GOOGLE_ANALYTICS = "UA-52089607-1"
+GOOGLE_ANALYTICS = "G-YBXQ11Y6R7"
