@@ -45,7 +45,7 @@ Most of my writings can be found on this site -- many of these are vetted versio
   - [Working Deliberately with OKRs](/pages/working-deliberately-with-okrs.html) - A primer for folks about to or considering OKRs, and how I use them.
   - [Everybody's Free (To Use Their Best Judgement)](https://log.andvari.net/everybodys-free-to-use-their-best-judgement.html) - A note to new engineers.
   - [Conferences for Introverts](https://log.andvari.net/pages/conferences-for-introverts.html) - A guide for someone who will run a conference at shich there might be introverts.
-  - [Bad Machinery: Managing Interrupts Under Load](/pages/bad-machinery.html) - On managing teams that manage interrupts. Late rbecam a chapter in the first SRE book.
+  - [Bad Machinery: Managing Interrupts Under Load](/pages/bad-machinery.html) - On managing teams that manage interrupts. Later became a chapter in the first SRE book.
 
 
 Links:
