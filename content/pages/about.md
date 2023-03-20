@@ -4,7 +4,9 @@ Authors: DoC
 
 <a href="/images/daveoc-typewriter.png"><img src="/images/daveoc-typewriter.png"/></a>
 
-Dave O'Connor is an [SRE][sre] Leadership practitioner based in Dublin, Ireland. He's currently VP of Engineering at [Twilio](https://www.twilio.com/), working on reliability and leading the SRE group there.
+Dave O'Connor is an [SRE][sre] and Engineering Leadership practitioner based in Dublin, Ireland. 
+
+Most recently, he has been VP of Engineering at [Twilio](https://www.twilio.com/), working on reliability and leading the SRE group there.
 
 Previous to that, he was Sr. Director of Engineering at [elastic.co](https://www.elastic.co), building and scaling Elastic Cloud.
 
@@ -17,6 +19,39 @@ He was responsible for the [first][ama1] and [second][ama2] Reddit AMAs particip
 His opinions as expressed here are his own.
 
 He will probably stop referring to himself in the third person now.
+
+
+Speaking
+========
+
+I am happy to speak on subjects such as Software Resiliency, Customer Management for SaaS (internal and external), SRE history and development, OKRs, Managing Distributed Teams, Performance Management, Coaching high-level engineers and managers, Interrupts, oncall, incident management, and anything else that falls inside the realm of interesting and where I might have something intersting to say.
+
+If in doubt, get in contact via LinkedIn or Mastodon or any of the various ways that can be figured out.
+
+Previous Talks and Interviews (an incomplete list):
+
+  - SRECon Europe 2015 - [Bad Machinery— Managing Interrupts Under Load](https://www.usenix.org/conference/srecon15europe/program/presentation/oconnor)  
+  - SRECon 2021 - [SRE "Power Words"—the Lexicon of SRE as an Industry](https://www.usenix.org/conference/srecon21/presentation/oconnor)
+  - SRECon EMEA 2022 - [Oncall: An Equal Opportunity Waste of Time](https://www.usenix.org/conference/srecon22emea/presentation/oconnor)
+
+Writing
+=======
+
+Most of my writings can be found on this site -- many of these are vetted versions of papers/essays I wrote for various employers (but, mostly Google) and are used internally there.
+
+  - [Dealing With Interrupts](https://sre.google/sre-book/dealing-with-interrupts/) - Chapter 29 of ["Site Reliability Engineerin: How Google Runs Production Systems" by Betsy Beyer, Chris Jones, Jennifer Petoff, Niall Richard Murphy](https://books.google.ie/books/about/Site_Reliability_Engineering.html?id=_4rPCwAAQBAJ&source=kp_book_description&redir_esc=y)
+  - [Oncall: An Equal-Opportunity Waste of Time](https://www.usenix.org/publications/loginonline/oncall-equal-opportunity-waste-time) - USENIX ;login: Online
+  - [Oncall with Dave O'Connor](https://fiberplane.com/blog/on-call-with-dave-o-connor) from the [Fiberplane Blog](https://fiberplane.com/blog)
+  - [Working Deliberately with OKRs](/pages/working-deliberately-with-okrs.html) - A primer for folks about to or considering OKRs, and how I use them.
+  - [Everybody's Free (To Use Their Best Judgement)](https://log.andvari.net/everybodys-free-to-use-their-best-judgement.html) - A note to new engineers.
+  - [Conferences for Introverts](https://log.andvari.net/pages/conferences-for-introverts.html) - A guide for someone who will run a conference at shich there might be introverts.
+  - 
+
+
+Links:
+  - [Linkedin](https://www.linkedin.com/in/gerrowadat/)
+  - [Mastodon](https://mastodon.ie/@gerrowadat)
+  - [GitHub](https://www.github.com/gerrowadat)
 
   [srebook]: https://sre.google/books/
   [sre]: https://sre.google/
