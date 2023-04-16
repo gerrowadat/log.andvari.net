@@ -10,7 +10,7 @@ Most recently, he has been VP of Engineering at [Twilio](https://www.twilio.com/
 
 Previous to that, he was Sr. Director of Engineering at [elastic.co](https://www.elastic.co), building and scaling Elastic Cloud.
 
-He was a Site Reliability Engineer/Manager/Director at Google from 2004 to 2021. As well as techical and management/leadership work on products such as GMail and Google Analytics, Dave was the global lead for Storage and Databases SRE at Google, as well as the head of Engineering at Google Ireland for a time.
+He was a Site Reliability Engineer/Manager/Director at Google from 2004 to 2021. As well as techical and management/leadership work on products such as GMail and Google Analytics, Dave was the global lead for Storage and Databases SRE at Google, as well as the head of Engineering at Google Ireland for several years.
 
 He holds various opinions about technology, building and keeping teams and organisations, the role of SRE/Devops/whatever the kool kids are calling it, and various other things. He has run orgs from individual teams up to orgs of 300+ engineers, managers and other functions.
 
@@ -24,7 +24,7 @@ He will probably stop referring to himself in the third person now.
 Speaking
 ========
 
-I am happy to speak on subjects such as Software Resiliency, Customer Management for SaaS (internal and external), SRE history and development, OKRs, Managing Distributed Teams, Performance Management, Coaching high-level engineers and managers, Interrupts, oncall, incident management, and anything else that falls inside the realm of interesting and where I might have something intersting to say.
+I am happy to speak on subjects such as Software Resiliency, Customer Management for SaaS (internal and external), SRE history and development, OKRs, Managing Distributed Teams, Performance Management, Coaching high-level engineers and managers, Interrupts, oncall, incident management, and anything else that falls inside the realm of interesting and where I might have something interesting to say.
 
 If in doubt, get in contact via LinkedIn or Mastodon or any of the various ways that can be figured out.
 
