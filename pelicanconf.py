@@ -50,7 +50,8 @@ LINKS =  (('About', '/pages/about.html'),
           ('GitHub', 'http://github.com/gerrowadat'),)
 
 # Social widget
-SOCIAL = (('twitter', 'http://www.twitter.com/gerrowadat'),
+SOCIAL = (('@gerrowadat@mastodon.ie', 'https://mastodon.ie/@gerrowadat'),
+          ('@gerrowadat', 'http://www.twitter.com/gerrowadat'),
         ('linkedin', 'http://ie.linkedin.com/in/gerrowadat/'),)
 
 TWITTER_USERNAME = 'gerrowadat'
