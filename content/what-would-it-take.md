@@ -3,7 +3,7 @@ Tags: work, coaching
 Date: 2023-05-12 15:48 
 Category: Writing
  
-One of my coping strategies when I'm in a difficult spot is to write things down -- I do quite well with talking things through with folks, and coaching and mentoring is something I get a lot of energy out of. When it's just me and my thoughts, the interlocutor is writing, and I often have to push myself to get that done. 
+One of the most constructive things I've found when facing a difficult work situation is to externalise and write things down -- I do quite well with talking things through with folks, and coaching and mentoring is something I get a lot of energy out of. When it's just me and my thoughts, the interlocutor is writing, and I often have to push myself to get that done. 
 
 When talking to others in this situation, I'd often frame it in simple "What would it take?" terms. In the case of whether to stick around in a job or stick with a project or idea, this would be "What would it take for you to quit today?", and the vital accompanying question of "What would it take to resolve all this, and to re-commit indefinitely?". In the case of a job, you're either going to quit, or you're not. Spending a lot of time agonising in between does pretty much everyone a disservice, yourself more than anyone. I think it's healthiest to always be going in the direction of one or the other, if you do feel there's work to be done there.
 
