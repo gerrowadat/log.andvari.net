@@ -21,5 +21,5 @@ DELETE_OUTPUT_DIRECTORY = False
 
 # Following items are often useful when publishing
 
-DISQUS_SITENAME = "andvarilog"
+#DISQUS_SITENAME = "andvarilog"
 GOOGLE_ANALYTICS = "G-YBXQ11Y6R7"
