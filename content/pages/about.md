@@ -46,6 +46,7 @@ Most of my writings can be found on this site -- many of these are vetted versio
   - [Everybody's Free (To Use Their Best Judgement)](https://log.andvari.net/everybodys-free-to-use-their-best-judgement.html) - A note to new engineers.
   - [Conferences for Introverts](https://log.andvari.net/pages/conferences-for-introverts.html) - A guide for someone who will run a conference at which there might be introverts.
   - [Bad Machinery: Managing Interrupts Under Load](/pages/bad-machinery.html) - On managing teams that manage interrupts. Later became a chapter in the first SRE book.
+  - [6 Reasons You Don't need an SRE Team](/6reasons.html) - A 2023 take on whether your average company or enterprise needs an SRE **team**, as opposed to just SRE.
 
 
 Links:
