@@ -91,11 +91,11 @@ Would it happen if you didn't have an SRE team at all? Also No!
 
 We've established that it's difficult to put your finger on how much you care about reliability. Even if you have done the work and really have a good handle on this; you may be one giant outage away from throwing that all away on optics.
 
-As a thought experiment: go and corner your nearest C\[TE\]O and ask them how much they care about reliability. It's probably a lot, right  
+As a thought experiment: go and corner your nearest C\[TE\]O and ask them how much they care about reliability. It's probably a lot, right? 
 
 Now, go ask them again the day after a multiple-hour outage. Now it's definitely a lot!
 
-SRE as a brand is a double-edged sword -- it can be seen as a panacea for reliability problems, when often it's a more intrinsic cultural investment. I have personally seen SRE groups appear almost overnight, or have money/headcount thrown at them because we had some big outages and this is an audacious hail-mary pass of a move that really shows you care about reliability. If you're not careful, you could be telling your customers you care about reliability, while telling your products developers and leadership that they don't have to.
+SRE as a brand is a double-edged sword -- it can be seen as a panacea for reliability problems, when often it's a more intrinsic cultural investment. I have personally seen SRE groups appear almost overnight, or have money/headcount thrown at them because we had some big outages and this is an audacious hail-mary pass of a move that really shows you care about reliability. If you're not careful, you could be telling your customers you care about reliability, while telling your product developers and leadership that they don't have to.
 
 ### Conclusion
 
