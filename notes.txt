@@ -1,6 +1,15 @@
 If this is a clean repo/machine, make it useful after cloning with:
-
-  - sudo pip3 install pelican[markdown] pelican-thumbnailer
+ 
+```
+sudo apt install python3-virtualenv
+# This is for Pillow, from the pillow install docs.
+sudo apt-get install libtiff5-dev libjpeg8-dev libopenjp2-7-dev zlib1g-dev \
+    libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python3-tk \
+    libharfbuzz-dev libfribidi-dev libxcb1-dev
+virtualenv .venv
+source .venv/bin/activate
+pip3 install pelican[markdown] pelican-thumbnailer
+```
 
 TODO:
   - Check for broken links/images.
