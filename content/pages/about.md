@@ -4,22 +4,17 @@ Authors: DoC
 
 <a href="/images/daveoc-typewriter.png"><img src="/images/daveoc-typewriter.png"/></a>
 
-Dave O'Connor is an [SRE][sre] and Engineering Leadership practitioner based in Dublin, Ireland. 
+I am an [SRE][sre], Engineering Leadership practitioner and [Coach](https://www.strategichopes.co/) based in Dublin, Ireland. 
 
-Most recently, he has been VP of Engineering at [Twilio](https://www.twilio.com/), working on reliability and leading the SRE group there.
+Most recently, I was VP of Engineering at [Twilio](https://www.twilio.com/), working on reliability strategery and leading the SRE group there.
 
-Previous to that, he was Sr. Director of Engineering at [elastic.co](https://www.elastic.co), building and scaling Elastic Cloud.
+Previous to that, I was Sr. Director of Engineering at [elastic.co](https://www.elastic.co), building and scaling Elastic Cloud.
 
-He was a Site Reliability Engineer/Manager/Director at Google from 2004 to 2021. As well as techical and management/leadership work on products such as GMail and Google Analytics, Dave was the global lead for Storage and Databases SRE at Google, as well as the head of Engineering at Google Ireland for several years.
+I was a Site Reliability Engineer/Manager/Director at Google from 2004 to 2021. As well as techical and management/leadership work on products such as GMail and Google Analytics, I was the global lead for Storage and Databases SRE at Google, as well as the head of Engineering at Google Ireland for several years.
 
-He holds various opinions about technology, building and keeping teams and organisations, the role of SRE/Devops/whatever the kool kids are calling it, and various other things. He has run orgs from individual teams up to orgs of 300+ engineers, managers and other functions.
+I hold various opinions about technology, building and keeping teams and organisations, the role of SRE/Devops/whatever the kool kids are calling it, and various other things. I have run orgs from individual teams up to orgs of 300+ engineers, managers and other functions.
 
-He was responsible for the [first][ama1] and [second][ama2] Reddit AMAs participated in by SRE, and has given various talks, presentations, etc. externally about what Google Engineering, and specifically SRE, do. He's the author of chapter 29 of the [SRE Book][srebook].
-
-His opinions as expressed here are his own.
-
-He will probably stop referring to himself in the third person now.
-
+I was responsible for the [first][ama1] and [second][ama2] Reddit AMAs participated in by SRE, and have given various talks, presentations, etc. externally about what Google Engineering, and specifically SRE, do. I'm the author of chapter 29 of the [SRE Book][srebook].
 
 Speaking
 ========
@@ -28,11 +23,12 @@ I am happy to speak on subjects such as Software Resiliency, Customer Management
 
 If in doubt, get in contact via LinkedIn or Mastodon or any of the various ways that can be figured out.
 
-Previous Talks and Interviews (an incomplete list):
+Previous Talks, Panels and Interviews (an incomplete list):
 
   - SRECon Europe 2015 - [Bad Machinery— Managing Interrupts Under Load](https://www.usenix.org/conference/srecon15europe/program/presentation/oconnor)  
   - SRECon 2021 - [SRE "Power Words"—the Lexicon of SRE as an Industry](https://www.usenix.org/conference/srecon21/presentation/oconnor)
   - SRECon EMEA 2022 - [Oncall: An Equal Opportunity Waste of Time](https://www.usenix.org/conference/srecon22emea/presentation/oconnor)
+  - SRECon EMEA 2023 - [Panel Discussion: Unraveling the Interoperability Challenges Among SaaS Products](https://www.usenix.org/conference/srecon23emea/presentation/panel-saas)
 
 Writing
 =======
@@ -46,7 +42,7 @@ Most of my writings can be found on this site -- many of these are vetted versio
   - [Everybody's Free (To Use Their Best Judgement)](https://log.andvari.net/everybodys-free-to-use-their-best-judgement.html) - A note to new engineers.
   - [Conferences for Introverts](https://log.andvari.net/pages/conferences-for-introverts.html) - A guide for someone who will run a conference at which there might be introverts.
   - [Bad Machinery: Managing Interrupts Under Load](/pages/bad-machinery.html) - On managing teams that manage interrupts. Later became a chapter in the first SRE book.
-  - [6 Reasons You Don't need an SRE Team](/6reasons.html) - A 2023 take on whether your average company or enterprise needs an SRE **team**, as opposed to just SRE.
+  - [6 Reasons You Don't need an SRE Team](/6reasons.html) - A 2023 take on whether your average company or enterprise needs an SRE **team**, as opposed to just SRE practices or mindset.
 
 
 Links:
