@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - uses: nelsonjchen/gh-pages-pelican-action@0.1.10
+    - uses: gerrowadat/gh-pages-pelican-action@latest
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         PELICAN_CONFIG_FILE: publishconf.py
