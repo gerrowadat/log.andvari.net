@@ -10,7 +10,7 @@ Slug: sre-and-architecture
 
 We live in production -- our practices, customs and very culture are designed by us, but then also inform our capabilities and practice. Despite how our SRE practice might be designed or set out, those surroundings inform our ability to make forward progress, and our collective desire to do so.
 
-People become attached to tooling, to processes, to the structure, and also often to the antipatterns.
+People become attached to tooling, to processes, to the structure, and also often to the anti-patterns.
 
 I will give a real example: I once spoke to an engineering leader about an SRE-style engagement for their feature. I asked about current levels of toil and what might be acceptable -- they said that the system paged only maybe twice a week. This was a deal-breaker for me and my team, which shocked the product lead: they had lived around systems with a baseline level of paging and toil for so long, that getting paged all the time was unremarkable to them. 2 pages a week seemed perfectly normal and part of being alive. It was a concrete post in the middle of their living room. Getting a human to intervene was considered part of the feature.
 
@@ -24,11 +24,11 @@ It's easy to consider yourself a hero in the trenches of production, and all the
 
 > "You cannot save wonderful towns. You can only save wonderful towns by building new ones." *-- Ludwig Mies Van der Rohe (1886-1969)*
 
-I have often spoken to folks who either look in from outside, or who are inside the SRE/production engineering/devops space, and who claim a lack of innovation. I couldn't disagree more.
+I have often spoken to folks who either look in from outside, or who are inside the SRE/production engineering/DevOps space, and who claim a lack of innovation. I couldn't disagree more.
 
 Everything we have built came from dust -- the vast majority of the systems, patterns, and practices we have built came from nothing within our lifetimes. In the main, they will also return to dust within our lifetimes also. Talk to someone who's been in industry for 20 years about how much difference they've seen -- for the most part, very little has stayed. We are constantly rebuilding, and in the infrastructure/production engineering space, we see near-constant change of practice, of interface, and of thought.
 
-The last several years have seen a huge uptick in systems that were previously seen as supplementary or 'nice to have' -- Incident Management, Restrospective, Process enablement are now all more marketable than they've ever been. These are the tools with which we now build our new architecture of person-centric production.
+The last several years have seen a huge uptick in systems that were previously seen as supplementary or 'nice to have' -- Incident Management, Retrospective, Process enablement are now all more marketable than they've ever been. These are the tools with which we now build our new architecture of person-centric production.
 
 ## In Practice
 
