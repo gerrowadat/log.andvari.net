@@ -43,6 +43,7 @@ Most of my writings can be found on this site -- many of these are vetted versio
   - [Conferences for Introverts](https://log.andvari.net/pages/conferences-for-introverts.html) - A guide for someone who will run a conference at which there might be introverts.
   - [Bad Machinery: Managing Interrupts Under Load](/pages/bad-machinery.html) - On managing teams that manage interrupts. Later became a chapter in the first SRE book.
   - [6 Reasons You Don't need an SRE Team](/6reasons.html) - A 2023 take on whether your average company or enterprise needs an SRE **team**, as opposed to just SRE practices or mindset.
+  - [Production, SRE and the Architecture of the Built Environment](/pages/sre-and-architecture.html) - On comparisons between old-meaning architecture and hwo kind we are to ourselves as builders of ecosystems. Also Presented at [Dublin SRE Meetup](https://www.meetup.com/Site-Reliability-Engineering-Dublin/) in 2024
 
 
 Links:
