@@ -16,8 +16,8 @@ I hold various opinions about technology, building and keeping teams and organis
 
 I was responsible for the [first][ama1] and [second][ama2] Reddit AMAs participated in by SRE, and have given various talks, presentations, etc. externally about what Google Engineering, and specifically SRE, do. I'm the author of chapter 29 of the [SRE Book][srebook].
 
-Speaking
-========
+Speaking/Interviewing
+=====================
 
 I am happy to speak on subjects such as Software Resiliency, Customer Management for SaaS (internal and external), SRE history and development, OKRs, Managing Distributed Teams, Performance Management, Coaching high-level engineers and managers, Interrupts, on-call, incident management, and anything else that falls inside the realm of interesting and where I might have something interesting to say.
 
@@ -25,10 +25,14 @@ If in doubt, get in contact via LinkedIn or Mastodon or any of the various ways 
 
 Previous Talks, Panels and Interviews (an incomplete list):
 
+  - [‘You should automate yourself out of a job every 18 months’](https://www.irishtimes.com/business/technology/you-should-automate-yourself-out-of-a-job-every-18-months-1.3552629) - Irish Times Feature on my team at Google, featuring interview with me (print and online), July 2018
+
   - SRECon Europe 2015 - [Bad Machinery— Managing Interrupts Under Load](https://www.usenix.org/conference/srecon15europe/program/presentation/oconnor)  
   - SRECon 2021 - [SRE "Power Words"—the Lexicon of SRE as an Industry](https://www.usenix.org/conference/srecon21/presentation/oconnor)
   - SRECon EMEA 2022 - [Oncall: An Equal Opportunity Waste of Time](https://www.usenix.org/conference/srecon22emea/presentation/oconnor)
   - SRECon EMEA 2023 - [Panel Discussion: Unraveling the Interoperability Challenges Among SaaS Products](https://www.usenix.org/conference/srecon23emea/presentation/panel-saas)
+
+  - [Practical Guide to More Effective Mentorship](https://softwaremisadventures.com/p/dave-oconnor) - Software Misadventures Podcast, January 2024 (Covers coaching/mentoring and Early Google Stories)
 
 Writing
 =======
