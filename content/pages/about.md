@@ -10,7 +10,7 @@ Most recently, I was VP of Engineering at [Twilio](https://www.twilio.com/), wor
 
 Previous to that, I was Sr. Director of Engineering at [elastic.co](https://www.elastic.co), building and scaling Elastic Cloud.
 
-I was a Site Reliability Engineer/Manager/Director at Google from 2004 to 2021. As well as techical and management/leadership work on products such as GMail and Google Analytics, I was the global lead for Storage and Databases SRE at Google, as well as the head of Engineering at Google Ireland for several years.
+I was a Site Reliability Engineer/Manager/Director at Google from 2004 to 2021. As well as technical and management/leadership work on products such as GMail and Google Analytics, I was the global lead for Storage and Databases SRE at Google, as well as the head of Engineering at Google Ireland for several years.
 
 I hold various opinions about technology, building and keeping teams and organisations, the role of SRE/Devops/whatever the kool kids are calling it, and various other things. I have run orgs from individual teams up to orgs of 300+ engineers, managers and other functions.
 
@@ -19,7 +19,7 @@ I was responsible for the [first][ama1] and [second][ama2] Reddit AMAs participa
 Speaking
 ========
 
-I am happy to speak on subjects such as Software Resiliency, Customer Management for SaaS (internal and external), SRE history and development, OKRs, Managing Distributed Teams, Performance Management, Coaching high-level engineers and managers, Interrupts, oncall, incident management, and anything else that falls inside the realm of interesting and where I might have something interesting to say.
+I am happy to speak on subjects such as Software Resiliency, Customer Management for SaaS (internal and external), SRE history and development, OKRs, Managing Distributed Teams, Performance Management, Coaching high-level engineers and managers, Interrupts, on-call, incident management, and anything else that falls inside the realm of interesting and where I might have something interesting to say.
 
 If in doubt, get in contact via LinkedIn or Mastodon or any of the various ways that can be figured out.
 
@@ -39,11 +39,11 @@ Most of my writings can be found on this site -- many of these are vetted versio
   - [Oncall: An Equal-Opportunity Waste of Time](https://www.usenix.org/publications/loginonline/oncall-equal-opportunity-waste-time) - USENIX ;login: Online
   - [Oncall with Dave O'Connor](https://fiberplane.com/blog/on-call-with-dave-o-connor) from the [Fiberplane Blog](https://fiberplane.com/blog)
   - [Working Deliberately with OKRs](/pages/working-deliberately-with-okrs.html) - A primer for folks about to or considering OKRs, and how I use them.
-  - [Everybody's Free (To Use Their Best Judgement)](https://log.andvari.net/everybodys-free-to-use-their-best-judgement.html) - A note to new engineers.
+  - [Everybody's Free (To Use Their Best Judgment)](https://log.andvari.net/everybodys-free-to-use-their-best-judgement.html) - A note to new engineers.
   - [Conferences for Introverts](https://log.andvari.net/pages/conferences-for-introverts.html) - A guide for someone who will run a conference at which there might be introverts.
   - [Bad Machinery: Managing Interrupts Under Load](/pages/bad-machinery.html) - On managing teams that manage interrupts. Later became a chapter in the first SRE book.
   - [6 Reasons You Don't need an SRE Team](/6reasons.html) - A 2023 take on whether your average company or enterprise needs an SRE **team**, as opposed to just SRE practices or mindset.
-  - [Production, SRE and the Architecture of the Built Environment](/pages/sre-and-architecture.html) - On comparisons between old-meaning architecture and hwo kind we are to ourselves as builders of ecosystems. Also Presented at [Dublin SRE Meetup](https://www.meetup.com/Site-Reliability-Engineering-Dublin/) in 2024
+  - [Production, SRE and the Architecture of the Built Environment](/pages/sre-and-architecture.html) - On comparisons between old-meaning architecture and how kind we are to ourselves as builders of ecosystems. Also Presented at [Dublin SRE Meetup](https://www.meetup.com/Site-Reliability-Engineering-Dublin/) in 2024
 
 
 Links:
