@@ -6,7 +6,9 @@ Authors: DoC
 
 I am an [SRE][sre], Engineering Leadership practitioner and [Coach](https://www.strategichopes.co/) based in Dublin, Ireland. 
 
-Most recently, I was VP of Engineering at [Twilio](https://www.twilio.com/), working on reliability strategery and leading the SRE group there.
+I am currently freelancing as a techologist leadership consultant and coach. For more on the consulting end of things, see [Co-Servant Systems](https://coservant.systems). For coaching, see [Strategic Hopes](https://www.strategichopes.co/).
+
+As far as full-time roles go, I was most recently VP of Engineering at [Twilio](https://www.twilio.com/), working on reliability strategery and leading the SRE group there.
 
 Previous to that, I was Sr. Director of Engineering at [elastic.co](https://www.elastic.co), building and scaling Elastic Cloud.
 
