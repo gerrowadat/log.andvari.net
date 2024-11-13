@@ -33,6 +33,7 @@ Previous Talks, Panels and Interviews (an incomplete list):
   - SRECon 2021 - [SRE "Power Words"—the Lexicon of SRE as an Industry](https://www.usenix.org/conference/srecon21/presentation/oconnor)
   - SRECon EMEA 2022 - [Oncall: An Equal Opportunity Waste of Time](https://www.usenix.org/conference/srecon22emea/presentation/oconnor)
   - SRECon EMEA 2023 - [Panel Discussion: Unraveling the Interoperability Challenges Among SaaS Products](https://www.usenix.org/conference/srecon23emea/presentation/panel-saas)
+  - SRECon EMEA 2024 - [SRE Stakeholders: A Spotter’s Guide](https://www.usenix.org/conference/srecon24emea/presentation/oconnor)
 
   - [Practical Guide to More Effective Mentorship](https://softwaremisadventures.com/p/dave-oconnor) - Software Misadventures Podcast, January 2024 (Covers coaching/mentoring and Early Google Stories)
 
@@ -51,6 +52,7 @@ Most of my writings can be found on this site -- many of these are vetted versio
   - [Bad Machinery: Managing Interrupts Under Load](/pages/bad-machinery.html) - On managing teams that manage interrupts. Later became a chapter in the first SRE book.
   - [6 Reasons You Don't need an SRE Team](/6reasons.html) - A 2023 take on whether your average company or enterprise needs an SRE **team**, as opposed to just SRE practices or mindset.
   - [Production, SRE and the Architecture of the Built Environment](/pages/sre-and-architecture.html) - On comparisons between old-meaning architecture and how kind we are to ourselves as builders of ecosystems. Also Presented at [Dublin SRE Meetup](https://www.meetup.com/Site-Reliability-Engineering-Dublin/) in 2024
+  - [What is Reliability Engineering?](https://newsletter.pragmaticengineer.com/p/reliability-engineering) - Guest post on Gergely Orosz' [Pragmatic Engineer](https://newsletter.pragmaticengineer.com/) newsletter.
 
 
 Links:
