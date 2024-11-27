@@ -33,7 +33,7 @@ Previous Talks, Panels and Interviews (an incomplete list):
   - SRECon 2021 - [SRE "Power Words"—the Lexicon of SRE as an Industry](https://www.usenix.org/conference/srecon21/presentation/oconnor)
   - SRECon EMEA 2022 - [Oncall: An Equal Opportunity Waste of Time](https://www.usenix.org/conference/srecon22emea/presentation/oconnor)
   - SRECon EMEA 2023 - [Panel Discussion: Unraveling the Interoperability Challenges Among SaaS Products](https://www.usenix.org/conference/srecon23emea/presentation/panel-saas)
-  - SRECon EMEA 2024 - [SRE Stakeholders: A Spotter’s Guide](https://www.usenix.org/conference/srecon24emea/presentation/oconnor)
+  - SRECon EMEA 2024 - [SRE Stakeholders: A Spotter’s Guide](https://www.usenix.org/conference/srecon24emea/presentation/oconnor) ([video](https://www.youtube.com/watch?v=-XB1KJLsSA0))
 
   - [Practical Guide to More Effective Mentorship](https://softwaremisadventures.com/p/dave-oconnor) - Software Misadventures Podcast, January 2024 (Covers coaching/mentoring and Early Google Stories)
 
