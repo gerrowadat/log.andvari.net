@@ -36,10 +36,6 @@ THUMBNAIL_KEEP_NAME = True
 TAG_CLOUD_STEPS = 4
 TAG_CLOUD_MAX_ITEMS = 100
 
-#DISQUS_SITENAME = 'andvarilog'
-TWITTER_USERNAME = 'gerrowadat'
-
-
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
@@ -52,7 +48,5 @@ LINKS =  (('About', '/pages/about.html'),
 # Social widget
 SOCIAL = (('@gerrowadat@mastodon.ie', 'https://mastodon.ie/@gerrowadat'),
         ('linkedin', 'http://ie.linkedin.com/in/gerrowadat/'),)
-
-# TWITTER_USERNAME = 'gerrowadat'
 
 DEFAULT_PAGINATION = 5
