@@ -47,6 +47,7 @@ LINKS =  (('About', '/pages/about.html'),
 
 # Social widget
 SOCIAL = (('@gerrowadat@mastodon.ie', 'https://mastodon.ie/@gerrowadat'),
+        ('@gerrowadat.bsky.social', 'https://bsky.app/profile/gerrowadat.bsky.social'),
         ('linkedin', 'http://ie.linkedin.com/in/gerrowadat/'),)
 
 DEFAULT_PAGINATION = 5
