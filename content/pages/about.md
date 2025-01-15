@@ -54,6 +54,12 @@ Most of my writings can be found on this site -- many of these are vetted versio
   - [Production, SRE and the Architecture of the Built Environment](/pages/sre-and-architecture.html) - On comparisons between old-meaning architecture and how kind we are to ourselves as builders of ecosystems. Also Presented at [Dublin SRE Meetup](https://www.meetup.com/Site-Reliability-Engineering-Dublin/) in 2024
   - [What is Reliability Engineering?](https://newsletter.pragmaticengineer.com/p/reliability-engineering) - Guest post on Gergely Orosz' [Pragmatic Engineer](https://newsletter.pragmaticengineer.com/) newsletter.
 
+Other Media, Quotes Etc.
+========================
+
+  - I'm quoted "from the field" in the [2025 Catchpoint SRE Report](https://www.catchpoint.com/asset/2025-sre-report)
+
+
 
 Links:
   - [Linkedin](https://www.linkedin.com/in/gerrowadat/)
