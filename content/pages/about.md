@@ -58,6 +58,7 @@ Other Media, Quotes Etc.
 ========================
 
   - I'm quoted "from the field" in the [2025 Catchpoint SRE Report](https://www.catchpoint.com/asset/2025-sre-report)
+  - My [6 Reasons...](/6reasons.html) article is referenced and quoted in the excellent ["Platform Engineering"](https://www.oreilly.com/library/view/platform-engineering/9781098153632/) By Camille Fournier and Ian Nowland
 
 
 
