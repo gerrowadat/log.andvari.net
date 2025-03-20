@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Offsiting DNS for Fun and Profit</title>
+
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/normalize.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/pygments.css" />	
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="https://log.andvari.net/theme/js/modernizr.js"></script>
+
+<!-- With thanks to https://lizdenys.com/journal/articles/adding-open-graph-to-pelican.html -->
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://log.andvari.net/offsiting-dns-for-fun-and-profit.html" />
+<meta property="og:title" content="Offsiting DNS for Fun and Profit" />
+<meta property="og:description" content="Further to my last post where I went away for a few weeks, that away-time featured a power cut at home. Things....did not come back cleanly, and required intervention to come back -- not least..." />
+<meta property="og:image" content="https://log.andvari.net/images/daveoc-typewriter.png" />
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBXQ11Y6R7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YBXQ11Y6R7');
+</script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="https://log.andvari.net">log.andvari.net</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+            <li><a href="https://log.andvari.net/pages/about.html" class="button secondary small">About</a></li>
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="https://log.andvari.net/offsiting-dns-for-fun-and-profit.html" rel="bookmark"
+        title="Permalink to Offsiting DNS for Fun and Profit">Offsiting DNS for Fun and Profit</a></h3>
+    </header>
+
+<h6 class="subheader" title="2023-10-23T10:46:00+01:00">Mon 23 October 2023
+</h6>
+
+
+    <p>Further to my <a href="/october-20-2023.html">last post</a> where I went away for a few weeks, that away-time featured a power cut at home. Things....did not come back cleanly, and required intervention to come back -- not least of which was DNS. Because of course.</p>
+<p>My setup had been running DNS locally for the local zone, including delegating to <a href="https://www.hashicorp.com/products/consul">consul</a> for where nomad jobs are. So, I looked into getting rid of this -- being able to use any resolver to resolve things at home would be nice, and being able to just hand out an external resolver to most clients will also be good. I have redundant internet connections at home, so I'm going to explicitly make it so not being able to reach external resolvers is the falure mode, rather than recovering from a power cut :-)</p>
+<p>Thankfully, the major cloud providers will...provide. <a href="https://cloud.google.com/dns">Google Cloud DNS</a> costs pennies a month and you can talk to it over an API, so I started fiddling around with that.</p>
+<p>I'd been kind of looking around for yet another excuse to learn go, so I've made <a href="https://github.com/gerrowadat/clouddns-sync">clouddns-sync</a> to do the heavy lifting. It's still pretty janky and needs tests, but it works, for now. </p>
+<p>The probably more useful parts for other people is the <code>clouddns-sync getzonefile</code> and <code>clouddns-sync putzonefile</code> fnctionality - I used this for getting my existing zone into Cloud DNS. It probably doesn't produce or consume all kinds of zone file fragments, but in my defense, it's DNS. Show me software that does.</p>
+<p>The more me-specific part is updating records for nomad jobs -- I can do this one-off with <code>clouddns-sync nomad_sync</code> -- which does a one-off poll of where jobs and allocs are in a local nomad cluster, and then updates a zone in cloud DNS. I'll likely cron it for now and then see if I can do something smarter with running it in nomad itself and useing channels and proper montoring and all the good stuff you're meant to do.</p>
+<p>All that's then left is delegating zones to gcloud's resolvers, and blowing away my local resolvers once I'm hapy with that. There's probably a paranoid concern about leaking where things are running on my local (i.e. rfc1918) network, but gcloud doesn't allow full zone transfers, and I'd imagine that's lower on my list of worries once someone's popped my home network.</p>
+<p class="subheader">Category: <a href="https://log.andvari.net/category/tech.html">Tech</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/log.html">log </a>
+    <a href="https://log.andvari.net/tag/worksonmycluster.html">#worksonmycluster </a>
+    <a href="https://log.andvari.net/tag/tech.html">tech </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/archives.html">Archives</a>
+            <li><a href="https://log.andvari.net/tags.html">Tags</a>
+            <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/category/leadership.html">Leadership</a></li>
+            <li><a href="https://log.andvari.net/category/log.html">Log</a></li>
+            <li><a href="https://log.andvari.net/category/meta.html">Meta</a></li>
+            <li><a href="https://log.andvari.net/category/tech.html">Tech</a></li>
+            <li><a href="https://log.andvari.net/category/writing.html">Writing</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="/pages/about.html">About</a></li>
+            <li><a href="http://github.com/gerrowadat">GitHub</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://mastodon.ie/@gerrowadat">@gerrowadat@mastodon.ie</a></li>
+            <li><a href="https://bsky.app/profile/gerrowadat.bsky.social">@gerrowadat.bsky.social</a></li>
+            <li><a href="http://ie.linkedin.com/in/gerrowadat/">linkedin</a></li>
+        </ul>
+
+
+        <h5 class="sidebar-title">Feeds</h5>
+        <ul class="side-nav">
+        <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">All</a></li>
+            <li><a href="https://log.andvari.net/feeds/leadership.atom.xml">Leadership</a></li>
+            <li><a href="https://log.andvari.net/feeds/log.atom.xml">Log</a></li>
+            <li><a href="https://log.andvari.net/feeds/meta.atom.xml">Meta</a></li>
+            <li><a href="https://log.andvari.net/feeds/tech.atom.xml">Tech</a></li>
+            <li><a href="https://log.andvari.net/feeds/writing.atom.xml">Writing</a></li>
+   
+        </ul>
+
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>log.andvari.net by Dave O'Connor</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>I Seeeeee Youuuuu</title>
+
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/normalize.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/pygments.css" />	
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="https://log.andvari.net/theme/js/modernizr.js"></script>
+
+<!-- With thanks to https://lizdenys.com/journal/articles/adding-open-graph-to-pelican.html -->
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://log.andvari.net/i-seeeeee-youuuuu.html" />
+<meta property="og:title" content="I Seeeeee Youuuuu" />
+<meta property="og:description" content="So, first steps. I picked up a few PIR Motion sensors. These are a specific kind, there are a few other kinds, but they should have datasheets. You might recognise the bulbous white shape of..." />
+<meta property="og:image" content="https://log.andvari.net/images/daveoc-typewriter.png" />
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBXQ11Y6R7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YBXQ11Y6R7');
+</script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="https://log.andvari.net">log.andvari.net</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+            <li><a href="https://log.andvari.net/pages/about.html" class="button secondary small">About</a></li>
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="https://log.andvari.net/i-seeeeee-youuuuu.html" rel="bookmark"
+        title="Permalink to I Seeeeee Youuuuu">I Seeeeee Youuuuu</a></h3>
+    </header>
+
+<h6 class="subheader" title="2011-03-25T22:30:00+00:00">Fri 25 March 2011
+</h6>
+
+
+    <p>So, first steps. I picked up a few <a href="https://www.sparkfun.com/products/8630">PIR Motion sensors</a>. These are a
+specific kind, there are a few other kinds, but they should have
+datasheets. You might recognise the bulbous white shape of them from
+those motion-sensing light switches. They're about a fiver each and fun
+to play with.  </p>
+<p>The comments section on Sparkfun had a <a href="https://itp.nyu.edu/physcomp/sensors/Reports/PIRMotionSensor">very good tutorial</a> on basic
+use, but also explains the basic principles of its operation. It has 3
+pins -- DC, Ground and Alarm.  </p>
+<h3>Science Bit</h3>
+<p>The alarm pin is what's called an <a href="https://en.wikipedia.org/wiki/Open_collector">Open Collector</a>, which means it's
+either connected to ground, or to 'nothing'. To better understand this,
+let's assume you don't know what a transistor is (I know I sure didn't a
+few weeks ago).</p>
+<p>Speaking simplistically, a transistor is a component where you can vary
+one voltage based on a much smaller voltage. In this way you can amplify
+a voltage pretty easily.</p>
+<p>Here's a diagram!</p>
+<p><img alt="Photo" src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Transistor2.svg" /></p>
+<p>Usually transistors are tiny and embedded or are tiny and on a
+breadboard, but let's assume for a moment that it's a box with 3 wires
+coming out of it. They're called collector, emitter and base. Emitter is
+always connected to ground, and provides the reference voltage, or
+definition of 'zero'. Base is a small voltage in relation to ground, and
+the voltage applied to the base controls how much voltage is allowed
+flow between the emitter and the collector. The difference between the
+voltage on the base, and the voltage allowed through the collector is
+called the 'gain'.</p>
+<p>However! The voltage on the collector doesn't come from nowhere. It has
+to be supplied, and the voltage 'allowed' to flow is defined by the
+voltage on the base. So, if you apply 3.3v to the base, and 9v to the
+collector (the voltage marked 'V~cc~' on the diagram there), you get a
+certain voltage that's actually 'allowed' through the transistor, and
+can be used in other applications by connecting them before the resistor
+(At 'V~out~' on the diagram).</p>
+<p>The zig-zaggy thing there on the diagram is a resistor. We put it across
+the larger V~cc~ voltage to lower it a bit, since transistors are
+usually only rated to take a certain voltage. The function of V~cc~ and
+the resistor is to 'pull up' the voltage across the emitter and
+collector. This is why the resistor there is often called a 'pull-up
+resistor'.</p>
+<p>Transistors are handy for switches when you want to control a large
+voltage using a small voltage. They're also useful if you want to take a
+tiny voltage you get from a signal somewhere and amplify it.</p>
+<p>Anyway, why this is relevant is that an 'Open Collector' is the
+collector from a transistor that's available as a signal. However,
+instead of usual 'binary' signals that might produce a 'True' voltage or
+a 'False' lack of voltage, it's either connected to ground, or not.
+Whether or not it is connected to ground depends on the base voltage. My
+guess is that the PIR sensor circuitry provides the 'base' voltage and
+lets us use any V~cc~ voltage we want, in order to 'pull up' the output.</p>
+<p>So, if you go look at the circuit diagram and build instructions in the
+tutorial mentioned above, it works just so. The one modification I made
+here is that as well as pulling up the voltage, instead of connecting
+back to the LED on the Arduino board, I connected up to a big old Piezo
+Buzzer I got in Maplin.</p>
+<p>The finished build looked like this:</p>
+<p><img alt="Photo" src="https://lh6.googleusercontent.com/_otzZMGWrd00/TY0Nl6RxURI/AAAAAAAADfk/kPBdY2IPIUQ/s720/IMG_20110313_212116.jpg" /></p>
+<p>So, the end result is that when you wave your hand in front of the PIR,
+the buzzer makes an annoying noise. Success!</p>
+<p>Next up would be making things a bit smaller -- There are smaller,
+cheaper Arduino boards you can get, and I'll do a build soon that's a
+little easier to get into a project box and lug around with you.</p>
+<p class="subheader">Category: <a href="https://log.andvari.net/category/tech.html">Tech</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/imported.html">imported </a>
+    <a href="https://log.andvari.net/tag/arduino.html">arduino </a>
+    <a href="https://log.andvari.net/tag/electronics.html">electronics </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/archives.html">Archives</a>
+            <li><a href="https://log.andvari.net/tags.html">Tags</a>
+            <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/category/leadership.html">Leadership</a></li>
+            <li><a href="https://log.andvari.net/category/log.html">Log</a></li>
+            <li><a href="https://log.andvari.net/category/meta.html">Meta</a></li>
+            <li><a href="https://log.andvari.net/category/tech.html">Tech</a></li>
+            <li><a href="https://log.andvari.net/category/writing.html">Writing</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="/pages/about.html">About</a></li>
+            <li><a href="http://github.com/gerrowadat">GitHub</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://mastodon.ie/@gerrowadat">@gerrowadat@mastodon.ie</a></li>
+            <li><a href="https://bsky.app/profile/gerrowadat.bsky.social">@gerrowadat.bsky.social</a></li>
+            <li><a href="http://ie.linkedin.com/in/gerrowadat/">linkedin</a></li>
+        </ul>
+
+
+        <h5 class="sidebar-title">Feeds</h5>
+        <ul class="side-nav">
+        <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">All</a></li>
+            <li><a href="https://log.andvari.net/feeds/leadership.atom.xml">Leadership</a></li>
+            <li><a href="https://log.andvari.net/feeds/log.atom.xml">Log</a></li>
+            <li><a href="https://log.andvari.net/feeds/meta.atom.xml">Meta</a></li>
+            <li><a href="https://log.andvari.net/feeds/tech.atom.xml">Tech</a></li>
+            <li><a href="https://log.andvari.net/feeds/writing.atom.xml">Writing</a></li>
+   
+        </ul>
+
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>log.andvari.net by Dave O'Connor</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>
