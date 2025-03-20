@@ -24,6 +24,12 @@ EXTRA_PATH_METADATA = {
         'favicon/favicon-32x32.png': {'path': 'favicon-32x32.png'},
 }
 
+MARKDOWN = {
+    'extension_configs': {
+        'footnotes': {}
+    }
+}
+
 #PLUGIN_PATHS = ['plugins']
 PLUGINS = ['thumbnailer']
 # 'optimize_images'
