@@ -5,7 +5,7 @@ Category: Writing
 Status: hidden
 Slug: bad-machinery
  
-### Preamble and tl;dr {#preamble-and-tl-dr}
+### Preamble and tl;dr
 
 Teams that have both a project and operational load usually have an idea of how much of each type is acceptable. 50% is the example in SRE as a good number for the _maximum_ amount of time that should be dedicated to operational load.
 
@@ -23,7 +23,7 @@ double-meta-tl;dr-bullet-points:
 *   If that’s too much for those people, add more people until it isn’t. “Spreading the load” by assigning items across the entire team randomly is counter-productive.
 
 
-### What is “Operational Load”? {#what-is-“operational-load”}
+### What is “Operational Load”?
 
 Operational load takes many forms, some more obvious than others. For the sake of this document, we define “Operational Load” on a team as:
 
@@ -48,7 +48,7 @@ Operational load takes many forms, some more obvious than others. For the sake o
 For certain purposes, you can think of operational load as “**Something that can interrupt someone at a non-specific time, and requires them to look at it to determine if it can wait**”.
 
 
-### Managing Operational Load {#managing-operational-load}
+### Managing Operational Load
 
 There are a number of existing methods for managing operational load at the team level. 
 
@@ -74,12 +74,12 @@ There are a number of existing methods for managing operational load at the team
     *   Sometimes an oncall person picks up a lasting responsibility (i.e. a multi-week rollout or ticket that lasts beyond their shift week).
 
 
-### The Story So Far {#the-story-so-far}
+### The Story So Far
 
 This document as a whole is somewhat Google-centric, and may contain assumptions about your service or team that are untrue. For example, you may be lucky enough to have a staffed secondary who can back you up as the oncaller, or you may have varying degrees to which you can effect change.
 
 
-#### Factors in Determining how Interrupts are Handled {#factors-in-determining-how-interrupts-are-handled}
+#### Factors in Determining how Interrupts are Handled
 
 Taking a step back for a second, there are a number of metrics that factor into how each of these interrupts are handled. I’ll attempt to list them here (sorry, I like bulleted lists):
 
@@ -92,17 +92,17 @@ Taking a step back for a second, there are a number of metrics that factor into 
 *   The number of people available to do a certain kind of interrupt (i.e. some teams require a certain amount of ticket work before being oncall).
 
 
-#### The closest thing to a problem statement you’re getting {#the-closest-thing-to-a-problem-statement-you’re-getting}
+#### The closest thing to a problem statement you’re getting
 
 One thing you might notice about these is that they’re all suited to meeting the lowest possible response time, without factoring in more human costs. Trying to take stock of the human cost and productivity cost is difficult, so of course, we can only be as non-vague as we can in setting these out. 
 
 
-### Humans are Bad Machinery {#humans-are-bad-machinery}
+### Humans are Bad Machinery
 
 Humans **are** bad machinery. They get bored, they have processors (and sometimes UIs) that aren’t very well-understood, and aren’t very efficient. Recognising that this is “Working as Intended” and trying to work around or ameliorate how humans work could fill volumes -- for the moment we’ll settle for some basic ideas that might be useful when determining how interrupts should work.
 
 
-#### Cognitive Flow State {#cognitive-flow-state}
+#### Cognitive Flow State
 
 The concept of “[Flow State](http://en.wikipedia.org/wiki/Flow_(psychology))” is widely accepted and can be empirically acknowledged by pretty much everyone that works in Software Engineering, Sysadmin, SRE, or quite a few other fields. Being in “The Zone” can increase productivity, but can also increase artistic and scientific creativity, and encourage people to actually master and improve on the task or project they’re working on. While in this state, being interrupted can end it, if the interrupt is disruptive enough. We want to maximise the amount of time spent in this state.
 
@@ -116,28 +116,28 @@ Cognitive Flow can also apply to less creative pursuits where the skill level re
 So, we can think of investment in getting into a state of “Flow” to be fixed per period of cognitive flow, once the position on the graph doesn’t drastically change. So, you don’t get ‘In the Zone’ by working to solve a really hard programming problem, then get up, high five your co-worker and go tidy your desk because you’ve been meaning to. It applies to related close-by areas on the plane.
 
 
-#### Cognitive Flow State: Creative and Engaged {#cognitive-flow-state-creative-and-engaged}
+#### Cognitive Flow State: Creative and Engaged
 
 This is the “Zone”. You’ve been working on a problem for a while, you’re aware of and comfortable with the parameters of the problem, you feel like you can fix it or produce it, and you work at it, losing track of time and ignoring interrupts as much as possible. Maximising the amount of time a person can spend in this state is very desirable -- they’re going to produce creative results, do good work by volume, and they’ll be happier at the job they’re doing.
 
 Unfortunately, a lot of people in roles with a meaningful operational component (like SRE) spend a lot of their time either trying and failing to get into this mode and getting frustrated at it not happening, or never even trying, and languishing in the interrupted state. Oh, speaking of which:
 
 
-#### Cognitive Flow State: Angry Birds {#cognitive-flow-state-angry-birds}
+#### Cognitive Flow State: Angry Birds
 
 People enjoy doing things they know how to do. In fact, it’s one of the clearest paths to cognitive flow. Some of the most motivated people you can meet in SRE are oncall at the time -- it can be very fulfilling to chase down the causes of problems, work with others, and improve the overall health of the system. Conversely, most stressed-out oncallers are stressed out either by pager volume, or because they’re treating oncall as an interrupt. They’re trying to code or work on projects, while being oncall or on fulltime interrupts. They exist in a state of constant interruption, (or _interruptability_). This is **extremely** stressful. 
 
 On the other hand, when a person is concentrating full-time on interrupts, _they stop being interrupts_. At a very visceral level, doing incremental improvements to the system, whacking tickets, fixing problem and outages becomes a clear set of goals, boundaries, and clear feedback (you close X bugs, or you stop getting paged). All that’s left is distractions. **_When you’re doing interrupts, your projects are a distraction_**.
 
 
-### Do One Thing Well {#do-one-thing-well}
+### Do One Thing Well
 
 If you’re still reading, you might be wondering about the practical implications. 
 
 The following suggestions are mainly for the benefit of team managers or influencers. This document is agnostic to personal habits - people are free to manage their own time as they see fit. The concentration here is on directing the structure of how the team itself manages interrupts, such that people aren’t set up for failure just by virtue of team function or structure.
 
 
-#### Distractibility {#distractibility}
+#### Distractibility
 
 Here’s an example from SRE. Let’s take a random SRE called Sam. Sam comes into work on Monday morning. Sam isn’t oncall or on interrupts today, so they would clearly like to work on their projects. They grab a coffee, stick on their “do not disturb” headphones, and sit at their desk. Zone time, right?
 
@@ -157,7 +157,7 @@ The end result here is that even though Sam has the entire calendar day free to 
 It can be claimed that some of this is inevitable and by design, and that’s correct -- people do hang onto bugs that they’re the primary contact for, and build up responsibilities and obligations. However, what we’ll concentrate on here is ways that interrupt response can be managed on a team, so that more people (on average) can come into work in the morning, and **feel undistractible**.
 
 
-#### Polarising Time {#polarising-time}
+#### Polarising Time
 
 The basic gist of what we should try to do is minimise context switches. Some interrupts are inevitable. However, the general model of an engineer as an interruptible unit of work, whose context switches are free, is suboptimal if we want people to be happy and productive. Assign a cost to context switches. If someone is working on a project, and gets interrupted for 20 minutes, that is two context switches and probably a couple of hours of really productive work lost – [further reading from the APA](https://www.apa.org/research/action/multitask) suggests that the amount of time lost, or slowdown in progress on the tasks being switched between can scale by task complexity. So, if both oncall and a person’s project work are mentally taxing, the impact of context switches is compounded overall.
 
@@ -166,17 +166,17 @@ The ideal here is polarised time between work styles, with a period of as long a
 What this means is (if you wanted a soundbite) that when a person comes into work each day, they should know if they’re doing **just** project work, or **just** interrupts. Polarising their time in this way means they get to concentrate for longer periods of time on the thing they’re doing, and they don’t get stressed out because it’s not the thing they’re supposed to be doing.
 
 
-### Seriously, tell me what to do {#seriously-tell-me-what-to-do}
+### Seriously, tell me what to do
 
 Okay, if the general model doesn’t work for you, here are some specific suggestions.
 
 
-#### General suggestions {#general-suggestions}
+#### General suggestions
 
 For any given class of interrupt, if the volume is too high for one person, add another person. This most obviously applies to tickets, but can potentially apply to pages, too -- the oncall can start bumping things to their secondary, or downgrading pages to tickets.
 
 
-#### Oncall {#oncall}
+#### Oncall
 
 The primary oncall person should be doing just oncall. If the pager is quiet for your service, then doing tickets or other interrupt-based work that can be abandoned fairly quickly should be part of their duties. When you’re oncall for a week, you write that week off, as far as project work is concerned. If a project is too important to be let slip by a week, then that person shouldn’t be oncall. Escalate. **_A person should never be expected to be oncall and also make progress on projects (or anything else with a high context switching cost)_**.
 
@@ -185,19 +185,19 @@ Secondary duties depend on how often the secondary is called upon now now. If th
 (Aside: **You never run out of interrupt work**. Your ticket count might be at zero, but there are always playbooks that need updating, configs that need cleanup, etc. Your future oncallers will thank you, and it means they’re less likely to interrupt you during your precious make time).
 
 
-#### Tickets {#tickets}
+#### Tickets
 
 If you currently assign tickets randomly to victims on your team, **stop**.
 
 Tickets should also be a full-time role, for an amount of time that’s manageable for a person. If you happen to be in the unenviable position of having more tickets than can be dealt with by the primary and secondary oncall combined, then assign another fulltime tickets person. Don’t ‘spread the load’ across the entire team. People are not machines, and you’re just causing context switches that impinge on valuable flow time.
 
 
-#### Ongoing Responsibilities {#ongoing-responsibilities}
+#### Ongoing Responsibilities
 
 As much as possible, define ‘roles’ that can have their mantles taken up by anyone. If there’s a well-defined procedure for doing and verifying pushes or flag flips, then there’s no reason a person has to shepherd that change for its entire lifetime, even after they stop being oncall or on interrupts. Define a ‘push manager’ role who can juggle pushes for the duration of their time oncall or on interrupts -- formalise the handover process. It’s a small price to pay for uninterrupted make time for the people not oncall.
 
 
-#### Be on interrupts, or don’t be {#be-on-interrupts-or-don’t-be}
+#### Be on interrupts, or don’t be
 
 Sometimes when a person isn’t on interrupts, an interrupt comes in that only they can deal with. First of all, this shouldn’t be the case -- but sometimes it is. You should work to make this rare.
 
@@ -206,12 +206,12 @@ Another case that’s spotted sometimes is people who do tickets when they’re 
 The assumption I’m making is that this is an issue that needs to be addressed, and may be a hidden management problem – the more this happens, the more unpredictable your project delivery estimates and assurances get.
 
 
-### Reducing Interrupts {#reducing-interrupts}
+### Reducing Interrupts
 
 If there are too many people on the team at any given time that need to do interrupts, you may get to a point where your interrupt load gets unmanageable. There are a number of techniques you can use to reduce your ticket load overall.
 
 
-#### Actually Analyse Tickets {#actually-analyse-tickets}
+#### Actually Analyse Tickets
 
 Lots of ticket rotations or oncall rotations act like a ‘[gauntlet](http://en.wikipedia.org/wiki/Running_the_gauntlet)’. This is especially true of rotations on larger teams. If you’re only on interrupts every couple of weeks, it’s easy to ‘run the gauntlet’, say ‘Phew, that’s over’, and get on with whatever you were doing. Your successor then does the same, and the root causes of tickets don’t properly get looked at -- it’s just lots of people getting annoyed by the same thing in succession, when there should be forward movement.
 
@@ -220,7 +220,7 @@ There should be a handoff for tickets, as well as for oncall. The format is less
 You should have a regular ‘scrub’ for tickets and pages, where you take certain classes of interrupts and see if you can identify a root cause. If you think the root cause is fixable in a reasonable amount of time, then **_silence the interrupts until the root cause is expected to be fixed_.** This provides relief for the interrupts person, and a handy deadline enforcement for the person fixing the root cause.
 
 
-#### Respect yourself as well as your customers {#respect-yourself-as-well-as-your-customers}
+#### Respect yourself as well as your customers
 
 This applies more to user interrupts than automated ones, although the principles stand. If tickets are particularly annoying or onerous to do, you can effectively use policy to make things a little easier. 
 
