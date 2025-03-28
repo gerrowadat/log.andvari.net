@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>log.andvari.net - #worksonmycluster</title>
+
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/normalize.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/pygments.css" />	
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="https://log.andvari.net/theme/js/modernizr.js"></script>
+
+<!-- With thanks to https://lizdenys.com/journal/articles/adding-open-graph-to-pelican.html -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://log.andvari.net/tag/worksonmycluster.html" />
+<meta property="og:title" content="log.andvari.net" />
+<meta property="og:description" content="A page on log.andvari.net" />
+<meta property="og:image" content="https://log.andvari.net/images/daveoc-typewriter.png" />
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBXQ11Y6R7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YBXQ11Y6R7');
+</script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="https://log.andvari.net">log.andvari.net</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+            <li><a href="https://log.andvari.net/pages/about.html" class="button secondary small">About</a></li>
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="https://log.andvari.net/womc-nomad-variables-as-secrets.html"><h3 class="article-title">WOMC: Nomad Variables as Secrets</h3></a>
+<h6 class="subheader" title="2023-11-03T00:00:00+00:00">Fri 03 November 2023
+</h6>
+
+
+<p>Standard disclaimer: Maybe don't do this in production? I hear Hashicorp also does a secret store :-)</p>
+<p><a href="https://github.com/hashicorp/nomad/releases/tag/v1.4.0">Nomad 1.4.0</a> added support for 'variables', which are essentially key/value blobs protected by nomad's ACL system. As someone who had steadfastly avoided either running vault, or doing secrets properly, I knew an opportunity to do secrets improperly when I saw it, so here we are.</p>
+<p>If you want a 'working' example, my <a href="https://github.com/gerrowadat/nomad-homelab/tree/main/ssl">nomad-homelab</a> repo has the example for my SSL certs, where I populate nomad with letsencrypt SSL certs and give whatever jobs need them access.</p>
+<h3>Getting data into nomad Variables</h3>
+<p>Assuming you have access keys and auth set up, working with variables is pretty easy.</p>
+<p>Each variable is referred to by a path, which doesn't mean much aside from tidiness, aside from in one way: If you create 
+a variable named <code>nomad/jobs/myjob</code>, tasks in the <code>myjob</code> job have access to the variable.</p>
+<p>Each variable is actually a set of key/value pairs, so if I wanted to create a variable for <code>myjob</code> and put a 'authtoken' key in there, I'd do something like:</p>
+<p><code>nomad var put nomad/jobs/myjob authtoken=mySeCrEtAuThToKeN</code></p>
+<p>You can then happily get the variable with <code>nomad var get</code> and so on. See <a href="https://github.com/gerrowadat/nomad-homelab/blob/main/utilities/file_to_nomad_var.sh">file_to_nomad_var.sh</a> for an example of how to load file contents into a nomad variable key (although it looks like nomad has since grown functionality for using <code>-</code> as the value on the command line to accept key contents via stdin).</p>
+<h3>Access Controls</h3>
+<p>Variables have the same kind of access controls that other nomad entities have -- via an <a href="https://developer.hashicorp.com/nomad/tutorials/access-control/access-control-policies">acl policy</a>. The short version of how to get this done is that you should write (and then either keep or throw away) an acl policy file. This generally looks like the following:</p>
+<p>```</p>
+<h1>mypolicyfile.hcl</h1>
+<p>namespace "default" {
+  variables {
+    path "my/secret/stuff" {
+      capabilities = ["read", "list"]
+    }
+  }
+}
+```</p>
+<p>You can then insert a policy for each job to give access to the <code>my/secret/stuff</code> variable with:</p>
+<p><code>nomad acl policy apply -namespace default -job myjob myjob-secretstuff-policy - &lt;  mypolicyfile.hcl</code></p>
+<p>The policy can be named anything, so known yourself out with the tidiness. If you'd like to see this being used in anger, see <a href="https://github.com/gerrowadat/nomad-homelab/blob/main/ssl/grant_job_access_to_cert.sh">grant_job_access_to_cert.sh</a> from my SSL example.</p>
+<h3>Accessing Variables from nomad Jobs</h3>
+<p>Variables are accessible from nomad jobs at invocation time -- that is, when the alloc is being built. So, the best way to access and use a variable is to write out its contents in a template within the alloc, so even if nomad itself goes away, the container still has everything it needs.</p>
+<p>In the .hcl file for your job, you can dump a particular variable you have access to to a file in the <code>secrets</code> directory by using <code>template</code> directives within a <code>task</code> stanza:</p>
+<p><code>template {
+     data = "{{ with nomadVar \"my/secret/stuff\" }}{{ .authkey }}{{ end }}"
+     destination = "secrets/authkey.txt"
+     change_mode = "signal"
+     change_signal = "SIGHUP"
+     perms = 700
+   }</code></p>
+<p>Some things to note here:</p>
+<ul>
+<li><code>my/secret/stuff</code> is the variable name, <code>authkey</code> is the key within that variable.</li>
+<li>You can place the output file outside of <code>secrets/</code> if you like, I guess.</li>
+<li>You can of course have multiple <code>template {}</code> stanzas with differet variables and outputs/behaviour.</li>
+<li><code>change_mode</code> and <code>change_signal</code> determine what happens if the variable gets updated. In this case, the task gets HUP'd if someone updates the nomad variable. This can be handy for stuff like SSL certs.</li>
+</ul>
+<h3>Why not production?</h3>
+<p>Any number of reasons I can think of:</p>
+<ul>
+<li>People with admin access to nomad have access to all variables. You probably don't want that in production.</li>
+<li>I'm pretty sure nomad shunts all this content around via raft and I'm not sure how secure the data is at rest (or in transit). I'm gonna guess less so than vault :-)</li>
+<li>There's a proper way to do this that isn't chintzy as frig and that the people who come after you are more likely to understand.</li>
+</ul>
+<h3>Other Thoughts</h3>
+<p>Nomad Variables are kind of like <a href="https://kubernetes.io/docs/concepts/configuration/configmap/">K8S ConfigMap</a>, so I could probably abuse them to store actual configuration data pretty trivially -- for jobs that just have a single config file and everything else can get blown away with the container, this is probably fine. Very few of the apps I run at home are like that, though.</p><p class="subheader">Category: <a href="https://log.andvari.net/category/tech.html">Tech</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/log.html">log </a>
+    <a href="https://log.andvari.net/tag/worksonmycluster.html">#worksonmycluster </a>
+    <a href="https://log.andvari.net/tag/tech.html">tech </a>
+</p>
+
+
+
+            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="https://log.andvari.net/offsiting-dns-for-fun-and-profit.html"><h3 class="article-title">Offsiting DNS for Fun and Profit</h3></a>
+<h6 class="subheader" title="2023-10-23T10:46:00+01:00">Mon 23 October 2023
+</h6>
+
+
+<p>Further to my <a href="/october-20-2023.html">last post</a> where I went away for a few weeks, that away-time featured a power cut at home. Things....did not come back cleanly, and required intervention to come back -- not least of which was DNS. Because of course.</p>
+<p>My setup had been running DNS locally for …</p><p class="subheader">Category: <a href="https://log.andvari.net/category/tech.html">Tech</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/log.html">log </a>
+    <a href="https://log.andvari.net/tag/worksonmycluster.html">#worksonmycluster </a>
+    <a href="https://log.andvari.net/tag/tech.html">tech </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="https://log.andvari.net/offsiting-dns-for-fun-and-profit.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="https://log.andvari.net/april-25-2023.html"><h3 class="article-title">April 25 2023</h3></a>
+<h6 class="subheader" title="2023-04-25T01:00:00+01:00">Tue 25 April 2023
+</h6>
+
+
+<p>Further adventures in pretending homelab is real work!</p>
+<p>This week, I've actually been hacking on getting <a href="https://restic.net/">restic</a> running semi-regularly. It turns out (or at least, I've found by experimentation) that the way nomad does scheduled/periodic jobs means that the periodic jobs don't have access to variables the core job …</p><p class="subheader">Category: <a href="https://log.andvari.net/category/log.html">Log</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/log.html">log </a>
+    <a href="https://log.andvari.net/tag/worksonmycluster.html">#worksonmycluster </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="https://log.andvari.net/april-25-2023.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="https://log.andvari.net/april-17-2023.html"><h3 class="article-title">April 17 2023</h3></a>
+<h6 class="subheader" title="2023-04-17T07:00:00+01:00">Mon 17 April 2023
+</h6>
+
+
+<p>I've been gradually rolling out more homelab updates, including whats turned into a bit of a rebuild and de-flakiness effort. Nothing like a bit of sunlight to realise that things need a proper looking at :-)</p>
+<p>It's also been pretty good for my brain, I think -- having the benefit of really …</p><p class="subheader">Category: <a href="https://log.andvari.net/category/log.html">Log</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/log.html">log </a>
+    <a href="https://log.andvari.net/tag/worksonmycluster.html">#worksonmycluster </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="https://log.andvari.net/april-17-2023.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="https://log.andvari.net/worksonmycluster.html"><h3 class="article-title">#worksonmycluster</h3></a>
+<h6 class="subheader" title="2023-04-07T00:14:00+01:00">Fri 07 April 2023
+</h6>
+
+
+<p>Now that I've a bit more time on my hands (more on that later) the predictable swing back toward being able to do actual tech fiddling has started (I Hope).</p>
+<p>I've been running nomad from Hashicorp as the compute coordinator for my home setup for a couple of years now …</p><p class="subheader">Category: <a href="https://log.andvari.net/category/log.html">Log</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/log.html">log </a>
+    <a href="https://log.andvari.net/tag/worksonmycluster.html">#worksonmycluster </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="https://log.andvari.net/worksonmycluster.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/archives.html">Archives</a>
+            <li><a href="https://log.andvari.net/tags.html">Tags</a>
+            <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/category/leadership.html">Leadership</a></li>
+            <li><a href="https://log.andvari.net/category/log.html">Log</a></li>
+            <li><a href="https://log.andvari.net/category/meta.html">Meta</a></li>
+            <li><a href="https://log.andvari.net/category/tech.html">Tech</a></li>
+            <li><a href="https://log.andvari.net/category/writing.html">Writing</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="/pages/about.html">About</a></li>
+            <li><a href="http://github.com/gerrowadat">GitHub</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://mastodon.ie/@gerrowadat">@gerrowadat@mastodon.ie</a></li>
+            <li><a href="https://bsky.app/profile/gerrowadat.bsky.social">@gerrowadat.bsky.social</a></li>
+            <li><a href="http://ie.linkedin.com/in/gerrowadat/">linkedin</a></li>
+        </ul>
+
+
+        <h5 class="sidebar-title">Feeds</h5>
+        <ul class="side-nav">
+        <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">All</a></li>
+            <li><a href="https://log.andvari.net/feeds/leadership.atom.xml">Leadership</a></li>
+            <li><a href="https://log.andvari.net/feeds/log.atom.xml">Log</a></li>
+            <li><a href="https://log.andvari.net/feeds/meta.atom.xml">Meta</a></li>
+            <li><a href="https://log.andvari.net/feeds/tech.atom.xml">Tech</a></li>
+            <li><a href="https://log.andvari.net/feeds/writing.atom.xml">Writing</a></li>
+   
+        </ul>
+
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>log.andvari.net by Dave O'Connor</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>
