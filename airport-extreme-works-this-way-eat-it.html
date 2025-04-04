@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Airport Extreme works THIS WAY. EAT IT.</title>
+
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/normalize.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/pygments.css" />	
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="https://log.andvari.net/theme/js/modernizr.js"></script>
+
+<!-- With thanks to https://lizdenys.com/journal/articles/adding-open-graph-to-pelican.html -->
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://log.andvari.net/airport-extreme-works-this-way-eat-it.html" />
+<meta property="og:title" content="Airport Extreme works THIS WAY. EAT IT." />
+<meta property="og:description" content="So, I'm getting increasingly annoyed at Apple's railroading of people's use cases (no, this has nothing to do with the iPad). It's only after I started using a Nexus One with android that I..." />
+<meta property="og:image" content="https://log.andvari.net/images/daveoc-typewriter.png" />
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBXQ11Y6R7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YBXQ11Y6R7');
+</script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="https://log.andvari.net">log.andvari.net</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+            <li><a href="https://log.andvari.net/pages/about.html" class="button secondary small">About</a></li>
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="https://log.andvari.net/airport-extreme-works-this-way-eat-it.html" rel="bookmark"
+        title="Permalink to Airport Extreme works THIS WAY. EAT IT.">Airport Extreme works THIS WAY. EAT IT.</a></h3>
+    </header>
+
+<h6 class="subheader" title="2010-04-07T21:01:00+01:00">Wed 07 April 2010
+</h6>
+
+
+    <p>So, I'm getting increasingly annoyed at Apple's railroading of people's
+use cases (no, this has nothing to do with the iPad).</p>
+<p>It's only after I started using a Nexus One with android that I realised
+how shite the iPhone was in a lot of ways. Case in point: The one thing
+that I wanted my phone to do wasn't implemented yet, so <a href="https://uk.androlib.com/android.application.net-andvari-bluetoothcondition-AwCq.aspx">I did it</a>.
+The concept of doing that on iPhone without jumping through a ridiculous
+number of hoops is alien to me.</p>
+<p>Another case in point happened this evening, or at least a symptom of
+it.</p>
+<p>I'd recently gotten a <a href="http://soekris.com/products/net5501-1.html">Soekris net5501</a> to act as a home dhcp/dns/etc.
+server, having gotten tired/bored of just letting the Airport extreme do
+everything. I wanted to use DynDNS properly, and I wanted something I
+could leave on when I go on business trips (So I can leave power usage
+monitoring on, etc).</p>
+<p>Sounds like a plan, right? So after fiddling with getting the Soekris
+installed, I plugged everything in, set up ISC dhcpd and Bind, and then
+went to Airport Utility to turn off DHCP on the Airport Extreme.</p>
+<p>Except, you can't.</p>
+<p>You can't actually turn off DHCP, without putting the device into bridge
+mode. You literally cannot run a NAT network using an Airport Extreme
+where it's not the DHCP server for your LAN.</p>
+<p>Rather than ditching my Airport on some unsuspecting fanboy and doing
+research to find a good 802.11n router, I just set a DHCP pool size of 1
+and got on with my life.</p>
+<p>However, this basically reinforced my increasingly negative opinion of
+what Apple is up to these days. Apple products are increasingly not for
+people who know what they want.</p>
+<p>As a disclaimer, I own an ipod and use a macbook pro as my only computer
+for day-to-day use. They work fine, and are great products. Which makes
+it a shame that a lot of their other stuff falls down so hard.</p>
+<p>Aside: here's how to get ISC dhcpd to ignore a certain MAC address if
+you have a stupid device you want to talk to another dhcp server:</p>
+<pre><code>:::python
+host stupidhost {
+  hardware ethernet MA:CA:DD:RE:SS;
+  deny booting;
+}
+</code></pre>
+<p>More in a bit.</p>
+<p class="subheader">Category: <a href="https://log.andvari.net/category/tech.html">Tech</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/imported.html">imported </a>
+    <a href="https://log.andvari.net/tag/apple-airport-dhcp.html">apple airport dhcp </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/archives.html">Archives</a>
+            <li><a href="https://log.andvari.net/tags.html">Tags</a>
+            <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/category/leadership.html">Leadership</a></li>
+            <li><a href="https://log.andvari.net/category/log.html">Log</a></li>
+            <li><a href="https://log.andvari.net/category/meta.html">Meta</a></li>
+            <li><a href="https://log.andvari.net/category/tech.html">Tech</a></li>
+            <li><a href="https://log.andvari.net/category/writing.html">Writing</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="/pages/about.html">About</a></li>
+            <li><a href="http://github.com/gerrowadat">GitHub</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://mastodon.ie/@gerrowadat">@gerrowadat@mastodon.ie</a></li>
+            <li><a href="https://bsky.app/profile/gerrowadat.bsky.social">@gerrowadat.bsky.social</a></li>
+            <li><a href="http://ie.linkedin.com/in/gerrowadat/">linkedin</a></li>
+        </ul>
+
+
+        <h5 class="sidebar-title">Feeds</h5>
+        <ul class="side-nav">
+        <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">All</a></li>
+            <li><a href="https://log.andvari.net/feeds/leadership.atom.xml">Leadership</a></li>
+            <li><a href="https://log.andvari.net/feeds/log.atom.xml">Log</a></li>
+            <li><a href="https://log.andvari.net/feeds/meta.atom.xml">Meta</a></li>
+            <li><a href="https://log.andvari.net/feeds/tech.atom.xml">Tech</a></li>
+            <li><a href="https://log.andvari.net/feeds/writing.atom.xml">Writing</a></li>
+   
+        </ul>
+
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>log.andvari.net by Dave O'Connor</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

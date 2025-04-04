@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>October 14 2024</title>
+
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/normalize.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/pygments.css" />	
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="https://log.andvari.net/theme/js/modernizr.js"></script>
+
+<!-- With thanks to https://lizdenys.com/journal/articles/adding-open-graph-to-pelican.html -->
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://log.andvari.net/october-14-2024.html" />
+<meta property="og:title" content="October 14 2024" />
+<meta property="og:description" content="Bit of a shuffle in what musical projects I'm working on - two groups I'm with have fizzled (at least, my involvement with them has) and one other is coming up. One of the bits I've signed up..." />
+<meta property="og:image" content="https://log.andvari.net/images/daveoc-typewriter.png" />
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBXQ11Y6R7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YBXQ11Y6R7');
+</script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="https://log.andvari.net">log.andvari.net</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+            <li><a href="https://log.andvari.net/pages/about.html" class="button secondary small">About</a></li>
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="https://log.andvari.net/october-14-2024.html" rel="bookmark"
+        title="Permalink to October 14 2024">October 14 2024</a></h3>
+    </header>
+
+<h6 class="subheader" title="2024-10-14T15:09:00+01:00">Mon 14 October 2024
+</h6>
+
+
+    <p><a href="/images/20241014-looper.jpg"><img alt="Image" src="/images/thumbs/thumbnail_square/20241014-looper.jpg" /></a></p>
+<p>Bit of a shuffle in what musical projects I'm working on - two groups I'm with have fizzled (at least, my involvement with them has) and one other is coming up.</p>
+<p>One of the bits I've signed up for is playing samples on stage through front-of-house, so I've invested in a <a href="https://www.boss.info/us/products/rc-5/">Boss RC-5</a> loop station. </p>
+<p>These have seen a resurgence recently, solo artists have been using them pretty extensively to build up tracks (Ed Sheeran <a href="https://sheeranguitars.com/en-ie/products/sheeran-looper?srsltid=AfmBOor4HYV7Yl1MNaF_bUvEYnDK1E9lur0xzE0gmpjcEEoFJrGMyadI">put out his own</a>). The basic gist is that you can record a few bars of music through them, then have them repeat and play over them.</p>
+<p>One of the other things they do is play back samples - modern ones like the RC-5 have storage you can drop .wav files of a certain type on there. In the case of the RC-5, it specifically wants certain formats -- for folks beating their heads against this, the cheat sheet is:</p>
+<p><code>sox existingfile.wav -e floating-point -b 32 -r 44.1k looperfile.wav</code></p>
+<p>Another bothersome thing about the RC-5 at least is the amount of fiddling to get loops/samples playing the way you want - setting tempo, repeat, the sample name, and so on. Of course, my first instinct is that I'd like to be able to backup and restore everything. Thankfully, you can do this -- if you plug the pedal into USB and go to <code>Setup-&gt;Storage</code>, it'll appear as a USB device. The storage is built-in, so swapping SD cards isn't a thing. You can then use <code>rsync</code> to back up and restore.</p>
+<p>For setting up your setting and completely avoiding inputting text using a scroll wheel, you'll need to edit the XML file (what year is this?) at //ROLAND/DATA on the device. A lot of the fields are self-explanatory, the main bother being the Loop name -- this is done as an XML element of the ASCII codes of each letter in the name, like so:</p>
+<p>```</p>
+<h1>"My Loop"</h1>
+<p><NAME>
+ <C01>77</C01>
+ <C02>121</C02>
+ <C03>32</C03>
+ <C04>76</C04>
+ <C05>111</C05>
+ <C06>111</C06>
+ <C07>112</C07>
+ <C08>32</C08>
+ <C09>32</C09>
+ <C10>32</C10>
+ <C11>32</C11>
+ <C12>32</C12>
+</NAME>
+```</p>
+<p>This is a bit bothersome, so I took the opportunity to learn some more golang -- check out <a href="https://github.com/gerrowadat/looperutil">https://github.com/gerrowadat/looperutil</a> for a wee utility for editing XML files and pretty-printing your setup.</p>
+<p>Golang's XML parser is one of those patterns I'm not sure if I love or hate - make some structs that look like the DOM of the XML file, and "magic" happens. Works for my purposes, though.</p>
+<p>If you're nervous, then <code>looperutil xmlname "My Loop"</code> will spit out the above, and you can paste it into your editor like a farmer.</p>
+<p>Overall, this solidifies Roland/Boss as being still probably the kings of pedals that don't fuck around -- not only have they always been built like tanks, the ways to interact with them (be it stepping on them, or XML) still seems solid since I bought my first OC-2 in...1995 or so?</p>
+<p>Now, it only remains to actually get out and play some gigs. As the serially defunct blog author said, "more on that Later"...</p>
+<p class="subheader">Category: <a href="https://log.andvari.net/category/log.html">Log</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/log.html">log </a>
+    <a href="https://log.andvari.net/tag/music.html">music </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/archives.html">Archives</a>
+            <li><a href="https://log.andvari.net/tags.html">Tags</a>
+            <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/category/leadership.html">Leadership</a></li>
+            <li><a href="https://log.andvari.net/category/log.html">Log</a></li>
+            <li><a href="https://log.andvari.net/category/meta.html">Meta</a></li>
+            <li><a href="https://log.andvari.net/category/tech.html">Tech</a></li>
+            <li><a href="https://log.andvari.net/category/writing.html">Writing</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="/pages/about.html">About</a></li>
+            <li><a href="http://github.com/gerrowadat">GitHub</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://mastodon.ie/@gerrowadat">@gerrowadat@mastodon.ie</a></li>
+            <li><a href="https://bsky.app/profile/gerrowadat.bsky.social">@gerrowadat.bsky.social</a></li>
+            <li><a href="http://ie.linkedin.com/in/gerrowadat/">linkedin</a></li>
+        </ul>
+
+
+        <h5 class="sidebar-title">Feeds</h5>
+        <ul class="side-nav">
+        <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">All</a></li>
+            <li><a href="https://log.andvari.net/feeds/leadership.atom.xml">Leadership</a></li>
+            <li><a href="https://log.andvari.net/feeds/log.atom.xml">Log</a></li>
+            <li><a href="https://log.andvari.net/feeds/meta.atom.xml">Meta</a></li>
+            <li><a href="https://log.andvari.net/feeds/tech.atom.xml">Tech</a></li>
+            <li><a href="https://log.andvari.net/feeds/writing.atom.xml">Writing</a></li>
+   
+        </ul>
+
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>log.andvari.net by Dave O'Connor</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>
