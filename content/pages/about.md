@@ -4,11 +4,13 @@ Authors: DoC
 
 <a href="/images/daveoc-typewriter.png"><img src="/images/daveoc-typewriter.png"/></a>
 
-I am an [SRE][sre], Engineering Leadership practitioner and [Coach](https://www.strategichopes.co/) based in Dublin, Ireland. 
+I am an [SRE][sre]/Platform Engineer, Engineering Leadership practitioner and [Coach](https://www.strategichopes.co/) based in Dublin, Ireland. 
 
-I am currently freelancing as a technologist leadership consultant and coach. For more on the consulting end of things, see [Co-Servant Systems](https://coservant.systems). For coaching, see [Strategic Hopes](https://www.strategichopes.co/).
+I'm currently VP of Engineering at [Astronomer](https://www.astronomer.io/), where I drive Reliability, Automation, and amplify general good sense across Engineering.
 
-As far as full-time roles go, I was most recently VP of Engineering at [Twilio](https://www.twilio.com/), working on reliability strategery and leading the SRE group there.
+Previous to this, I did some freelancing as a technologist leadership consultant and coach for a few years. [Co-Servant Systems](https://coservant.systems) was my practice (now defunct). For coaching, see [Strategic Hopes](https://www.strategichopes.co/) which I still do if you ask nicely.
+
+Previous to *that*, I was VP of Engineering at [Twilio](https://www.twilio.com/), working on reliability strategery and leading the SRE group there.
 
 Previous to that, I was Sr. Director of Engineering at [elastic.co](https://www.elastic.co), building and scaling Elastic Cloud.
 
@@ -21,9 +23,9 @@ I was responsible for the [first][ama1] and [second][ama2] Reddit AMAs participa
 Speaking/Interviewing
 =====================
 
-I am happy to speak on subjects such as Software Resiliency, Customer Management for SaaS (internal and external), SRE history and development, OKRs, Managing Distributed Teams, Performance Management, Coaching high-level engineers and managers, Interrupts, on-call, incident management, and anything else that falls inside the realm of interesting and where I might have something interesting to say.
+I am happy to speak on subjects such as Software Resiliency, Customer Management for SaaS (internal and external), SRE history and development, Platform Engineering, OKRs, Managing Distributed Teams, Performance Management, Coaching high-level engineers and managers, Interrupts, on-call, incident management, and anything else that falls inside the realm of interesting and where I might have something interesting to say.
 
-If in doubt, get in contact via LinkedIn or Mastodon or any of the various ways that can be figured out.
+If in doubt, get in contact via LinkedIn or Mastodon or any of the various ways that can be figured out. I don't want any paid consulting opportunities in the area of **[insert search term here]**, so stop being weird please.
 
 Previous Talks, Panels and Interviews (an incomplete list):
 
@@ -59,8 +61,6 @@ Other Media, Quotes Etc.
 
   - I'm quoted "from the field" in the [2025 Catchpoint SRE Report](https://www.catchpoint.com/asset/2025-sre-report)
   - My [6 Reasons...](/6reasons.html) article is referenced and quoted in the excellent ["Platform Engineering"](https://www.oreilly.com/library/view/platform-engineering/9781098153632/) By Camille Fournier and Ian Nowland
-
-
 
 Links:
   - [Linkedin](https://www.linkedin.com/in/gerrowadat/)
