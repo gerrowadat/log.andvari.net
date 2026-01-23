@@ -6,7 +6,7 @@ Slug: no-mttr
 
 ### Asking the Right Questions
 
-A while back when I was looking for a fulltime gig (and when I was contracting, of course), I had the opportunity to do a bunch of interviews (including the kind of informal boilerplate interviews you do to get a new contracting client). One of my boilerplate questions when asked "Any questions for me?" has always been "What does success look like for the person in this role?". I like to ask it of everyone, even folks who'd be reporting to me or folks far away on the oarg chart. It gives you a good insight into how stitched together the team is on the important bits, I find.
+A while back when I was looking for a fulltime gig (and when I was contracting, of course), I had the opportunity to do a bunch of interviews (including the kind of informal interviews you do to get a new contracting client). One of my boilerplate questions when asked "Any questions for me?" has always been "What does success look like for the person in this role?". I like to ask it of everyone, even folks who'd be reporting to me or folks far away on the org chart. It gives you a good insight into how stitched together the team is on the important bits, I find.
 
 In the majority of cases, I tended to get at least one answer that boils down to "Fewer Outages, Lower MTTR".
 
