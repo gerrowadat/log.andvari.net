@@ -4,23 +4,21 @@ Date: 2026-01-22 12:00
 Category: Writing
 Slug: no-mttr
 
-Mean Time To Recovery, or MTTR seems to be a favourite thing to chase in tooling and process (and indeed, startup ideas) these days. It measures how quickly you get back to normal after an outage. On the surface, it seems like a great thing to optimise for; of course you want to recover quickly from incidents, right?
-
 ### Asking the Right Questions
 
-A while back when I was looking for a fulltime gig (and when I was contracting, of course), I had the opportunity to do a bunch of interviews (including the kind of informal boilerplate interviews you do to get a new contracting client). One of my boilerplate questions when asked "Any questions for me?" has always been "What does success look like for the person in this role?". I like to ask it of everyone, even folks who'd be reporting to me. It gives you a good insight into how stitched together the team is on the important bits, I find.
+A while back when I was looking for a fulltime gig (and when I was contracting, of course), I had the opportunity to do a bunch of interviews (including the kind of informal boilerplate interviews you do to get a new contracting client). One of my boilerplate questions when asked "Any questions for me?" has always been "What does success look like for the person in this role?". I like to ask it of everyone, even folks who'd be reporting to me or folks far away on the oarg chart. It gives you a good insight into how stitched together the team is on the important bits, I find.
 
 In the majority of cases, I tended to get at least one answer that boils down to "Fewer Outages, Lower MTTR".
 
-"Fewer Outages", to me, is a weird one. I once responded to a "There are too many outages" complaint by asking "Well, how many is too many?". Just like [100% is the wrong SLO target for basically everything](https://sre.google/in-conversation/), "None" isn't the right target for number of outages. You take a reasonable and data-informed swag and aim for that. In [the vast majority of cases](/6reasons.html), you're not running a nuclear power plant or a circulatory system, so you get to really think about what number is right.
+"Fewer Outages", to me, is a weird one. I tend to respond to a "There are too many outages" complaint by asking "Well, how many is too many?". Just like [100% is the wrong SLO target for basically everything](https://sre.google/in-conversation/), "None" isn't the right target for number of outages. You take a reasonable and data-informed swag and aim for that. In [the vast majority of cases](/6reasons.html), you're not running a nuclear power plant or a circulatory system, so you get to really think about what number is right.
 
-Similarly, the last while has seen an MTTR "race to the bottom". There are entire companies whose premise for what they'll do for you (and charge you a handsome fee, to boot) is lower your MTTR. They'll do it using an AI chatbot (and strand your systems knowledge inside that same bot), but that's neither here nor there - the main gist is "MTTR is your problem", and it's a tempting one to latch onto.
+Similarly, for MTTR (Mean Time To Recovery, or 'how long in seconds it takes you to mitigate the effect of an outage') the last while has seen a "race to the bottom". There are entire companies whose premise for what they'll do for you (and charge you a handsome fee, to boot) is lower your MTTR. They'll generally do it using an AI chatbot (and strand your systems knowledge and capability inside that same bot), but that's neither here nor there - the main gist is "MTTR is your problem", and it's a tempting one to latch onto. Easy to measure, easy to be seen to be grumpy about.
 
 ### Doing it the Fastestest
 
-The problem is that MTTR, as a primary focus, is a red herring. It's measuring the wrong thing, or at least, it's measuring something that's downstream of what you actually want.
+The problem is that MTTR, as a primary focus, is a red herring. It's measuring the wrong thing; or at least, it's measuring something that's downstream of what you actually want.
 
-If you're having the same kinds of outages over and over, getting really fast at recovering from them is like getting really good at bailing water out of a leaky boat. Sure, you're staying afloat, but maybe patch the hole?
+If you're having the same kinds of outages over and over, getting really fast at recovering from them is like getting really good at bailing water out of a leaky boat. Sure, you're staying afloat, but water coming in is a bad sign, and you built the boat in the first place so should know what's up.
 
 The real purpose of good incident practice isn't to get fast at recovery. It's to feed back what you learn into your software development lifecycle. Every incident is information. Every outage is telling you something about where your systems, processes, or assumptions are wrong. The goal isn't to recover quickly (though you should); it's to ensure you don't have to recover from the same thing twice.
 
@@ -30,7 +28,7 @@ I waxed slightly lyrical recently about [Cloudflare's writeup](https://blog.clou
 
 ### Doing it The Bestest
 
-When I talk to teams about the point of incident management (primarily retrospectives), I generally say that the point of doing them is twofold. That is:
+When I talk to teams about the point of good incident management (primarily retrospectives), I generally say that the point of doing them is twofold. That is:
 
 #### Avoiding Repeats
 
@@ -38,7 +36,7 @@ If you're seeing repeat incidents -- the same service falling over the same way,
 
 When you focus too hard on MTTR, you create incentives that work against learning. Teams get good at quick fixes and workarounds. They get good at restarting services and clearing queues. They don't necessarily get good at asking "why did this happen, and what systemic change prevents it from happening again?"
 
-When I worked freelance, I ran into at least one shop that used a managed service partner. Their first instinct was to reboot. Restart the service. Reboot the machine. Reset the network device.
+When I worked freelance, I ran into at least one shop that used a managed service partner. Their first instinct was to kick things, seemingly at random. Restart the service. Reboot the machine. Reset the network device.
 
 Their MTRR numbers were *amazing*.
 
@@ -46,7 +44,7 @@ Generally when a particular service fell over, it was back within the hour. Howe
 
 #### Raising All Boats
 
-Post-incident reviews (or postmortems, or whatever you're calling them this week) should be producing action items that feed into your roadmap. Not just "add better monitoring" (though sure, maybe), but real changes: fix the race condition, add the circuit breaker, change the deployment process, update the runbook so the next person doesn't have to figure it out from scratch. For bonus points, involve your customer support friends to make sure what you're inserting into the SDLC is actually going to move the needle for customers.
+Post-incident reviews (or postmortems, or whatever you're calling them this week) should be producing action items that feed into your roadmap. Not just "add better monitoring" (though sure, maybe), but real changes: fix the race condition, add the circuit breaker, change the deployment process. Do a priority swap so we fix something we've identified as real, instead of adding additional whizz-bang that may be more speculative in terms of how happy it makes customers. For bonus points, involve your customer support friends to make sure what you're inserting into the SDLC is actually going to move the needle for customers.
 
 The measure of a mature incident response process isn't how fast you recover. It's how rarely you see the same incident twice, and how much of the learning from your outages sticks, in the form of enduring shifts to how you write code and design systems. It's how often your outages are genuinely novel -- new and interesting failures that teach you something new about your systems, and real action on then finding yourself a better class of first-world problems.
 
