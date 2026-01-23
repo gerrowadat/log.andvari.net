@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>log.andvari.net - Tech</title><link href="https://log.andvari.net/" rel="alternate"/><link href="https://log.andvari.net/feeds/tech.atom.xml" rel="self"/><id>https://log.andvari.net/</id><updated>2023-11-03T00:00:00+00:00</updated><entry><title>WOMC: Nomad Variables as Secrets</title><link href="https://log.andvari.net/womc-nomad-variables-as-secrets.html" rel="alternate"/><published>2023-11-03T00:00:00+00:00</published><updated>2023-11-03T00:00:00+00:00</updated><author><name>Dave O'Connor</name></author><id>tag:log.andvari.net,2023-11-03:/womc-nomad-variables-as-secrets.html</id><summary type="html">&lt;p&gt;Standard disclaimer: Maybe don't do this in production? I hear Hashicorp also does a secret store :-)&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/hashicorp/nomad/releases/tag/v1.4.0"&gt;Nomad 1.4.0&lt;/a&gt; added support for 'variables', which are essentially key/value blobs protected by nomad's ACL system. As someone who had steadfastly avoided either running vault, or doing secrets properly, I knew …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Standard disclaimer: Maybe don't do this in production? I hear Hashicorp also does a secret store :-)&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/hashicorp/nomad/releases/tag/v1.4.0"&gt;Nomad 1.4.0&lt;/a&gt; added support for 'variables', which are essentially key/value blobs protected by nomad's ACL system. As someone who had steadfastly avoided either running vault, or doing secrets properly, I knew an opportunity to do secrets improperly when I saw it, so here we are.&lt;/p&gt;
+&lt;p&gt;If you want a 'working' example, my &lt;a href="https://github.com/gerrowadat/nomad-homelab/tree/main/ssl"&gt;nomad-homelab&lt;/a&gt; repo has the example for my SSL certs, where I populate nomad with letsencrypt SSL certs and give whatever jobs need them access.&lt;/p&gt;
+&lt;h3&gt;Getting data into nomad Variables&lt;/h3&gt;
+&lt;p&gt;Assuming you have access keys and auth set up, working with variables is pretty easy.&lt;/p&gt;
+&lt;p&gt;Each variable is referred to by a path, which doesn't mean much aside from tidiness, aside from in one way: If you create 
+a variable named &lt;code&gt;nomad/jobs/myjob&lt;/code&gt;, tasks in the &lt;code&gt;myjob&lt;/code&gt; job have access to the variable.&lt;/p&gt;
+&lt;p&gt;Each variable is actually a set of key/value pairs, so if I wanted to create a variable for &lt;code&gt;myjob&lt;/code&gt; and put a 'authtoken' key in there, I'd do something like:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;nomad var put nomad/jobs/myjob authtoken=mySeCrEtAuThToKeN&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;You can then happily get the variable with &lt;code&gt;nomad var get&lt;/code&gt; and so on. See &lt;a href="https://github.com/gerrowadat/nomad-homelab/blob/main/utilities/file_to_nomad_var.sh"&gt;file_to_nomad_var.sh&lt;/a&gt; for an example of how to load file contents into a nomad variable key (although it looks like nomad has since grown functionality for using &lt;code&gt;-&lt;/code&gt; as the value on the command line to accept key contents via stdin).&lt;/p&gt;
+&lt;h3&gt;Access Controls&lt;/h3&gt;
+&lt;p&gt;Variables have the same kind of access controls that other nomad entities have -- via an &lt;a href="https://developer.hashicorp.com/nomad/tutorials/access-control/access-control-policies"&gt;acl policy&lt;/a&gt;. The short version of how to get this done is that you should write (and then either keep or throw away) an acl policy file. This generally looks like the following:&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;h1&gt;mypolicyfile.hcl&lt;/h1&gt;
+&lt;p&gt;namespace "default" {
+  variables {
+    path "my/secret/stuff" {
+      capabilities = ["read", "list"]
+    }
+  }
+}
+```&lt;/p&gt;
+&lt;p&gt;You can then insert a policy for each job to give access to the &lt;code&gt;my/secret/stuff&lt;/code&gt; variable with:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;nomad acl policy apply -namespace default -job myjob myjob-secretstuff-policy - &amp;lt;  mypolicyfile.hcl&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The policy can be named anything, so known yourself out with the tidiness. If you'd like to see this being used in anger, see &lt;a href="https://github.com/gerrowadat/nomad-homelab/blob/main/ssl/grant_job_access_to_cert.sh"&gt;grant_job_access_to_cert.sh&lt;/a&gt; from my SSL example.&lt;/p&gt;
+&lt;h3&gt;Accessing Variables from nomad Jobs&lt;/h3&gt;
+&lt;p&gt;Variables are accessible from nomad jobs at invocation time -- that is, when the alloc is being built. So, the best way to access and use a variable is to write out its contents in a template within the alloc, so even if nomad itself goes away, the container still has everything it needs.&lt;/p&gt;
+&lt;p&gt;In the .hcl file for your job, you can dump a particular variable you have access to to a file in the &lt;code&gt;secrets&lt;/code&gt; directory by using &lt;code&gt;template&lt;/code&gt; directives within a &lt;code&gt;task&lt;/code&gt; stanza:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;template {
+     data = "{{ with nomadVar \"my/secret/stuff\" }}{{ .authkey }}{{ end }}"
+     destination = "secrets/authkey.txt"
+     change_mode = "signal"
+     change_signal = "SIGHUP"
+     perms = 700
+   }&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Some things to note here:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;my/secret/stuff&lt;/code&gt; is the variable name, &lt;code&gt;authkey&lt;/code&gt; is the key within that variable.&lt;/li&gt;
+&lt;li&gt;You can place the output file outside of &lt;code&gt;secrets/&lt;/code&gt; if you like, I guess.&lt;/li&gt;
+&lt;li&gt;You can of course have multiple &lt;code&gt;template {}&lt;/code&gt; stanzas with differet variables and outputs/behaviour.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;change_mode&lt;/code&gt; and &lt;code&gt;change_signal&lt;/code&gt; determine what happens if the variable gets updated. In this case, the task gets HUP'd if someone updates the nomad variable. This can be handy for stuff like SSL certs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Why not production?&lt;/h3&gt;
+&lt;p&gt;Any number of reasons I can think of:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;People with admin access to nomad have access to all variables. You probably don't want that in production.&lt;/li&gt;
+&lt;li&gt;I'm pretty sure nomad shunts all this content around via raft and I'm not sure how secure the data is at rest (or in transit). I'm gonna guess less so than vault :-)&lt;/li&gt;
+&lt;li&gt;There's a proper way to do this that isn't chintzy as frig and that the people who come after you are more likely to understand.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Other Thoughts&lt;/h3&gt;
+&lt;p&gt;Nomad Variables are kind of like &lt;a href="https://kubernetes.io/docs/concepts/configuration/configmap/"&gt;K8S ConfigMap&lt;/a&gt;, so I could probably abuse them to store actual configuration data pretty trivially -- for jobs that just have a single config file and everything else can get blown away with the container, this is probably fine. Very few of the apps I run at home are like that, though.&lt;/p&gt;</content><category term="Tech"/><category term="log"/><category term="#worksonmycluster"/><category term="tech"/></entry><entry><title>Offsiting DNS for Fun and Profit</title><link href="https://log.andvari.net/offsiting-dns-for-fun-and-profit.html" rel="alternate"/><published>2023-10-23T10:46:00+01:00</published><updated>2023-10-23T10:46:00+01:00</updated><author><name>Dave O'Connor</name></author><id>tag:log.andvari.net,2023-10-23:/offsiting-dns-for-fun-and-profit.html</id><summary type="html">&lt;p&gt;Further to my &lt;a href="/october-20-2023.html"&gt;last post&lt;/a&gt; where I went away for a few weeks, that away-time featured a power cut at home. Things....did not come back cleanly, and required intervention to come back -- not least of which was DNS. Because of course.&lt;/p&gt;
+&lt;p&gt;My setup had been running DNS locally for …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Further to my &lt;a href="/october-20-2023.html"&gt;last post&lt;/a&gt; where I went away for a few weeks, that away-time featured a power cut at home. Things....did not come back cleanly, and required intervention to come back -- not least of which was DNS. Because of course.&lt;/p&gt;
+&lt;p&gt;My setup had been running DNS locally for the local zone, including delegating to &lt;a href="https://www.hashicorp.com/products/consul"&gt;consul&lt;/a&gt; for where nomad jobs are. So, I looked into getting rid of this -- being able to use any resolver to resolve things at home would be nice, and being able to just hand out an external resolver to most clients will also be good. I have redundant internet connections at home, so I'm going to explicitly make it so not being able to reach external resolvers is the falure mode, rather than recovering from a power cut :-)&lt;/p&gt;
+&lt;p&gt;Thankfully, the major cloud providers will...provide. &lt;a href="https://cloud.google.com/dns"&gt;Google Cloud DNS&lt;/a&gt; costs pennies a month and you can talk to it over an API, so I started fiddling around with that.&lt;/p&gt;
+&lt;p&gt;I'd been kind of looking around for yet another excuse to learn go, so I've made &lt;a href="https://github.com/gerrowadat/clouddns-sync"&gt;clouddns-sync&lt;/a&gt; to do the heavy lifting. It's still pretty janky and needs tests, but it works, for now. &lt;/p&gt;
+&lt;p&gt;The probably more useful parts for other people is the &lt;code&gt;clouddns-sync getzonefile&lt;/code&gt; and &lt;code&gt;clouddns-sync putzonefile&lt;/code&gt; fnctionality - I used this for getting my existing zone into Cloud DNS. It probably doesn't produce or consume all kinds of zone file fragments, but in my defense, it's DNS. Show me software that does.&lt;/p&gt;
+&lt;p&gt;The more me-specific part is updating records for nomad jobs -- I can do this one-off with &lt;code&gt;clouddns-sync nomad_sync&lt;/code&gt; -- which does a one-off poll of where jobs and allocs are in a local nomad cluster, and then updates a zone in cloud DNS. I'll likely cron it for now and then see if I can do something smarter with running it in nomad itself and useing channels and proper montoring and all the good stuff you're meant to do.&lt;/p&gt;
+&lt;p&gt;All that's then left is delegating zones to gcloud's resolvers, and blowing away my local resolvers once I'm hapy with that. There's probably a paranoid concern about leaking where things are running on my local (i.e. rfc1918) network, but gcloud doesn't allow full zone transfers, and I'd imagine that's lower on my list of worries once someone's popped my home network.&lt;/p&gt;</content><category term="Tech"/><category term="log"/><category term="#worksonmycluster"/><category term="tech"/></entry><entry><title>November 1 2014</title><link href="https://log.andvari.net/november-1-2014.html" rel="alternate"/><published>2014-11-01T21:43:00+00:00</published><updated>2014-11-01T21:43:00+00:00</updated><author><name>Dave O'Connor</name></author><id>tag:log.andvari.net,2014-11-01:/november-1-2014.html</id><summary type="html">&lt;p&gt;&lt;a href="/images/20141101-travelgear.jpg"&gt;&lt;img alt="Image" src="/images/thumbs/thumbnail_square/20141101-travelgear.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Off to Mountain View in the morning for 3 days, then onwards to New York. I haven't been to MTV since January, or NYC since June, so I guess I'm due in both.&lt;/p&gt;
+&lt;p&gt;This is the aeroplane survival kit. I don't sleep on planes, and Aer Lingus have transatlantic WiFi …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="/images/20141101-travelgear.jpg"&gt;&lt;img alt="Image" src="/images/thumbs/thumbnail_square/20141101-travelgear.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Off to Mountain View in the morning for 3 days, then onwards to New York. I haven't been to MTV since January, or NYC since June, so I guess I'm due in both.&lt;/p&gt;
+&lt;p&gt;This is the aeroplane survival kit. I don't sleep on planes, and Aer Lingus have transatlantic WiFi now, so this is indispensble. That's the work phone (Nexus 4), work tablet (Nexus 10), and the newly-acquired Moto 360 smartwatch, which the jury is still out on (pretty shiny so far though).&lt;/p&gt;
+&lt;p&gt;Three other pieces of indisensible kit are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.amazon.co.uk/15000mAh-Portable-External-Battery-Motorola-Black/dp/B00D5T3QK4/ref=sr_1_1?ie=UTF8&amp;amp;qid=1415828791&amp;amp;sr=8-1&amp;amp;keywords=anker+astro"&gt;Anker ASTRO E5&lt;/a&gt; battery pack for charging hungry gadgets on the road.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.amazon.co.uk/Family-Sized-Desktop-Charger-Technology-External/dp/B00GYNW1TA/ref=sr_1_1?ie=UTF8&amp;amp;qid=1415828825&amp;amp;sr=8-1&amp;amp;keywords=anker+usb"&gt;Anker&lt;/a&gt; 5-way USB charging thingo (2.4A on each of 5 ports for maximum charging goodness)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.amazon.co.uk/WL-330NUL-All-In-One-Wireless-N-Pocket-Router/dp/B00CYI46MO/ref=sr_1_1?ie=UTF8&amp;amp;qid=1415828976&amp;amp;sr=8-1&amp;amp;keywords=asus+wl-330nul"&gt;ASUS WL-330NUL&lt;/a&gt; USB ethernet and mobile hotspot, for sharing stupid one-mac-address wifi with all your gadgets (seriously, everyone should have one of these).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hopefully I'll get some stuff done on the plane - I've yet to properly emulate the distraction-deprivation environment that planes give you.&lt;/p&gt;
+&lt;p&gt;Seeya on the other side, internet.&lt;/p&gt;</content><category term="Tech"/><category term="log"/><category term="travel"/><category term="tech"/></entry><entry><title>Using GMail as a relay with Postfix</title><link href="https://log.andvari.net/using-gmail-as-a-relay-with-postfix.html" rel="alternate"/><published>2011-07-22T17:25:00+01:00</published><updated>2011-07-22T17:25:00+01:00</updated><author><name>Dave O'Connor</name></author><id>tag:log.andvari.net,2011-07-22:/using-gmail-as-a-relay-with-postfix.html</id><summary type="html">&lt;p&gt;I fiddled a bit with this, so I thought I'd do a no-nonsense guide to
+doing this. There are other guides, but a lot of them are incomplete and
+will leave you with queueing issues or annoyances.&lt;/p&gt;
+&lt;p&gt;The science bit:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
+smtp_use_tls = yes
+smtp_sasl_auth_enable=yes
+smtp_sasl_password_maps=hash:/etc/postfix/sasl_passwd …&lt;/code&gt;&lt;/pre&gt;</summary><content type="html">&lt;p&gt;I fiddled a bit with this, so I thought I'd do a no-nonsense guide to
+doing this. There are other guides, but a lot of them are incomplete and
+will leave you with queueing issues or annoyances.&lt;/p&gt;
+&lt;p&gt;The science bit:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
+smtp_use_tls = yes
+smtp_sasl_auth_enable=yes
+smtp_sasl_password_maps=hash:/etc/postfix/sasl_passwd
+smtp_sasl_security_options=noanonymous
+smtp_sasl_tls_security_options=noanonymous
+# Send all mail through smtp.gmail.com
+relayhost = smtp.gmail.com
+# Stop getting a catpcha, hopefully.
+smtp_destination_rate_delay = 60
+relay_destination_rate_delay = 60
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then, edit /etc/postfix/sasl_passwd:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
+smtp.gmail.com myemail@gmail.com:MyPaSsWoRd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It doesn't have to be an @gmail account,
+it can be a GAFYD account, once you've logged into it once to activate
+it.&lt;/p&gt;
+&lt;p&gt;Then just generate the map file for the
+sasl_passwd file and reload. As root:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
+postmap sasl_passwd
+postfix reload
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And you're done. Monitor your queue a few
+times over the first few days to make sure stupid stuff hasn't happened
+(the delay between mails might get tweaked), but in general this has
+worked for me.&lt;/p&gt;
+&lt;p&gt;Have fun.&lt;/p&gt;</content><category term="Tech"/><category term="imported"/><category term="gmail"/><category term="postfix"/><category term="tech"/></entry><entry><title>My Eyes!</title><link href="https://log.andvari.net/my-eyes.html" rel="alternate"/><published>2011-04-15T23:19:00+01:00</published><updated>2011-04-15T23:19:00+01:00</updated><author><name>Dave O'Connor</name></author><id>tag:log.andvari.net,2011-04-15:/my-eyes.html</id><summary type="html">&lt;p&gt;I've not had a lot of time to go at electronics in the past while
+(mainly a combination of work things and family things kicking my ass),
+but I got to some of it tonight -- The clever parts of the design and
+build are basically done, so what's left is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've not had a lot of time to go at electronics in the past while
+(mainly a combination of work things and family things kicking my ass),
+but I got to some of it tonight -- The clever parts of the design and
+build are basically done, so what's left is producing the final piece.&lt;/p&gt;
+&lt;p&gt;Aside from the motion sensor parts, there's also the bright light, to
+mess with people's night vision. For this, I got 4 super-bright LEDs,
+and did monstrous things with solder to produce a 5x2 header, that was
+fully connected along the long side. This gave me the 4 LEDs connected
+in parallell. This is pretty bright with the 5v applied from the analog
+output of the Arduino:&lt;/p&gt;
+&lt;p&gt;The final result will be built on an Arduno Fio board, which only has a
+3.3v signal (It's powered off a 3.7v LiPo battery), so I'll need to
+amplify that somehow. I'm thinking I might try to power the board and
+LEDs off a regular 9V instead, or have the LiPo powering the board and
+the 9V powering the buzzer and leds, gated on the signal line of the
+board with some transistors. I may be of course talking out my ass. I'm
+going to pick up some various transistors over the weekend and
+experimenting. My guess is the gate and emitter of a transistor need a
+common ground, which won't work with using separate power sources. We'll
+see.&lt;/p&gt;
+&lt;p&gt;Of course, deadlines, help. I'm supposed to be using this thing next
+saturday. So, full steam ahead.&lt;/p&gt;</content><category term="Tech"/><category term="imported"/><category term="airsoft"/><category term="arduino"/><category term="electronics"/><category term="tech"/></entry><entry><title>I Seeeeee Youuuuu</title><link href="https://log.andvari.net/i-seeeeee-youuuuu.html" rel="alternate"/><published>2011-03-25T22:30:00+00:00</published><updated>2011-03-25T22:30:00+00:00</updated><author><name>Dave O'Connor</name></author><id>tag:log.andvari.net,2011-03-25:/i-seeeeee-youuuuu.html</id><summary type="html">&lt;p&gt;So, first steps. I picked up a few &lt;a href="https://www.sparkfun.com/products/8630"&gt;PIR Motion sensors&lt;/a&gt;. These are a
+specific kind, there are a few other kinds, but they should have
+datasheets. You might recognise the bulbous white shape of them from
+those motion-sensing light switches. They're about a fiver each and fun
+to play …&lt;/p&gt;</summary><content type="html">&lt;p&gt;So, first steps. I picked up a few &lt;a href="https://www.sparkfun.com/products/8630"&gt;PIR Motion sensors&lt;/a&gt;. These are a
+specific kind, there are a few other kinds, but they should have
+datasheets. You might recognise the bulbous white shape of them from
+those motion-sensing light switches. They're about a fiver each and fun
+to play with.  &lt;/p&gt;
+&lt;p&gt;The comments section on Sparkfun had a &lt;a href="https://itp.nyu.edu/physcomp/sensors/Reports/PIRMotionSensor"&gt;very good tutorial&lt;/a&gt; on basic
+use, but also explains the basic principles of its operation. It has 3
+pins -- DC, Ground and Alarm.  &lt;/p&gt;
+&lt;h3&gt;Science Bit&lt;/h3&gt;
+&lt;p&gt;The alarm pin is what's called an &lt;a href="https://en.wikipedia.org/wiki/Open_collector"&gt;Open Collector&lt;/a&gt;, which means it's
+either connected to ground, or to 'nothing'. To better understand this,
+let's assume you don't know what a transistor is (I know I sure didn't a
+few weeks ago).&lt;/p&gt;
+&lt;p&gt;Speaking simplistically, a transistor is a component where you can vary
+one voltage based on a much smaller voltage. In this way you can amplify
+a voltage pretty easily.&lt;/p&gt;
+&lt;p&gt;Here's a diagram!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Transistor2.svg" /&gt;&lt;/p&gt;
+&lt;p&gt;Usually transistors are tiny and embedded or are tiny and on a
+breadboard, but let's assume for a moment that it's a box with 3 wires
+coming out of it. They're called collector, emitter and base. Emitter is
+always connected to ground, and provides the reference voltage, or
+definition of 'zero'. Base is a small voltage in relation to ground, and
+the voltage applied to the base controls how much voltage is allowed
+flow between the emitter and the collector. The difference between the
+voltage on the base, and the voltage allowed through the collector is
+called the 'gain'.&lt;/p&gt;
+&lt;p&gt;However! The voltage on the collector doesn't come from nowhere. It has
+to be supplied, and the voltage 'allowed' to flow is defined by the
+voltage on the base. So, if you apply 3.3v to the base, and 9v to the
+collector (the voltage marked 'V~cc~' on the diagram there), you get a
+certain voltage that's actually 'allowed' through the transistor, and
+can be used in other applications by connecting them before the resistor
+(At 'V~out~' on the diagram).&lt;/p&gt;
+&lt;p&gt;The zig-zaggy thing there on the diagram is a resistor. We put it across
+the larger V~cc~ voltage to lower it a bit, since transistors are
+usually only rated to take a certain voltage. The function of V~cc~ and
+the resistor is to 'pull up' the voltage across the emitter and
+collector. This is why the resistor there is often called a 'pull-up
+resistor'.&lt;/p&gt;
+&lt;p&gt;Transistors are handy for switches when you want to control a large
+voltage using a small voltage. They're also useful if you want to take a
+tiny voltage you get from a signal somewhere and amplify it.&lt;/p&gt;
+&lt;p&gt;Anyway, why this is relevant is that an 'Open Collector' is the
+collector from a transistor that's available as a signal. However,
+instead of usual 'binary' signals that might produce a 'True' voltage or
+a 'False' lack of voltage, it's either connected to ground, or not.
+Whether or not it is connected to ground depends on the base voltage. My
+guess is that the PIR sensor circuitry provides the 'base' voltage and
+lets us use any V~cc~ voltage we want, in order to 'pull up' the output.&lt;/p&gt;
+&lt;p&gt;So, if you go look at the circuit diagram and build instructions in the
+tutorial mentioned above, it works just so. The one modification I made
+here is that as well as pulling up the voltage, instead of connecting
+back to the LED on the Arduino board, I connected up to a big old Piezo
+Buzzer I got in Maplin.&lt;/p&gt;
+&lt;p&gt;The finished build looked like this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="https://lh6.googleusercontent.com/_otzZMGWrd00/TY0Nl6RxURI/AAAAAAAADfk/kPBdY2IPIUQ/s720/IMG_20110313_212116.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;So, the end result is that when you wave your hand in front of the PIR,
+the buzzer makes an annoying noise. Success!&lt;/p&gt;
+&lt;p&gt;Next up would be making things a bit smaller -- There are smaller,
+cheaper Arduino boards you can get, and I'll do a build soon that's a
+little easier to get into a project box and lug around with you.&lt;/p&gt;</content><category term="Tech"/><category term="imported"/><category term="arduino"/><category term="electronics"/></entry><entry><title>Electronics Schwag (The Specifics)</title><link href="https://log.andvari.net/electronics-schwag-the-specifics.html" rel="alternate"/><published>2011-03-02T06:24:00+00:00</published><updated>2011-03-02T06:24:00+00:00</updated><author><name>Dave O'Connor</name></author><id>tag:log.andvari.net,2011-03-02:/electronics-schwag-the-specifics.html</id><summary type="html">&lt;p&gt;A commenter asked me for more specifics on stuff to get when getting
+started with electronics, so since I've learned a little since then,
+here's my uninformed opinion.  &lt;/p&gt;
+&lt;h3&gt;Soldering Iron&lt;/h3&gt;
+&lt;p&gt;Get a good one. I got a reasonably crap Draper one from Amazon, which
+was 25W. It's fine, but takes …&lt;/p&gt;</summary><content type="html">&lt;p&gt;A commenter asked me for more specifics on stuff to get when getting
+started with electronics, so since I've learned a little since then,
+here's my uninformed opinion.  &lt;/p&gt;
+&lt;h3&gt;Soldering Iron&lt;/h3&gt;
+&lt;p&gt;Get a good one. I got a reasonably crap Draper one from Amazon, which
+was 25W. It's fine, but takes a while to heat up and can be a little
+while melting the solder, which is annoying when you're holding
+everything just-so and it's all perfect except the hot bit isn't hot
+enough. If I were doing this again I'd get a 40w one, and one with
+adjustable heat.  &lt;/p&gt;
+&lt;p&gt;A lot of the soldering tutorials I've seen use a pointed tip on the
+soldering iron. I've found the chisel tip a lot easier. I can touch the
+tip against a solder point and heat the wire and contact a lot easier
+than using a pointed tip (which you don't use the point of anyway). I'd
+recommend you try both to see what works.  &lt;/p&gt;
+&lt;h3&gt;Solder&lt;/h3&gt;
+&lt;p&gt;Lots of the online tutorials say "Don't use silver solder or lead-free
+solder, it's a pain in the ass to use". Well, thanks to RoHs, lead
+solder is at least very hard (if not impossible) to get in Europe. &lt;a href="https://rohsusa.com/"&gt;This
+crackpot here&lt;/a&gt; has a website talking about it, but you're probably
+wasting your time looking for lead solder in Ireland. I found it easy
+enough to solder with lead-free, but then again I've no frame of
+reference. I just picked up some 60/40 and 63/37 lead solder here in the
+bay area, so we'll see once I'm back.  &lt;/p&gt;
+&lt;p&gt;People make a big deal about lead-free solder not being less dangerous
+than lead solder. All I know is that if you're burning a solid
+metal-looking object and smoke comes out, breathing it in is probably
+bad for you. Little pro tip there.  &lt;/p&gt;
+&lt;h3&gt;Wire Strippers&lt;/h3&gt;
+&lt;p&gt;See this here, right?  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="https://lh4.ggpht.com/_otzZMGWrd00/TW3YD7B3n0I/AAAAAAAADTs/8_rFTwY-Mwo/stripper.jpg?imgmax=800" /&gt;&lt;/p&gt;
+&lt;p&gt;Load of shite. Avoid like the plague. I wasn't able to adjust mine to
+strip the wire I got, and it just chomped ineffectually and was big and
+annoying.  &lt;/p&gt;
+&lt;p&gt;Okay, now see this?  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="https://lh6.ggpht.com/_otzZMGWrd00/TW3YmDWsgsI/AAAAAAAADTw/9xsBSVLpsW4/wire_stripper.jpg?imgmax=800" /&gt;&lt;/p&gt;
+&lt;p&gt;Bog standard wire stripper, costs a fiver or less, is in pretty much
+every electronics set ever. That is because it's the only wire stripper
+you'll ever need. Some wire stripper inventor guy is using money to
+insulate his attic because of these babies, because they're great. Get
+one.  &lt;/p&gt;
+&lt;h3&gt;Wires&lt;/h3&gt;
+&lt;p&gt;After talking about wire strippers, of course, I should let you know
+that stripping the ends off wires is for suckers. I picked up a Jump
+Wire Kit in Maplin in town, which has a bunch of varying lengths of
+wire, especially for breadboarding and the like. 
+For the first while you're probably not going to be soldering
+wires in place, so the jump wires are grand.  &lt;/p&gt;
+&lt;h3&gt;Breadboards&lt;/h3&gt;
+&lt;p&gt;Breadboards are boards full of holes you stick wires into. If you're
+getting one, make sure to get one with a power rail going along each
+side, which are much nicer. It should look something like this:  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="https://lh6.ggpht.com/_otzZMGWrd00/TW3bULTgKtI/AAAAAAAADT8/xmi4aUL24N4/halfbb.jpg?imgmax=800" /&gt;&lt;/p&gt;
+&lt;p&gt;Get two or three so you don't have to dismantle something you're doing
+to re-use the breadboard.  &lt;/p&gt;
+&lt;h3&gt;Arduino Stuff and Components&lt;/h3&gt;
+&lt;p&gt;The main Arduino stuff you want to pick up, barring any particular
+project in mind, is one or two (they're small and cheap) boards, the USB
+cable you need to talk to them, and some breadboards for fiddling
+around.   &lt;/p&gt;
+&lt;p&gt;The board you want to get is the Uno, and you may want to avoid the SMD
+edition if you can. For a lot of stuff, it won't matter, but the main
+difference is you can't remove the microcontroller chip from the SMD
+version. There are reasons you may want to do this, which I'll cover in
+a later post. The SMD version was mainly produced due to a worldwide
+shortage of the Atmega328 chip in the larger removable form factor, so
+you're more than likely getting the non-SMD, but it probably doesn't
+make a difference. The SMD version apparently has other improvements for
+meganerds who want to fiddle with the firmware on the board.  &lt;/p&gt;
+&lt;p&gt;This is the normal version with the microcontroller chip in a socket on
+the board:  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="https://lh5.ggpht.com/_otzZMGWrd00/TW3hp1B4RxI/AAAAAAAADUQ/x2GXJJJel60/uno.jpg?imgmax=800" /&gt;&lt;/p&gt;
+&lt;p&gt;This is the SMD version, notice the tiny surface-mount chip. Same chip,
+different form factor. Notice the 6 extra pins near the USB port.
+Apparently you can do science with them:  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="https://lh5.ggpht.com/_otzZMGWrd00/TW3h007Q7iI/AAAAAAAADUU/UsjCS2qlfYg/unosmd.jpg?imgmax=800" /&gt;&lt;/p&gt;
+&lt;p&gt;You might also look into getting 'shields' for the board, which are
+basically other boards that plug into the Uno. They're good for
+prototyping, but can be bigger than what you want when you want to
+shrink things down. You can get them for stuff like ethernet, XBee (mesh
+networking), and other kinds of wired or wireless comms.  &lt;/p&gt;
+&lt;p&gt;I recommend getting one of the starter kits, the one from &lt;a href="https://www.adafruit.com/"&gt;Adafruit&lt;/a&gt;
+is good, comes with everything you need. I also recommend getting a
+Proto Shield, which is a good starter soldering project. The Adafruit
+starter kit comes with one, and &lt;a href="https://www.sparkfun.com/"&gt;SparkFun&lt;/a&gt; do a different one that
+does roughly the same thing. While you're getting stuff, have a look
+around [SK Pang], &lt;a href="https://www.adafruit.com/"&gt;AdaFruit&lt;/a&gt; and &lt;a href="https://www.sparkfun.com/"&gt;SparkFun&lt;/a&gt; to see what
+they've got, there are a bunch of ready-made projects and widgets
+that'll give you ideas for projects. Personally, I picked up some
+&lt;a href="http://leahbuechley.com/LilyPad/"&gt;LilyPad&lt;/a&gt; stuff for the project I dreamed up (details coming soon) and
+an RFID reader chip and breakout board for fiddling with RFID.  &lt;/p&gt;
+&lt;p&gt;For more specialised stuff, there are smaller boards you can get, which
+end up cheaper than the Uno. The Pro Mini and FIO end up a fiver
+or so cheaper per board, and can be good if you have specific things in
+mind (I picked up a pair of FIOs, since they have an XBee socket
+onboard).  &lt;/p&gt;
+&lt;p&gt;As components go, Maplin do 'lucky bags' of the likes of resistors,
+capacitors, etc. If you know exactly what you want, Radionics have a
+large catalogue and do next-day courier delivery in Dublin for a fiver.  &lt;/p&gt;
+&lt;h3&gt;Next Up&lt;/h3&gt;
+&lt;p&gt;Next up I'll be talking about the project I've been thinking about, and
+the bits I've been gradually accumulating for it. I'll also show you the
+first few photos I have of my own tinkerings with RFID reading.  &lt;/p&gt;</content><category term="Tech"/><category term="imported"/><category term="arduino"/><category term="electronics"/><category term="tech"/></entry><entry><title>Legbone connected to my Wristwatch</title><link href="https://log.andvari.net/legbone-connected-to-my-wristwatch.html" rel="alternate"/><published>2011-02-17T16:49:00+00:00</published><updated>2011-02-17T16:49:00+00:00</updated><author><name>Dave O'Connor</name></author><id>tag:log.andvari.net,2011-02-17:/legbone-connected-to-my-wristwatch.html</id><summary type="html">&lt;p&gt;I've been fiddling about with small electronics recently, specifically
+the &lt;a href="https://www.arduino.cc/"&gt;Arduino&lt;/a&gt;, which is a microcontroller/prototyping board. The
+boards have gotten way cheap (standard ones are around 20-30 quid, less
+if you want fewer I/O ports or a specialised board layout you need to
+solder bits onto.&lt;/p&gt;
+&lt;p&gt;The hard …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've been fiddling about with small electronics recently, specifically
+the &lt;a href="https://www.arduino.cc/"&gt;Arduino&lt;/a&gt;, which is a microcontroller/prototyping board. The
+boards have gotten way cheap (standard ones are around 20-30 quid, less
+if you want fewer I/O ports or a specialised board layout you need to
+solder bits onto.&lt;/p&gt;
+&lt;p&gt;The hard part, I've found, is thinking of things to make. In the
+meantime I'm practicing soldering, using projects like making a few
+ProtoShields, and the LOLShield.&lt;/p&gt;
+&lt;p&gt;Last night, I made a functional RFID reader, using less than 50 euro
+worth of parts, which for a long-time hardware luddite was extremely
+fulfilling. I even managed to solder without burning myself or others.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="https://lh6.googleusercontent.com/_otzZMGWrd00/TV1ONwxZpjI/AAAAAAAADOk/f3TucijiXUk/s720/IMG_20110216_204106.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;I've got one or two projects in mind, mainly around wireless sensors and
+&lt;a href="https://en.wikipedia.org/wiki/Home_automation"&gt;domotics&lt;/a&gt;, which I'll put up here (hey, I have to put something here,
+right?).&lt;/p&gt;</content><category term="Tech"/><category term="imported"/><category term="arduino"/><category term="electronics"/><category term="me"/><category term="rfid"/><category term="tech"/></entry><entry><title>Airport Extreme works THIS WAY. EAT IT.</title><link href="https://log.andvari.net/airport-extreme-works-this-way-eat-it.html" rel="alternate"/><published>2010-04-07T21:01:00+01:00</published><updated>2010-04-07T21:01:00+01:00</updated><author><name>Dave O'Connor</name></author><id>tag:log.andvari.net,2010-04-07:/airport-extreme-works-this-way-eat-it.html</id><summary type="html">&lt;p&gt;So, I'm getting increasingly annoyed at Apple's railroading of people's
+use cases (no, this has nothing to do with the iPad).&lt;/p&gt;
+&lt;p&gt;It's only after I started using a Nexus One with android that I realised
+how shite the iPhone was in a lot of ways. Case in point: The one …&lt;/p&gt;</summary><content type="html">&lt;p&gt;So, I'm getting increasingly annoyed at Apple's railroading of people's
+use cases (no, this has nothing to do with the iPad).&lt;/p&gt;
+&lt;p&gt;It's only after I started using a Nexus One with android that I realised
+how shite the iPhone was in a lot of ways. Case in point: The one thing
+that I wanted my phone to do wasn't implemented yet, so &lt;a href="https://uk.androlib.com/android.application.net-andvari-bluetoothcondition-AwCq.aspx"&gt;I did it&lt;/a&gt;.
+The concept of doing that on iPhone without jumping through a ridiculous
+number of hoops is alien to me.&lt;/p&gt;
+&lt;p&gt;Another case in point happened this evening, or at least a symptom of
+it.&lt;/p&gt;
+&lt;p&gt;I'd recently gotten a &lt;a href="http://soekris.com/products/net5501-1.html"&gt;Soekris net5501&lt;/a&gt; to act as a home dhcp/dns/etc.
+server, having gotten tired/bored of just letting the Airport extreme do
+everything. I wanted to use DynDNS properly, and I wanted something I
+could leave on when I go on business trips (So I can leave power usage
+monitoring on, etc).&lt;/p&gt;
+&lt;p&gt;Sounds like a plan, right? So after fiddling with getting the Soekris
+installed, I plugged everything in, set up ISC dhcpd and Bind, and then
+went to Airport Utility to turn off DHCP on the Airport Extreme.&lt;/p&gt;
+&lt;p&gt;Except, you can't.&lt;/p&gt;
+&lt;p&gt;You can't actually turn off DHCP, without putting the device into bridge
+mode. You literally cannot run a NAT network using an Airport Extreme
+where it's not the DHCP server for your LAN.&lt;/p&gt;
+&lt;p&gt;Rather than ditching my Airport on some unsuspecting fanboy and doing
+research to find a good 802.11n router, I just set a DHCP pool size of 1
+and got on with my life.&lt;/p&gt;
+&lt;p&gt;However, this basically reinforced my increasingly negative opinion of
+what Apple is up to these days. Apple products are increasingly not for
+people who know what they want.&lt;/p&gt;
+&lt;p&gt;As a disclaimer, I own an ipod and use a macbook pro as my only computer
+for day-to-day use. They work fine, and are great products. Which makes
+it a shame that a lot of their other stuff falls down so hard.&lt;/p&gt;
+&lt;p&gt;Aside: here's how to get ISC dhcpd to ignore a certain MAC address if
+you have a stupid device you want to talk to another dhcp server:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
+host stupidhost {
+  hardware ethernet MA:CA:DD:RE:SS;
+  deny booting;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;More in a bit.&lt;/p&gt;</content><category term="Tech"/><category term="imported"/><category term="apple airport dhcp"/></entry></feed>

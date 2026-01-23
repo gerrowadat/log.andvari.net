@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>log.andvari.net - incidents</title>
+
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/normalize.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/pygments.css" />	
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="https://log.andvari.net/theme/js/modernizr.js"></script>
+
+<!-- With thanks to https://lizdenys.com/journal/articles/adding-open-graph-to-pelican.html -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://log.andvari.net/tag/incidents.html" />
+<meta property="og:title" content="log.andvari.net" />
+<meta property="og:description" content="A page on log.andvari.net" />
+<meta property="og:image" content="https://log.andvari.net/images/daveoc-typewriter.png" />
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBXQ11Y6R7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YBXQ11Y6R7');
+</script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="https://log.andvari.net">log.andvari.net</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+            <li><a href="https://log.andvari.net/pages/about.html" class="button secondary small">About</a></li>
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="https://log.andvari.net/no-mttr.html"><h3 class="article-title">Chasing Boring at Just the Right Speed</h3></a>
+<h6 class="subheader" title="2026-01-22T12:00:00+00:00">Thu 22 January 2026
+</h6>
+
+
+<h3>Asking the Right Questions</h3>
+<p>A while back when I was looking for a fulltime gig (and when I was contracting, of course), I had the opportunity to do a bunch of interviews (including the kind of informal interviews you do to get a new contracting client). One of my boilerplate questions when asked "Any questions for me?" has always been "What does success look like for the person in this role?". I like to ask it of everyone, even folks who'd be reporting to me or folks far away on the org chart. It gives you a good insight into how stitched together the team is on the important bits, I find.</p>
+<p>In the majority of cases, I tended to get at least one answer that boils down to "Fewer Outages, Lower MTTR".</p>
+<p>"Fewer Outages", to me, is a weird one. I tend to respond to a "There are too many outages" complaint by asking "Well, how many is too many?". Just like <a href="https://sre.google/in-conversation/">100% is the wrong SLO target for basically everything</a>, "None" isn't the right target for number of outages. You take a reasonable and data-informed swag and aim for that. In <a href="/6reasons.html">the vast majority of cases</a>, you're not running a nuclear power plant or a circulatory system, so you get to really think about what number is right.</p>
+<p>Similarly, for MTTR (Mean Time To Recovery, or 'how long in seconds it takes you to mitigate the effect of an outage') the last while has seen a "race to the bottom". There are entire companies whose premise for what they'll do for you (and charge you a handsome fee, to boot) is lower your MTTR. They'll generally do it using an AI chatbot (and strand your systems knowledge and capability inside that same bot), but that's neither here nor there - the main gist is "MTTR is your problem", and it's a tempting one to latch onto. Easy to measure, easy to be seen to be grumpy about.</p>
+<h3>Doing it the Fastestest</h3>
+<p>The problem is that MTTR, as a primary focus, is a red herring. It's measuring the wrong thing; or at least, it's measuring something that's downstream of what you actually want.</p>
+<p>If you're having the same kinds of outages over and over, getting really fast at recovering from them is like getting really good at bailing water out of a leaky boat. Sure, you're staying afloat, but water coming in is a bad sign, and you built the boat in the first place so should know what's up.</p>
+<p>The real purpose of good incident practice isn't to get fast at recovery. It's to feed back what you learn into your software development lifecycle. Every incident is information. Every outage is telling you something about where your systems, processes, or assumptions are wrong. The goal isn't to recover quickly (though you should); it's to ensure you don't have to recover from the same thing twice.</p>
+<p>If you wanted to be a little more philosophical about it (in terms your boss would probably hate), you could say that Outages (like all feedback) are a Gift. You pick yourself up, dust yourself off, and see what there is to learn from the (sometimes pretty shitty) experience.</p>
+<p>I waxed slightly lyrical recently about <a href="https://blog.cloudflare.com/18-november-2025-outage/">Cloudflare's writeup</a> on the outage they had in November 2025. The part that was valuable to me was not a power fantasy about how quickly everyone scrambled and dropped everything and mitigated the outage - in fact, I only checked just now how long the outage lasted (3 hours). I'm not concerned about those 3 hours. Less would be nice, but the real outcome is much more valuable. I'm not even a current Cloudflare customer, but the fact that I know what caused the outage, and I know things have changed means more than a much shorter outage, followed by "Sorry customers, it's very technical, won't happen again (probably)". </p>
+<h3>Doing it The Bestest</h3>
+<p>When I talk to teams about the point of good incident management (primarily retrospectives), I generally say that the point of doing them is twofold. That is:</p>
+<h4>Avoiding Repeats</h4>
+<p>If you're seeing repeat incidents -- the same service falling over the same way, the same capacity issues, the same configuration mistakes -- then your incident response process isn't doing its job, no matter how good your MTTR looks. You're optimising for the wrong end of the pipeline.</p>
+<p>When you focus too hard on MTTR, you create incentives that work against learning. Teams get good at quick fixes and workarounds. They get good at restarting services and clearing queues. They don't necessarily get good at asking "why did this happen, and what systemic change prevents it from happening again?"</p>
+<p>When I worked freelance, I ran into at least one shop that used a managed service partner. Their first instinct was to kick things, seemingly at random. Restart the service. Reboot the machine. Reset the network device.</p>
+<p>Their MTRR numbers were <em>amazing</em>.</p>
+<p>Generally when a particular service fell over, it was back within the hour. However, it was falling over every couple of weeks. When I probed for more information on contributing factors, I got crickets. No followups, no logs, no learning. Clearly there's some slider between "mitigate" and "understand" that makes them somewhat mutually exclusive at either end of the slider.</p>
+<h4>Raising All Boats</h4>
+<p>Post-incident reviews (or postmortems, or whatever you're calling them this week) should be producing action items that feed into your roadmap. Not just "add better monitoring" (though sure, maybe), but real changes: fix the race condition, add the circuit breaker, change the deployment process. Do a priority swap so we fix something we've identified as real, instead of adding additional whizz-bang that may be more speculative in terms of how happy it makes customers. For bonus points, involve your customer support friends to make sure what you're inserting into the SDLC is actually going to move the needle for customers.</p>
+<p>The measure of a mature incident response process isn't how fast you recover. It's how rarely you see the same incident twice, and how much of the learning from your outages sticks, in the form of enduring shifts to how you write code and design systems. It's how often your outages are genuinely novel -- new and interesting failures that teach you something new about your systems, and real action on then finding yourself a better class of first-world problems.</p>
+<h3>So</h3>
+<p>So yes, resolve outages quickly. Absolutely. But don't let MTTR become the thing you're optimising for. The goal is to build systems and processes where you're constantly learning and improving, not systems where you're just really efficient at fighting the same fires over and over.</p>
+<p>Your incidents should be novel, and retro outcomes should be real. If they're not, your incident process is failing you, regardless of what your status page says.</p><p class="subheader">Category: <a href="https://log.andvari.net/category/writing.html">Writing</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/sre.html">sre </a>
+    <a href="https://log.andvari.net/tag/incidents.html">incidents </a>
+    <a href="https://log.andvari.net/tag/leadership.html">leadership </a>
+</p>
+
+
+
+            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/archives.html">Archives</a>
+            <li><a href="https://log.andvari.net/tags.html">Tags</a>
+            <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/category/leadership.html">Leadership</a></li>
+            <li><a href="https://log.andvari.net/category/log.html">Log</a></li>
+            <li><a href="https://log.andvari.net/category/meta.html">Meta</a></li>
+            <li><a href="https://log.andvari.net/category/tech.html">Tech</a></li>
+            <li><a href="https://log.andvari.net/category/writing.html">Writing</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="/pages/about.html">About</a></li>
+            <li><a href="http://github.com/gerrowadat">GitHub</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://mastodon.ie/@gerrowadat">@gerrowadat@mastodon.ie</a></li>
+            <li><a href="https://bsky.app/profile/gerrowadat.bsky.social">@gerrowadat.bsky.social</a></li>
+            <li><a href="http://ie.linkedin.com/in/gerrowadat/">linkedin</a></li>
+        </ul>
+
+
+        <h5 class="sidebar-title">Feeds</h5>
+        <ul class="side-nav">
+        <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">All</a></li>
+            <li><a href="https://log.andvari.net/feeds/leadership.atom.xml">Leadership</a></li>
+            <li><a href="https://log.andvari.net/feeds/log.atom.xml">Log</a></li>
+            <li><a href="https://log.andvari.net/feeds/meta.atom.xml">Meta</a></li>
+            <li><a href="https://log.andvari.net/feeds/tech.atom.xml">Tech</a></li>
+            <li><a href="https://log.andvari.net/feeds/writing.atom.xml">Writing</a></li>
+   
+        </ul>
+
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>log.andvari.net by Dave O'Connor</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>
