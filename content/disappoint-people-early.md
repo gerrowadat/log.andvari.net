@@ -1,8 +1,8 @@
-Title: Disappoint People Early
+Title: Disappointing People Early
 Tags: writing, sre, leadership
 Date: 2026-02-02 12:00
 Category: Writing
-Slug: disappoint-people-early
+Slug: disappointing-people-early
 
 One of my favourite phrases to remind people of as I'm fumbling about the business of producing reliable systems is **"We Should Disappoint People Early"**. I've gotten enough funny looks about this that I figure I should explain myself.
 
@@ -32,25 +32,27 @@ You have to make trade-offs. You can't make trade-offs against a number you have
 
 ### The Same Pattern in Roadmaps
 
-Product roadmaps suffer from exactly the same dynamic. A product team should not make a promise until they've conducted enough discovery work to understand what's truly required, and the only people who can make such a promise are the team responsible for delivering it. The corollary is stark -- if you're making roadmap commitments before you understand what delivery entails, you're setting up a future betrayal.
+Product roadmaps suffer from exactly the same dynamic. A product (or platform!) team should not make a promise until they've conducted enough discovery work to understand what's truly required, and the only people who can make such a promise are the team responsible for delivering it. The corollary is stark -- if you're making roadmap commitments before you understand what delivery entails, you're setting up a future betrayal.
 
 This is the implicit promise problem wearing different clothes. If you show a customer a roadmap with specific features and dates, you've made a promise. If the business context changes -- and it will -- you're now in the position of either delivering something suboptimal because you committed to it, or "breaking your promise" by adapting to reality.
 
-The fix isn't to hide your roadmap. The fix is to disappoint people early by being explicit about the nature of roadmaps: they're current best guesses, subject to change, and the further out you look, the fuzzier they get. Product leaders who've learned this lesson put "subject to change" disclaimers on everything, use confidence percentages, and replace hard dates with buckets like "Now," "Next," and "Later." Obviously you can hedge too much, but a certain amount of expectation-setting is healthy.
+The fix isn't to hide your roadmap. The fix is to disappoint people early by being explicit about the nature of roadmaps: they're current best guesses, subject to change, and the further out you look, the fuzzier they get. Folks who've learned this lesson put "subject to change" disclaimers on everything, use confidence percentages, and replace hard dates with buckets like "Now," "Next," and "Later." Obviously it's possible to hedge too much, but a certain amount of expectation-setting is healthy.
 
 When roadmap planning is treated as a rigid forecast, it creates pressure and distrust. When it's treated as a dynamic, communication-first process, it builds trust and momentum -- even when timelines shift. The early disappointment of "this might change" is infinitely preferable to the late disappointment of "you promised."
+
+Just like with outages, good partners and customers will understand that software and the means wby which we make software are terrible, complicated, unpredictable beasts. A good customer and partner should be more interested in your response to an outage than they are on beating you over the head with it. Similarly, a good customer partner will appreciate you keeping them up to date on delivery and being honest about outcomes, rather than doing deadline gymnastics.
 
 ### Vendor Relationships and the Shared Responsibility Trap
 
 There's a particularly insidious version of this problem that plays out when companies move from on-premises infrastructure to PaaS or SaaS, in either Security or for provision of a dependency. The [cloud shared responsibility model](https://aws.amazon.com/compliance/shared-responsibility-model/) is supposed to be clear: the provider is responsible for security *of* the cloud, while the customer is responsible for security *in* the cloud. In practice, it's a mess of unstated expectations.
 
-[Gartner famously predicted](https://www.cio.com/article/416343/the-top-cloud-security-threat-comes-from-within.html) that through 2025, 99% of cloud security failures will be the customer's fault. This sounds like finger-pointing, but it reflects a deeper truth: when companies adopt cloud services, they often expect the vendor to take over responsibilities that were never part of the deal. They're specifically abdicating duty of care as part of the purchase, but then they treat the new solution as their own personal ops team.
+[Gartner famously predicted](https://www.cio.com/article/416343/the-top-cloud-security-threat-comes-from-within.html) that through 2025, 99% of cloud security failures will be the customer's fault. This sounds like finger-pointing, but it reflects a deeper truth: when companies adopt cloud services, they often expect the vendor to take over responsibilities that were never part of the deal. They're intentionally abdicating duty of care about the details, in return for paying money for an outcome. It can be difficult to let go of the parts you've farmed out to your vendor.
 
-When vendors aren't explicit about what they *won't* do, customers fill in the gaps with optimism. And when something breaks, the disappointment isn't just about the outage -- it's about betrayed expectations that were never actually set. [The NSA and CISA published guidance in March 2024](https://media.defense.gov/2024/Mar/07/2003407863/-1/-1/0/CSI-CloudTop10-Shared-Responsibility-Model.PDF) specifically because so many organisations were accelerating their cloud journeys "without proper planning and an appreciation for shared responsibilities."
+When vendors aren't explicit about what they *won't* do, customers fill in the gaps with optimism. So, when something breaks, the disappointment isn't just about the outage -- it's about betrayed expectations that were never actually set. [The NSA and CISA published guidance in March 2024](https://media.defense.gov/2024/Mar/07/2003407863/-1/-1/0/CSI-CloudTop10-Shared-Responsibility-Model.PDF) specifically because so many organisations were accelerating their cloud journeys "without proper planning and an appreciation for shared responsibilities."
 
 This creates an ugly dynamic. If you're a vendor and you're not telling customers what failures to expect, they're going to want the full list of all things that can go wrong. That nervousness translates into demands for breadth-first total coverage of all eventualities. But there are always failures you won't be able to enumerate specifically -- the unknown unknowns, the novel combinations, the things that have never happened before.
 
-The answer is to disappoint early. Be explicit about what's in scope and what isn't. Document the failure modes you *do* know about. Make clear that you can't possibly predict everything, and explain what happens when the unexpected occurs. The discomfort of that conversation now is vastly preferable to a customer discovering during an incident that their assumptions about your service were wrong. It also precludes a lot of demands from those same customers that are driven by vibes and nervousness at not feeling they know enough about potential failure modes and outcomes.
+The answer is to disappoint early. Be explicit about what's in scope and what isn't. Document the failure modes you *do* know about. Make clear that you can't possibly predict everything, and explain what happens when the unexpected occurs, and why that makes you a safe pair of hands. The discomfort of that conversation now is vastly preferable to a customer discovering during an incident that their assumptions about your service were wrong. It also precludes a lot of demands from those same customers that are driven by vibes and nervousness at not feeling they know enough about potential failure modes and outcomes.
 
 ### Support Response Times: The Hidden SLO
 
