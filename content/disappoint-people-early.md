@@ -40,17 +40,17 @@ The fix isn't to hide your roadmap. The fix is to disappoint people early by bei
 
 When roadmap planning is treated as a rigid forecast, it creates pressure and distrust. When it's treated as a dynamic, communication-first process, it builds trust and momentum -- even when timelines shift. The early disappointment of "this might change" is infinitely preferable to the late disappointment of "you promised."
 
-Just like with outages, good partners and customers will understand that software and the means wby which we make software are terrible, complicated, unpredictable beasts. A good customer and partner should be more interested in your response to an outage than they are on beating you over the head with it. Similarly, a good customer partner will appreciate you keeping them up to date on delivery and being honest about outcomes, rather than doing deadline gymnastics.
+Just like with outages, good partners and customers will understand that software and the means by which we make software are terrible, complicated, unpredictable beasts. A good customer and partner should be more interested in your response to an outage than they are on beating you over the head with it. Similarly, a good customer partner will appreciate you keeping them up to date on delivery and being honest about outcomes, rather than doing deadline gymnastics.
 
 ### Vendor Relationships and the Shared Responsibility Trap
 
 There's a particularly insidious version of this problem that plays out when companies move from on-premises infrastructure to PaaS or SaaS, in either Security or for provision of a dependency. The [cloud shared responsibility model](https://aws.amazon.com/compliance/shared-responsibility-model/) is supposed to be clear: the provider is responsible for security *of* the cloud, while the customer is responsible for security *in* the cloud. In practice, it's a mess of unstated expectations.
 
-[Gartner famously predicted](https://www.cio.com/article/416343/the-top-cloud-security-threat-comes-from-within.html) that through 2025, 99% of cloud security failures will be the customer's fault. This sounds like finger-pointing, but it reflects a deeper truth: when companies adopt cloud services, they often expect the vendor to take over responsibilities that were never part of the deal. They're intentionally abdicating duty of care about the details, in return for paying money for an outcome. It can be difficult to let go of the parts you've farmed out to your vendor.
+[Gartner famously predicted](https://www.cio.com/article/416343/the-top-cloud-security-threat-comes-from-within.html) that through 2025, 99% of cloud security failures will be the customer's fault. This sounds like finger-pointing, but it reflects a deeper truth: when companies adopt cloud services, they often expect the vendor to take over responsibilities that were never part of the deal. As a customer, you're intentionally abdicating duty of care about the details, in return for paying money for an outcome. It can be difficult to let go of the parts you've farmed out to your vendor.
 
 When vendors aren't explicit about what they *won't* do, customers fill in the gaps with optimism. So, when something breaks, the disappointment isn't just about the outage -- it's about betrayed expectations that were never actually set. [The NSA and CISA published guidance in March 2024](https://media.defense.gov/2024/Mar/07/2003407863/-1/-1/0/CSI-CloudTop10-Shared-Responsibility-Model.PDF) specifically because so many organisations were accelerating their cloud journeys "without proper planning and an appreciation for shared responsibilities."
 
-This creates an ugly dynamic. If you're a vendor and you're not telling customers what failures to expect, they're going to want the full list of all things that can go wrong. That nervousness translates into demands for breadth-first total coverage of all eventualities. But there are always failures you won't be able to enumerate specifically -- the unknown unknowns, the novel combinations, the things that have never happened before.
+This creates an ugly dynamic. If you're a vendor and you're not telling customers what failures to expect, they're going to want the full list of all things that can go wrong. Their nervousness translates into demands for breadth-first total coverage of all eventualities. But there are always failures you won't be able to enumerate specifically -- the unknown unknowns, the novel combinations, the things that have never happened before.
 
 The answer is to disappoint early. Be explicit about what's in scope and what isn't. Document the failure modes you *do* know about. Make clear that you can't possibly predict everything, and explain what happens when the unexpected occurs, and why that makes you a safe pair of hands. The discomfort of that conversation now is vastly preferable to a customer discovering during an incident that their assumptions about your service were wrong. It also precludes a lot of demands from those same customers that are driven by vibes and nervousness at not feeling they know enough about potential failure modes and outcomes.
 
@@ -76,7 +76,7 @@ Saying "this will take four weeks" might disappoint someone today. But that disa
 
 Stating an SLO feels uncomfortable precisely because it's a commitment. The same is true for publishing a support response time matrix, or putting "subject to change" on a roadmap, or listing the failure modes your SaaS platform *won't* protect against. Each of these forces you to confront the reality that you can't be all things to all people. It makes explicit something that was previously implicit and negotiable.
 
-That discomfort is valuable. It's the discomfort of honesty. And it's far preferable to the discomfort of a customer discovering during an outage that your service wasn't as reliable as they'd assumed, or finding out during an incident that their cloud vendor doesn't cover what they thought it did, or learning that the feature they were counting on got deprioritised.
+That discomfort is valuable. It's the discomfort of honesty. It's far preferable to the discomfort of a customer discovering during an outage that your service wasn't as reliable as they'd assumed, or finding out during an incident that their cloud vendor doesn't cover what they thought it did, or learning that the feature they were counting on got deprioritised.
 
 The core of "disappoint early" is this: small disappointments now prevent large disappointments later. An SLO that seems modest compared to your historical performance might disappoint a customer today. A roadmap that says "this might change" feels less confident than one with firm dates. A vendor contract that explicitly lists what's out of scope seems less comprehensive than one that doesn't mention limitations at all.
 
@@ -86,7 +86,7 @@ But in each case, the explicit version creates space for honest conversations ab
 
 If you're running a service without a stated SLO, you've already made a promise -- you just don't know what it is. Your customers have inferred one, and it's probably more optimistic than you'd like.
 
-If you're sharing a roadmap without caveats about uncertainty, you've created expectations you may not be able to meet.
+If you're sharing a roadmap without caveats about uncertainty, you've created expectations you may not be able to meet. You've also put yourself in a position where you've no way to climb down if the situation changes.
 
 If you're a vendor who hasn't explicitly documented what failures customers should expect, they're filling in the blanks with assumptions that will turn into accusations when something goes wrong.
 
@@ -94,6 +94,6 @@ If you're working with stakeholders without explicit expectations about timeline
 
 The fix is the same in every case: have the uncomfortable conversation now. State what you can actually commit to. Document what's out of scope. Put confidence levels on your forecasts. Publish your priority matrix. Be boringly, repetitively explicit about constraints and limitations.
 
-It's often a good idea to overcompensate when communicating constraints or expectations that may be 'disappointing.' The customer who understands your limitations upfront is a customer who can plan around them. The customer who discovers them during a crisis is a customer you're about to lose.
+It's often a good idea to overcompensate when communicating constraints or expectations that may be 'disappointing.' The customer who understands your limitations upfront is a customer who can plan around them. The customer who discovers them during a crisis loses trust, a thing that is hard-won and sometimes impossible to repair.
 
 It's paradoxical, but the path to being a more reliable partner -- to your customers, your stakeholders, your colleagues -- runs directly through being willing to disappoint them sooner.
