@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>The Technical Contrarian</title>
+
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/normalize.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/pygments.css" />	
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="https://log.andvari.net/theme/js/modernizr.js"></script>
+
+<!-- With thanks to https://lizdenys.com/journal/articles/adding-open-graph-to-pelican.html -->
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://log.andvari.net/the-technical-contrarian.html" />
+<meta property="og:title" content="The Technical Contrarian" />
+<meta property="og:description" content="So, case in point (since we love examples). A couple of years ago, when I first started fiddling with Pelican, one of the first things in the docs was 'okay, set up virtualenv and do such a..." />
+<meta property="og:image" content="https://log.andvari.net/images/daveoc-typewriter.png" />
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBXQ11Y6R7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YBXQ11Y6R7');
+</script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="https://log.andvari.net">log.andvari.net</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+            <li><a href="https://log.andvari.net/pages/about.html" class="button secondary small">About</a></li>
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="https://log.andvari.net/the-technical-contrarian.html" rel="bookmark"
+        title="Permalink to The Technical Contrarian">The Technical Contrarian</a></h3>
+    </header>
+
+<h6 class="subheader" title="2016-04-16T22:17:00+01:00">Sat 16 April 2016
+</h6>
+
+
+    <p>So, case in point (since we love examples).</p>
+<p>A couple of years ago, when I first started fiddling with <a href="https://blog.getpelican.com">Pelican</a>, one of the first 
+things in the docs was 'okay, set up virtualenv and do such a thing'. My initial reaction, as an old-skool sysadmin weenie who hasn't 
+had to actually run a linux install that I care about in many years, was to go 'pfft', and just get python going on the machine 
+I wanted to use pelican on (i.e. my macbook). This, of course, resulted in a world of hurt, as the first thing you do is pick between pip and easy_install, and your first step being to pick a package manager is never a good sign (I've used python for years, so I'm kinda familiar with its vagaries, but y'know. All the same.).</p>
+<p>But, step one for me was to run into virtualenv, declare it to be newfangled, and do what I know. I don't feel like I'm a person who rejects things out of hand for being newfangled all on their own. However, that was my initial instinct. </p>
+<p>So, when I decided I'd do a bit more writing a few weeks back, I threw ludditism to the wind, and said "OK, let's use virtualenv'. <strong>I was up and running in less than 5 minutes</strong>. Now I have a (kind of, I assume) idempotent virtual environment for python sitting in dropbox, that I assume will work on other OSX installs. Or maybe elsewhere. Have yet to test.</p>
+<p>But the point is, it was quick, painless, and I probably could have done the same thing a few years ago and saved a bunch of hassle. But I didn't -- and I'm interested in why. </p>
+<p>It may, of course, go back to one of the truisms I like to come out with, which is <em>People enjoy things they remember</em>. I remember how to install stuff from source, how <strong>./configure &amp;&amp; make &amp;&amp; make install</strong> was the old <strong>curl blah | bash</strong>, and even though the logical brain knows that the thing that's had thousands of hours of work, and tens of thousands of hours of nerd scrutiny applied to it, and is <em>what the software maintainer recommends</em> will probably work, and may surprise you, you're still gonna go "Install packages? Yeah, I've done that. I'll take it from here, documentation". It's like following the first half of the IKEA instructions and then reckoning you can wing it from there.</p>
+<p>Nothing like new ways of doing things to make you feel a bit left behind, eh?</p>
+<p>But, it's hard to see what's actually a good way of doing things, and what's generally a bad idea. This varies by your risk aversion, and how bothered you are, and how much you like/trust/care for the community behind this stuff. You used to be able to get a good feel for what's a decent idea as far as sysadmin goes. Now it seems more like you have to be careful about picking your poison.</p>
+<p>Other case in point! -- Docker Hub.</p>
+<p>I've been playing a bit with <a href="https://www.docker.com">Docker</a> for a while, and I've been happy enough with how it functions so far. I haven't in any way stressed it as far as functionality goes (mainly I've been using it at home for Plex, Sonarr, SabNZBd, for, uh, reasons). However, one of the first things you get exposed to is docker hub -- which is basically a giant Makefile repository for docker images.</p>
+<p>It gives me the fear.</p>
+<p>I don't know why it gives me the fear in a more substantial way than, say, <em>running any software</em>, but I'm still kinda finding it hard in my brain to distinguish it from the <strong>sudo | bash</strong> school of package management, in terms of trusting your machine to a random thing from internet strangers.</p>
+<p>But, we run software written by strangers all the time, right? There's no 'score' assigned to any of this software like docker images from docker hub, right? I've spent long enough reading occasional stories about how some prominent OSS people are deranged maniacs to know that the scrutiny leveled at, say, the sabnzbd or sonarr software itself is far less than the <a href="https://hub.docker.com/r/timhaak/plex/">111 stars and 100k+ pulls</a> that the highest-rated plex Dockerfile has. Hell, Plex is closed source so who knows what it's doing?</p>
+<p>You might trust the crowd. That's fine, too. It might result in just as simple a life as only trusting yourself, all things considered.</p>
+<p>I guess it comes back to one of the key interests I have, that I've yet to tease out into an 'area of study', really -- the effect of human instinct, emotion and judgement on how we go about interacting with software, especially software we rely on to stay working. People mistake 'correct' for 'safe' or 'familiar' or 'comfortable' all the time, and there's very little acknowledgement of the basic emotions at play. People imagine it as a very dry, scientific discipline -- but some of the most strident arguments I've encountered have been over two perfectly fine methods, software elements, processes, or whatever you run into when dealing with these ridiculous computer contraptions we deal with.</p>
+<p>Maybe you think vi is better than emacs because you have muscle memory, or because your girlfriend tought you to use it and that's a happy memory, or you personally have it set up just-so, and it's a classic nerd-brain trope to imagine everyone is just like you, because things are simpler that way?</p>
+<p>Or maybe vi's better than emacs because it just is and I'm tired of this argument, so shut your damn hell mouth.</p>
+<p class="subheader">Category: <a href="https://log.andvari.net/category/meta.html">Meta</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/meta.html">meta </a>
+    <a href="https://log.andvari.net/tag/writing.html">writing </a>
+    <a href="https://log.andvari.net/tag/brains.html">brains </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/archives.html">Archives</a>
+            <li><a href="https://log.andvari.net/tags.html">Tags</a>
+            <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/category/leadership.html">Leadership</a></li>
+            <li><a href="https://log.andvari.net/category/log.html">Log</a></li>
+            <li><a href="https://log.andvari.net/category/meta.html">Meta</a></li>
+            <li><a href="https://log.andvari.net/category/tech.html">Tech</a></li>
+            <li><a href="https://log.andvari.net/category/writing.html">Writing</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="/pages/about.html">About</a></li>
+            <li><a href="http://github.com/gerrowadat">GitHub</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://mastodon.ie/@gerrowadat">@gerrowadat@mastodon.ie</a></li>
+            <li><a href="https://bsky.app/profile/gerrowadat.bsky.social">@gerrowadat.bsky.social</a></li>
+            <li><a href="http://ie.linkedin.com/in/gerrowadat/">linkedin</a></li>
+        </ul>
+
+
+        <h5 class="sidebar-title">Feeds</h5>
+        <ul class="side-nav">
+        <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">All</a></li>
+            <li><a href="https://log.andvari.net/feeds/leadership.atom.xml">Leadership</a></li>
+            <li><a href="https://log.andvari.net/feeds/log.atom.xml">Log</a></li>
+            <li><a href="https://log.andvari.net/feeds/meta.atom.xml">Meta</a></li>
+            <li><a href="https://log.andvari.net/feeds/tech.atom.xml">Tech</a></li>
+            <li><a href="https://log.andvari.net/feeds/writing.atom.xml">Writing</a></li>
+   
+        </ul>
+
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>log.andvari.net by Dave O'Connor</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

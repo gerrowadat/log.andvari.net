@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>log.andvari.net - google</title>
+
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/normalize.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/pygments.css" />	
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="https://log.andvari.net/theme/js/modernizr.js"></script>
+
+<!-- With thanks to https://lizdenys.com/journal/articles/adding-open-graph-to-pelican.html -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://log.andvari.net/tag/google.html" />
+<meta property="og:title" content="log.andvari.net" />
+<meta property="og:description" content="A page on log.andvari.net" />
+<meta property="og:image" content="https://log.andvari.net/images/daveoc-typewriter.png" />
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBXQ11Y6R7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YBXQ11Y6R7');
+</script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="https://log.andvari.net">log.andvari.net</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+            <li><a href="https://log.andvari.net/pages/about.html" class="button secondary small">About</a></li>
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="https://log.andvari.net/plus-ca-change-management-20-years-of-sre.html"><h3 class="article-title">Plus Ça Change Management: 20 Years of SRE</h3></a>
+<h6 class="subheader" title="2024-07-19T10:54:00+01:00">Fri 19 July 2024
+</h6>
+
+
+<p>On July 19th 2004, I spent my first day at Google. I showed up at the Datacenter in Dublin, since that's apparently where SREs and production folks were going to sit. There wasn't a corp network connection, because this was Google in 2004. A couple of days later, I moved my stuff to Barrow Street and commandeered a desk. A few weeks after that, someone from facilities asked "Hey, isn't your team based in the DC?". "Nope", I said. They shrugged, and updated some spreadsheets, and then SRE was based in Barrow Street. Again, this was Google in 2004. We were making it up as we went along, in the best possible way.</p>
+<p>I could claim I was doing SRE-adjacent things before this, as I suspect could many people, but I'm going with that day as when I became an SRE. The function was still figuring itself out; in many ways it still is. My work with Busy Teams as a freelancer isn't "SRE work" on paper, but in practice, it very much is. Resilience, defense in depth, common sense, backup plans for backup plans. Across industry, SRE/Reliability/Devops/ProdEng/Whatevsies is many things to many people. So, in the spirit of the core of the function, I've been thinking a little about uncomfortable gaps in capability. What have we not figured out yet?</p>
+<p>Here's my short list of boiling hot takes:</p>
+<ol>
+<li>
+<p>Most companies haven't figured out how much they steady-state care about reliability. I expand on this in <a href="https://log.andvari.net/6reasons.html">"6 Reasons you Don't need an SRE Team"</a>.</p>
+</li>
+<li>
+<p>Assuming we've figured out that we care, we still can't agree how hard a problem this is. SRE (and traditional ops) begat DevOps, which at its core has the premise that busy developers could side-gig the production bits, and you can just wave your hand and say "You build it, you run it" and that'll cover you. This isn't true today, and was even less true when 'DevOps' started being a thing. If I squint my eyes, I can see a course correction happening with "Production Engineering", which has at its premise a lot more sensible of an acknowledgment that this whole area is hard (as in, requires smartness, innovation, and Real Engineering(tm)) as opposed to difficult (as in, it's boring and I don't want to do it). These are glacial shifts; it's taken more than 20 years for us to go in this circle back to acknowledgment that this is a real and specialised set of problems.</p>
+</li>
+<li>
+<p>We actually run less and less of our own infra, and practices need updating. For a brief period before AI was suddenly what all startups are about, there were (and still are!) great startups producing big parts of your tool-chain as SaaS/PaaS. This is great for not having to build in in-house expertise in that particular area, but can leave you dead in the water if you don't have a good strategy around vendor management. I spoke about this a bit at <a href="https://www.usenix.org/conference/srecon23emea/presentation/panel-saas">SRECon EMEA 2023</a>, and I do feel like a lot of our practices involve declaring an outsourced part of our tool-chain to be an opaque cuboid, and then not having defense in depth for when it goes away (temporarily or permanently). Many of the SRE practices as set out in various books/articles kind if assume you own your whole stack. This is becoming mostly untrue, and we are currently a Frog of Moderately Troubling Temperature here.</p>
+</li>
+</ol>
+<p>Anyway. It's Friday, it's 22 degrees outside in Dublin, and it's time to go enjoy the next 20. No shortage of things to do.</p><p class="subheader">Category: <a href="https://log.andvari.net/category/writing.html">Writing</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/log.html">log </a>
+    <a href="https://log.andvari.net/tag/work.html">work </a>
+    <a href="https://log.andvari.net/tag/google.html">google </a>
+    <a href="https://log.andvari.net/tag/sre.html">sre </a>
+</p>
+
+
+
+            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="https://log.andvari.net/dont-forget-youre-here-forever.html"><h3 class="article-title">Don't Forget: You're Here Forever</h3></a>
+<h6 class="subheader" title="2014-06-23T19:28:00+01:00">Mon 23 June 2014
+</h6>
+
+
+<p><a href="/images/20140623-10years.jpg"><img alt="Snazzy." src="/images/thumbs/thumbnail_square/20140623-10years.jpg" /></a></p>
+<p>Some zealous schwag-merchant deep in the innards of The Company was a month early with this -- probably giving me some time to mount it over the mantel of my plush leather and mahogony office before the big day.</p>
+<p>Ironically, I'll not be in work for the big day -- I'm taking …</p><p class="subheader">Category: <a href="https://log.andvari.net/category/log.html">Log</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/log.html">log </a>
+    <a href="https://log.andvari.net/tag/work.html">work </a>
+    <a href="https://log.andvari.net/tag/google.html">google </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="https://log.andvari.net/dont-forget-youre-here-forever.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/archives.html">Archives</a>
+            <li><a href="https://log.andvari.net/tags.html">Tags</a>
+            <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/category/leadership.html">Leadership</a></li>
+            <li><a href="https://log.andvari.net/category/log.html">Log</a></li>
+            <li><a href="https://log.andvari.net/category/meta.html">Meta</a></li>
+            <li><a href="https://log.andvari.net/category/tech.html">Tech</a></li>
+            <li><a href="https://log.andvari.net/category/writing.html">Writing</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="/pages/about.html">About</a></li>
+            <li><a href="http://github.com/gerrowadat">GitHub</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://mastodon.ie/@gerrowadat">@gerrowadat@mastodon.ie</a></li>
+            <li><a href="https://bsky.app/profile/gerrowadat.bsky.social">@gerrowadat.bsky.social</a></li>
+            <li><a href="http://ie.linkedin.com/in/gerrowadat/">linkedin</a></li>
+        </ul>
+
+
+        <h5 class="sidebar-title">Feeds</h5>
+        <ul class="side-nav">
+        <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">All</a></li>
+            <li><a href="https://log.andvari.net/feeds/leadership.atom.xml">Leadership</a></li>
+            <li><a href="https://log.andvari.net/feeds/log.atom.xml">Log</a></li>
+            <li><a href="https://log.andvari.net/feeds/meta.atom.xml">Meta</a></li>
+            <li><a href="https://log.andvari.net/feeds/tech.atom.xml">Tech</a></li>
+            <li><a href="https://log.andvari.net/feeds/writing.atom.xml">Writing</a></li>
+   
+        </ul>
+
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>log.andvari.net by Dave O'Connor</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

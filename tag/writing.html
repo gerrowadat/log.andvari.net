@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>log.andvari.net - writing</title>
+
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/normalize.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/pygments.css" />	
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="https://log.andvari.net/theme/js/modernizr.js"></script>
+
+<!-- With thanks to https://lizdenys.com/journal/articles/adding-open-graph-to-pelican.html -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://log.andvari.net/tag/writing.html" />
+<meta property="og:title" content="log.andvari.net" />
+<meta property="og:description" content="A page on log.andvari.net" />
+<meta property="og:image" content="https://log.andvari.net/images/daveoc-typewriter.png" />
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBXQ11Y6R7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YBXQ11Y6R7');
+</script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="https://log.andvari.net">log.andvari.net</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+            <li><a href="https://log.andvari.net/pages/about.html" class="button secondary small">About</a></li>
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="https://log.andvari.net/disappointing-people-early.html"><h3 class="article-title">Disappointing People Early</h3></a>
+<h6 class="subheader" title="2026-02-02T12:00:00+00:00">Mon 02 February 2026
+</h6>
+
+
+<p>One of my favourite phrases to remind people of as I'm fumbling about the business of producing reliable systems is <strong>"We Should Disappoint People Early"</strong>. I've gotten enough funny looks about this that I figure I should explain myself.</p>
+<p>The 'polite' assumption most folks make is that we should aim to never disappoint people at all. However, the wisdom is in the timing. If disappointment is coming (and it usually is, somewhere), you want it to arrive early enough that everyone can adjust, rather than late enough to cause real damage.</p>
+<p>This applies everywhere: SLOs, product roadmaps, support response times, vendor relationships, and most critically, to the implicit promises we make when we <em>don't</em> say anything at all.</p>
+<h3>The Implicit Promise Problem</h3>
+<p>My erstwhile colleague Niall Murphy wrote an excellent piece on <a href="https://blog.relyabilit.ie/implicit-slos-and-their-dangers/">implicit SLOs and their dangers</a> that crystallises something I've seen over and over. The short version: your users are already forming expectations about your service's reliability, whether you tell them what to expect or not.</p>
+<p>If your service has been running at eleventy nines for the past year, your customers have noticed. They've built systems that depend on it. They've made architectural decisions predicated on "this thing is always up." They've stopped building fallbacks. You've made an implicit promise, and you probably didn't mean to.</p>
+<p>The problem comes when you need to break that promise. Maybe there's cost-cutting. Maybe there's a re-architecture. Maybe you're just doing some planned maintenance that you've been putting off. Suddenly, you're at three nines instead of eleventy, and your customers are furious -- not because three nines is unreasonable, but because you violated an expectation they'd built up over time.</p>
+<p>As Niall puts it: even if you smoothly manage the transition, if you fail 100x more often than you previously did, people are going to notice.</p>
+<h3>Why Stating an SLO is Better Than Not Stating One</h3>
+<p><a href="https://sre.google/sre-book/service-level-objectives/">The SRE book</a> makes this point clearly: the business must establish what the availability target is for the system. Not the SRE team, not the platform engineers -- the business, informed by what users will actually tolerate and what makes commercial sense.</p>
+<p><a href="https://sre.google/in-conversation/">Ben Treynor's observation</a> that "100% is the wrong reliability target for basically everything" is foundational here. You're not running a pacemaker. You get to decide what's reasonable, and more importantly, you get to tell people.</p>
+<p>The alternative -- not stating an SLO -- is worse in every way. You've still made a promise; you just don't know what it is. Your customers have inferred one from your historical performance, and it's probably higher than you'd have chosen. You now have all the obligations of a promise without any of the negotiation that should have gone into making it.</p>
+<p>You have to make trade-offs. You can't make trade-offs against a number you haven't decided on. When you decide on that number, you then need to staple it to people's faces and let them emote about it early.</p>
+<h3>The Same Pattern in Roadmaps</h3>
+<p>Product roadmaps suffer from exactly the same dynamic. A product (or platform!) team should not make a promise until they've conducted enough discovery work to understand what's truly required, and the only people who can make such a promise are the team responsible for delivering it. The corollary is stark -- if you're making roadmap commitments before you understand what delivery entails, you're setting up a future betrayal.</p>
+<p>This is the implicit promise problem wearing different clothes. If you show a customer a roadmap with specific features and dates, you've made a promise. If the business context changes -- and it will -- you're now in the position of either delivering something suboptimal because you committed to it, or "breaking your promise" by adapting to reality.</p>
+<p>The fix isn't to hide your roadmap. The fix is to disappoint people early by being explicit about the nature of roadmaps: they're current best guesses, subject to change, and the further out you look, the fuzzier they get. Folks who've learned this lesson put "subject to change" disclaimers on everything, use confidence percentages, and replace hard dates with buckets like "Now," "Next," and "Later." Obviously it's possible to hedge too much, but a certain amount of expectation-setting is healthy.</p>
+<p>When roadmap planning is treated as a rigid forecast, it creates pressure and distrust. When it's treated as a dynamic, communication-first process, it builds trust and momentum -- even when timelines shift. The early disappointment of "this might change" is infinitely preferable to the late disappointment of "you promised."</p>
+<p>Just like with outages, good partners and customers will understand that software and the means by which we make software are terrible, complicated, unpredictable beasts. A good customer and partner should be more interested in your response to an outage than they are on beating you over the head with it. Similarly, a good customer partner will appreciate you keeping them up to date on delivery and being honest about outcomes, rather than doing deadline gymnastics.</p>
+<h3>Vendor Relationships and the Shared Responsibility Trap</h3>
+<p>There's a particularly insidious version of this problem that plays out when companies move from on-premises infrastructure to PaaS or SaaS, in either Security or for provision of a dependency. The <a href="https://aws.amazon.com/compliance/shared-responsibility-model/">cloud shared responsibility model</a> is supposed to be clear: the provider is responsible for security <em>of</em> the cloud, while the customer is responsible for security <em>in</em> the cloud. In practice, it's a mess of unstated expectations.</p>
+<p><a href="https://www.cio.com/article/416343/the-top-cloud-security-threat-comes-from-within.html">Gartner famously predicted</a> that through 2025, 99% of cloud security failures will be the customer's fault. This sounds like finger-pointing, but it reflects a deeper truth: when companies adopt cloud services, they often expect the vendor to take over responsibilities that were never part of the deal. As a customer, you're intentionally abdicating duty of care about the details, in return for paying money for an outcome. It can be difficult to let go of the parts you've farmed out to your vendor.</p>
+<p>When vendors aren't explicit about what they <em>won't</em> do, customers fill in the gaps with optimism. So, when something breaks, the disappointment isn't just about the outage -- it's about betrayed expectations that were never actually set. <a href="https://media.defense.gov/2024/Mar/07/2003407863/-1/-1/0/CSI-CloudTop10-Shared-Responsibility-Model.PDF">The NSA and CISA published guidance in March 2024</a> specifically because so many organisations were accelerating their cloud journeys "without proper planning and an appreciation for shared responsibilities."</p>
+<p>This creates an ugly dynamic. If you're a vendor and you're not telling customers what failures to expect, they're going to want the full list of all things that can go wrong. Their nervousness translates into demands for breadth-first total coverage of all eventualities. But there are always failures you won't be able to enumerate specifically -- the unknown unknowns, the novel combinations, the things that have never happened before.</p>
+<p>The answer is to disappoint early. Be explicit about what's in scope and what isn't. Document the failure modes you <em>do</em> know about. Make clear that you can't possibly predict everything, and explain what happens when the unexpected occurs, and why that makes you a safe pair of hands. The discomfort of that conversation now is vastly preferable to a customer discovering during an incident that their assumptions about your service were wrong. It also precludes a lot of demands from those same customers that are driven by vibes and nervousness at not feeling they know enough about potential failure modes and outcomes.</p>
+<h3>Support Response Times: The Hidden SLO</h3>
+<p>Every support team has an SLO, whether they've stated one or not. If you typically respond to tickets within 4 hours, your customers have noticed. They've calibrated their workflows around it. The first time you take 24 hours, they'll be furious -- not because 24 hours is unreasonable in isolation, but because you violated the expectation you accidentally created. This applies also to customers who only open the occasional support request - the feigned surprise that they don't get a 15-minutes response when the SLA is an hour (or more) will be familiar to anyone who's been on a customer support rotation. Customers who open tickets all the time will be more familiar with the expected performance because they've been told more recently.</p>
+<p>This is where "disappoint early" becomes almost literal. If you know you can't offer priority support between midnight and 5 AM, say so upfront. If critical issues get faster response than routine questions, publish your priority matrix. If your support capacity means occasional delays during high-volume periods, tell people before they need help, not after they've been waiting.</p>
+<h3>Internal Customers Too</h3>
+<p>This isn't just about external customers. The same dynamic plays out inside your organisation, often more acutely.</p>
+<p>If you're a platform team that offers services internally, your internal customers (the product teams) are forming expectations about your services just as external customers would. If you've been accidentally excellent at something -- say, keeping your deployment pipeline at sub-minute latencies -- you've now made an implicit promise. The moment that slips to five minutes because you've added some necessary safety checks, you'll hear about it.</p>
+<p>The conversation is much easier if you've stated up front: "We target 95th percentile deploy times under 5 minutes." Now there's a conversation to be had. Maybe 5 minutes isn't good enough for some use cases. Maybe it's plenty. But at least everyone knows what they're working with.</p>
+<p>Similarly with stakeholders and leadership. If you're asked "when will this be done?" and you say "soon" or "we're working on it," you've allowed them to fill in their own number. That number will be wrong, and it will be too optimistic. The disappointment arrives later, bigger, and with compound interest.</p>
+<p>Saying "this will take four weeks" might disappoint someone today. But that disappointment is manageable. They can plan around it. They can reprioritise. They can have the argument about whether four weeks is acceptable <em>now</em>, when there's still time to do something about it.</p>
+<h3>The Discomfort is the Point</h3>
+<p>Stating an SLO feels uncomfortable precisely because it's a commitment. The same is true for publishing a support response time matrix, or putting "subject to change" on a roadmap, or listing the failure modes your SaaS platform <em>won't</em> protect against. Each of these forces you to confront the reality that you can't be all things to all people. It makes explicit something that was previously implicit and negotiable.</p>
+<p>That discomfort is valuable. It's the discomfort of honesty. It's far preferable to the discomfort of a customer discovering during an outage that your service wasn't as reliable as they'd assumed, or finding out during an incident that their cloud vendor doesn't cover what they thought it did, or learning that the feature they were counting on got deprioritised.</p>
+<p>The core of "disappoint early" is this: small disappointments now prevent large disappointments later. An SLO that seems modest compared to your historical performance might disappoint a customer today. A roadmap that says "this might change" feels less confident than one with firm dates. A vendor contract that explicitly lists what's out of scope seems less comprehensive than one that doesn't mention limitations at all.</p>
+<p>But in each case, the explicit version creates space for honest conversations about what they actually need, what you can actually deliver, and what happens when those don't align. The implicit version creates the illusion of agreement that shatters on first contact with reality.</p>
+<h3>So.</h3>
+<p>If you're running a service without a stated SLO, you've already made a promise -- you just don't know what it is. Your customers have inferred one, and it's probably more optimistic than you'd like.</p>
+<p>If you're sharing a roadmap without caveats about uncertainty, you've created expectations you may not be able to meet. You've also put yourself in a position where you've no way to climb down if the situation changes.</p>
+<p>If you're a vendor who hasn't explicitly documented what failures customers should expect, they're filling in the blanks with assumptions that will turn into accusations when something goes wrong.</p>
+<p>If you're working with stakeholders without explicit expectations about timelines, support responsiveness, or capabilities, you've allowed them to assume. Those assumptions will bite you.</p>
+<p>The fix is the same in every case: have the uncomfortable conversation now. State what you can actually commit to. Document what's out of scope. Put confidence levels on your forecasts. Publish your priority matrix. Be boringly, repetitively explicit about constraints and limitations.</p>
+<p>It's often a good idea to overcompensate when communicating constraints or expectations that may be 'disappointing.' The customer who understands your limitations upfront is a customer who can plan around them. The customer who discovers them during a crisis loses trust, a thing that is hard-won and sometimes impossible to repair.</p>
+<p>It's paradoxical, but the path to being a more reliable partner -- to your customers, your stakeholders, your colleagues -- runs directly through being willing to disappoint them sooner.</p><p class="subheader">Category: <a href="https://log.andvari.net/category/writing.html">Writing</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/writing.html">writing </a>
+    <a href="https://log.andvari.net/tag/sre.html">sre </a>
+    <a href="https://log.andvari.net/tag/leadership.html">leadership </a>
+</p>
+
+
+
+            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="https://log.andvari.net/critical-thinking.html"><h3 class="article-title">Critical Thinking and DEI</h3></a>
+<h6 class="subheader" title="2025-02-16T00:00:00+00:00">Sun 16 February 2025
+</h6>
+
+
+<p>Part of my day-job as head of Engineering at Google Ireland was attending talks and events/Q&amp;A for local interest groups like Engineers Ireland. I was reminded today of <a href="https://www.engineersireland.ie/News/revealed-only-one-in-eight-engineers-is-a-woman-engineers-ireland-finds">a panel I was on around diversity in engineering in Ireland</a>, and my allegedly 'fascinating' comments at it. That's not …</p><p class="subheader">Category: <a href="https://log.andvari.net/category/writing.html">Writing</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/writing.html">writing </a>
+    <a href="https://log.andvari.net/tag/leadership.html">leadership </a>
+    <a href="https://log.andvari.net/tag/dei.html">dei </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="https://log.andvari.net/critical-thinking.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="https://log.andvari.net/ama.html"><h3 class="article-title">Believable AMAs for Genuine Leaders</h3></a>
+<h6 class="subheader" title="2025-01-13T00:00:00+00:00">Mon 13 January 2025
+</h6>
+
+
+<h3>Communication Scales with Scale</h3>
+<p>Communicating with your team scales up as your team grows - it's an experience not unlike the individual engineer to senior engineer to <a href="https://www.oreilly.com/library/view/the-staff-engineers/9781098118723/">staff engineer</a> path. As well as scaling up in terms of impact, the very method of how you do it changes.</p>
+<p>You <em>very</em> quickly …</p><p class="subheader">Category: <a href="https://log.andvari.net/category/writing.html">Writing</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/writing.html">writing </a>
+    <a href="https://log.andvari.net/tag/leadership.html">leadership </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="https://log.andvari.net/ama.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="https://log.andvari.net/production-sre-and-the-architecture-of-the-built-environment.html"><h3 class="article-title">Production, SRE and the Architecture of the Built Environment</h3></a>
+<h6 class="subheader" title="2024-02-15T16:23:00+00:00">Thu 15 February 2024
+</h6>
+
+
+<p>Recycling old talk proposals for fun and...that's it!</p>
+<p>Here's an amalgamation of the proposal text and some notes from a talk I proposed for SRECon EMEA last year -- I'll be talking about this to the Dublin SRE meetup in a couple of weeks, so here it is while the …</p><p class="subheader">Category: <a href="https://log.andvari.net/category/writing.html">Writing</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/log.html">log </a>
+    <a href="https://log.andvari.net/tag/writing.html">writing </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="https://log.andvari.net/production-sre-and-the-architecture-of-the-built-environment.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="https://log.andvari.net/6reasons.html"><h3 class="article-title">6 Reasons You Don't Need an SRE Team</h3></a>
+<h6 class="subheader" title="2023-06-21T05:40:00+01:00">Wed 21 June 2023
+</h6>
+
+
+<p>The last several years have seen a huge upsurge in the popularity of the DevOps/SRE/Production Engineering model, with companies large and small adopting some of the practices and mindsets. One of the principal lessons many of these organisations (hopefully) learned was that it's close to impossible to adopt …</p><p class="subheader">Category: <a href="https://log.andvari.net/category/writing.html">Writing</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/writing.html">writing </a>
+    <a href="https://log.andvari.net/tag/sre.html">sre </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="https://log.andvari.net/6reasons.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 3</h6>
+
+<p>
+
+        <a href="https://log.andvari.net/tag/writing2.html">Next &raquo;</a>
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/archives.html">Archives</a>
+            <li><a href="https://log.andvari.net/tags.html">Tags</a>
+            <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/category/leadership.html">Leadership</a></li>
+            <li><a href="https://log.andvari.net/category/log.html">Log</a></li>
+            <li><a href="https://log.andvari.net/category/meta.html">Meta</a></li>
+            <li><a href="https://log.andvari.net/category/tech.html">Tech</a></li>
+            <li><a href="https://log.andvari.net/category/writing.html">Writing</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="/pages/about.html">About</a></li>
+            <li><a href="http://github.com/gerrowadat">GitHub</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://mastodon.ie/@gerrowadat">@gerrowadat@mastodon.ie</a></li>
+            <li><a href="https://bsky.app/profile/gerrowadat.bsky.social">@gerrowadat.bsky.social</a></li>
+            <li><a href="http://ie.linkedin.com/in/gerrowadat/">linkedin</a></li>
+        </ul>
+
+
+        <h5 class="sidebar-title">Feeds</h5>
+        <ul class="side-nav">
+        <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">All</a></li>
+            <li><a href="https://log.andvari.net/feeds/leadership.atom.xml">Leadership</a></li>
+            <li><a href="https://log.andvari.net/feeds/log.atom.xml">Log</a></li>
+            <li><a href="https://log.andvari.net/feeds/meta.atom.xml">Meta</a></li>
+            <li><a href="https://log.andvari.net/feeds/tech.atom.xml">Tech</a></li>
+            <li><a href="https://log.andvari.net/feeds/writing.atom.xml">Writing</a></li>
+   
+        </ul>
+
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>log.andvari.net by Dave O'Connor</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>
