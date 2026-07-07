@@ -64,6 +64,16 @@ Other Media, Quotes Etc.
   - I'm quoted "from the field" in the [2025 Catchpoint SRE Report](https://www.catchpoint.com/asset/2025-sre-report)
   - My [6 Reasons...](/6reasons.html) article is referenced and quoted in the excellent ["Platform Engineering"](https://www.oreilly.com/library/view/platform-engineering/9781098153632/) By Camille Fournier and Ian Nowland
 
+
+Conference/Speaking Materials
+=============================
+
+The above image can be used as a headshot, if I give permission in writing. Yes, I need a new headshot.
+
+The following blurb is current as of mid-2026 and can be used as a bio for interviews, talks, and so on -- please check with me first.
+
+*Dave O'Connor is a software practitioner based in Dublin, Ireland. Dave has spent over 20 years building the foundational systems and teams that power much of the world's storage and data. At Google, he led the SRE teams that covered all of Google's Storage and Databases, was involved in the development of the SRE profession as a whole, and helped build Google's Engineering office in Dublin to over 800 engineers. Since then, he has managed and built world-scale SaaS and PaaS systems for Elastic, Twilio and most recently Astronomer. At Astronomer, he is VP of Engineering, building the world's data operating system based on Apache Airflow.*
+
 Links:
   - [Linkedin](https://www.linkedin.com/in/gerrowadat/)
   - [Mastodon](https://mastodon.ie/@gerrowadat)
