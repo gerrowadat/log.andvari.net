@@ -39,6 +39,8 @@ Previous Talks, Panels and Interviews (an incomplete list):
 
   - [Practical Guide to More Effective Mentorship](https://softwaremisadventures.com/p/dave-oconnor) - Software Misadventures Podcast, January 2024 (Covers coaching/mentoring and Early Google Stories)
 
+  - [Capability vs. Intent in the AI Gold Rush](https://aibuilderseries.substack.com/p/i-know-i-can-but-should-i-capability) - AI Builder Podcast, June 2026
+
 Writing
 =======
 
