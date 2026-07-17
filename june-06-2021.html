@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>June 06 2021</title>
+
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/normalize.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/pygments.css" />	
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="https://log.andvari.net/theme/js/modernizr.js"></script>
+
+<!-- With thanks to https://lizdenys.com/journal/articles/adding-open-graph-to-pelican.html -->
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://log.andvari.net/june-06-2021.html" />
+<meta property="og:title" content="June 06 2021" />
+<meta property="og:description" content="The last few days (among other things) saw a little work on the previous project, as well as taking advantage of having new hardware to mess about with. My desktop OS journey has a 12-year (or..." />
+<meta property="og:image" content="https://log.andvari.net/images/daveoc-typewriter.png" />
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBXQ11Y6R7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YBXQ11Y6R7');
+</script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="https://log.andvari.net">log.andvari.net</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+            <li><a href="https://log.andvari.net/pages/about.html" class="button secondary small">About</a></li>
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="https://log.andvari.net/june-06-2021.html" rel="bookmark"
+        title="Permalink to June 06 2021">June 06 2021</a></h3>
+    </header>
+
+<h6 class="subheader" title="2021-06-06T00:06:00+01:00">Sun 06 June 2021
+</h6>
+
+
+    <p>The last few days (among other things) saw a little work on the <a href="https://log.andvari.net/may-24-2021.html">previous project</a>, as well as taking advantage of having new hardware to mess about with.</p>
+<p>My desktop OS journey has a 12-year (or so) mac gap in it -- which is to say that I used to use a window manager and go through all the tweaks and business associated (the kool kids at <a href="https://www.dcu.ie">DCU</a> all used <a href="https://www.windowmaker.org">Window Maker</a>, but when I started at Google, they handed me a macbook (the early, pre-magsafe one, circa 2004). I was pretty happy that I could have a desktop that just works, and that I can replace at very short notice. Much of the work I did at Google involved using shells and a web browser, so macs were just fine. I then happily used macbooks until the touch bar, which closed me down overnight. Ugh, horrible.</p>
+<p>I then spent 6 months or so trying to work from a pixelbook on Chrome OS. Google's deep integration with chrome and <a href="https://cloud.google.com/beyondcorp">BeyondCorp</a> meant this was a fine machine to use, until it started to do random things, and you can't really do anything to fix it (aside from powerwashing and hoping for the best). </p>
+<p>So, for my last year or so at Google, I was back on gLinux, which was fairly standard gnome desktop. I didn't fiddle with it, it just worked, happy out.</p>
+<p>Anyway, $NEWJOB sent me a ThinkPad T14 -- this seems to be an AMD equivalent-or-so of the T490 I have as a personal laptop. So, I took to installing <a href="https://www.archlinux.org">Arch Linux</a>, and trying out a few window managers.</p>
+<p>Arch, to me, seems to be just a little beyond the amount of thinking I'd like to do about my linux distro. I must say the documentation was /excellent/. I learned new things about the modern linux userspace (systemd is still newfangled to me, and I've only really set up wifi by clicking buttons.). I gave it a shot for a few days, before giving up on sound. So, doable, but more time than I'm willing to put in when good old familiar Ubuntu is waiting there. So, good experiment, but ultimately I have shit to do that isn't dealing with linux on a machine that needs to work and for which there are better options for my expertise/desire-for-hassle ratio.</p>
+<p>As for window managers, I had toyed a bit with <a href="https://www.xmonad.org/">xmonad</a> a few years back - I know no haskell at all, so it was mainly trying a tiling window manager. This time around, <a href="https://www.i3wm.org">i3wm</a> was a natural one to try. I have to say it's one of those 'exactly what it says on the tin' style things. The only tweaks I've done so far is making i3status say stuff that is useful (and talk to the thinkpad battery properly), and multi-profile/workspace groups stuff.</p>
+<p>The latter was done with <a href="https://github.com/infokiller/i3-workspace-groups">i3-workspace-groups</a> - it's a hacky enough way of doing it, but works great. The way i3 is setup to be modular and take instructions from various sources is super smart. I want to be able to have separate sets of workspaces for work, home, etc. and this seems to do it. Config is <a href="https://github.com/gerrowadat/rcfiles/blob/master/i3wm.conf">here</a>. Maybe this is old hat for long-term linux desktop users, but I'm personally glad to be back to getting things just-so, rather than using a 'supported distro', so to speak.</p>
+<p>The proof of its efficacy, of course, will come on Tuesday. More about that soon :-)</p>
+<p class="subheader">Category: <a href="https://log.andvari.net/category/log.html">Log</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/log.html">log </a>
+    <a href="https://log.andvari.net/tag/tech.html">tech </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/archives.html">Archives</a>
+            <li><a href="https://log.andvari.net/tags.html">Tags</a>
+            <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/category/leadership.html">Leadership</a></li>
+            <li><a href="https://log.andvari.net/category/log.html">Log</a></li>
+            <li><a href="https://log.andvari.net/category/meta.html">Meta</a></li>
+            <li><a href="https://log.andvari.net/category/tech.html">Tech</a></li>
+            <li><a href="https://log.andvari.net/category/writing.html">Writing</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="/pages/about.html">About</a></li>
+            <li><a href="http://github.com/gerrowadat">GitHub</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://mastodon.ie/@gerrowadat">@gerrowadat@mastodon.ie</a></li>
+            <li><a href="https://bsky.app/profile/gerrowadat.bsky.social">@gerrowadat.bsky.social</a></li>
+            <li><a href="http://ie.linkedin.com/in/gerrowadat/">linkedin</a></li>
+        </ul>
+
+
+        <h5 class="sidebar-title">Feeds</h5>
+        <ul class="side-nav">
+        <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">All</a></li>
+            <li><a href="https://log.andvari.net/feeds/leadership.atom.xml">Leadership</a></li>
+            <li><a href="https://log.andvari.net/feeds/log.atom.xml">Log</a></li>
+            <li><a href="https://log.andvari.net/feeds/meta.atom.xml">Meta</a></li>
+            <li><a href="https://log.andvari.net/feeds/tech.atom.xml">Tech</a></li>
+            <li><a href="https://log.andvari.net/feeds/writing.atom.xml">Writing</a></li>
+   
+        </ul>
+
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>log.andvari.net by Dave O'Connor</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

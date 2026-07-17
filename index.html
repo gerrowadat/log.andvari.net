@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>log.andvari.net</title>
+
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/normalize.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/pygments.css" />	
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="https://log.andvari.net/theme/js/modernizr.js"></script>
+
+<!-- With thanks to https://lizdenys.com/journal/articles/adding-open-graph-to-pelican.html -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://log.andvari.net/index.html" />
+<meta property="og:title" content="log.andvari.net" />
+<meta property="og:description" content="A page on log.andvari.net" />
+<meta property="og:image" content="https://log.andvari.net/images/daveoc-typewriter.png" />
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBXQ11Y6R7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YBXQ11Y6R7');
+</script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="https://log.andvari.net">log.andvari.net</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+            <li><a href="https://log.andvari.net/pages/about.html" class="button secondary small">About</a></li>
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="https://log.andvari.net/nomad-gitops.html"><h3 class="article-title">nomad-gitops</h3></a>
+<h6 class="subheader" title="2026-07-17T19:52:00+01:00">Fri 17 July 2026
+</h6>
+
+
+<p>I still run <a href="https://www.nomadproject.io/">nomad</a> at home. This surprises some people, who assume that anyone with opinions about production has long since capitulated to kubernetes, but the whole point of the lab is that it's mine and it's small and I get to pick. Nomad is still the right amount of machinery (probably even too much at that) for the number of jobs I actually run, and I've written about various bits of it (secrets, DNS, the works-on-my-cluster tag generally) before.</p>
+<p>The itch I've been meaning to scratch for ages is the deploy loop. For a long time my "gitops" was me, on the couch, running a shell script that ran <code>nomad job run</code> against a pile of hcl files. That works right up until you forget which files you changed, or you run the wrong one, or you're away from the box and the state of the cluster is whatever you last remembered typing. The whole appeal of gitops is that git is the thing that's true, and the cluster's job is to catch up to git. I wanted that, without dragging in a great big platform to get it.</p>
+<p>So there's now <a href="https://github.com/gerrowadat/nomad-gitops">nomad-gitops</a>. It watches a repo, and when the repo changes, the cluster changes. That's more or less the entire pitch.</p>
+<p>A few things I decided up front and stuck to:</p>
+<ul>
+<li><strong>Git as the source of truth.</strong> If a job exists in the cluster but not in the repo, that's drift, and drift is a bug. I didn't want a tool that only ever adds things and leaves a graveyard of jobs nobody remembers deploying.</li>
+<li><strong>Boring and legible over clever.</strong> I want to be able to read the logs and know exactly why it did a thing. No magic, no reconciliation loop I can't explain to myself six months from now when it's misbehaving at an inconvenient hour.</li>
+<li><strong>It should be fine to turn off.</strong> If nomad-gitops falls over, the cluster keeps running whatever it was running. Nothing depends on it being up to stay up. This is the same rule I apply to everything in the lab, because the lab is not allowed to become a second job.</li>
+</ul>
+<p>None of this is novel. Every gitops tool worth anything does versions of this. But writing it down for my particular small case, and deciding what I was <em>not</em> going to do, was most of the work.</p>
+<p>The code was mostly written by Claude, and I want to be honest about the shape of that, because it's not "I typed a sentence and got a repo". I did a previous thing with claude on more of a 'yolo mode', but this time around I started with the philosophy, almost.</p>
+<p>Before any code existed, I wrote the documents. A design doc for what reconciliation actually meant here, a conventions doc for how the repo should be laid out, and a fairly opinionated spec for behaviour in the annoying cases: what happens on a partial push, what counts as drift, what it should refuse to do. Those documents were the first-order artifacts, they're in the <code>docs</code> directory of the repo. I founf it useful to ask Claude to refine them by asking me questions. My brin works a little better with pointed questions sometimes, rather than wide-open updates and thinking.</p>
+<p>I've found when you hand a model a vague idea it will cheerfully produce something plausible that isn't quite what you wanted, and you spend the afternoon arguing with it. When you hand it a doc that already says "drift is a bug and here's how we treat it", or "new persistent state because that is faff and we don't need it", it mostly builds that thing, and the arguments happen at the level of the doc, where they're cheap. The documents are the part I actually care about.</p>
+<p>Aside: I found that Claude is not amazing at structuring docs in the way I like to read them, so the usage docs aren't very understandable. It's all there, though.</p>
+<p>As with <a href="/cringesweeper">CringeSweeper</a>, I read all of it, it's unremarkable Go, and it's been quietly doing its job in the lab for a while now. Have a poke at the repo if any of this sounds useful. The docs are probably more interesting than the code.</p><p class="subheader">Category: <a href="https://log.andvari.net/category/tech.html">Tech</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/log.html">log </a>
+    <a href="https://log.andvari.net/tag/worksonmycluster.html">#worksonmycluster </a>
+    <a href="https://log.andvari.net/tag/tech.html">tech </a>
+</p>
+
+
+
+            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="https://log.andvari.net/cringesweeper.html"><h3 class="article-title">CringeSweeper</h3></a>
+<h6 class="subheader" title="2026-05-23T12:00:00+01:00">Sat 23 May 2026
+</h6>
+
+
+<p>Something I've been reminded of the last while: old social media posts are not assets, they're liabilities. Not just because of cringe (though there's plenty of that), but because the actual upside of preserving a bunch of posts from 2018 is approximately zero, and the downside is that they exist …</p><p class="subheader">Category: <a href="https://log.andvari.net/category/tech.html">Tech</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/log.html">log </a>
+    <a href="https://log.andvari.net/tag/tech.html">tech </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="https://log.andvari.net/cringesweeper.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="https://log.andvari.net/disappointing-people-early.html"><h3 class="article-title">Disappointing People Early</h3></a>
+<h6 class="subheader" title="2026-02-02T12:00:00+00:00">Mon 02 February 2026
+</h6>
+
+
+<p>One of my favourite phrases to remind people of as I'm fumbling about the business of producing reliable systems is <strong>"We Should Disappoint People Early"</strong>. I've gotten enough funny looks about this that I figure I should explain myself.</p>
+<p>The 'polite' assumption most folks make is that we should aim …</p><p class="subheader">Category: <a href="https://log.andvari.net/category/writing.html">Writing</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/writing.html">writing </a>
+    <a href="https://log.andvari.net/tag/sre.html">sre </a>
+    <a href="https://log.andvari.net/tag/leadership.html">leadership </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="https://log.andvari.net/disappointing-people-early.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="https://log.andvari.net/no-mttr.html"><h3 class="article-title">Chasing Boring at Just the Right Speed</h3></a>
+<h6 class="subheader" title="2026-01-22T12:00:00+00:00">Thu 22 January 2026
+</h6>
+
+
+<h3>Asking the Right Questions</h3>
+<p>A while back when I was looking for a fulltime gig (and when I was contracting, of course), I had the opportunity to do a bunch of interviews (including the kind of informal interviews you do to get a new contracting client). One of my boilerplate …</p><p class="subheader">Category: <a href="https://log.andvari.net/category/writing.html">Writing</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/sre.html">sre </a>
+    <a href="https://log.andvari.net/tag/incidents.html">incidents </a>
+    <a href="https://log.andvari.net/tag/leadership.html">leadership </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="https://log.andvari.net/no-mttr.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="https://log.andvari.net/adrenaline-in-moderation-please.html"><h3 class="article-title">Adrenaline In Moderation, Please</h3></a>
+<h6 class="subheader" title="2025-03-03T17:34:00+00:00">Mon 03 March 2025
+</h6>
+
+
+<p>One of the more impactful bits of "DEI work" we (ohai <a href="https://www.linkedin.com/in/sara-smollett-012799b/">Sara Smollett</a>) did at the G was helping to re-write our job descriptions for SRE (I later re-wrote the internal job ladder for SRE, but that's probably not as directly related).</p>
+<p>Circa 2010 or so, our JDs needed a …</p><p class="subheader">Category: <a href="https://log.andvari.net/category/leadership.html">Leadership</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/leadership-dei.html">leadership dei </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="https://log.andvari.net/adrenaline-in-moderation-please.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 23</h6>
+
+<p>
+
+        <a href="https://log.andvari.net/index2.html">Next &raquo;</a>
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/archives.html">Archives</a>
+            <li><a href="https://log.andvari.net/tags.html">Tags</a>
+            <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/category/leadership.html">Leadership</a></li>
+            <li><a href="https://log.andvari.net/category/log.html">Log</a></li>
+            <li><a href="https://log.andvari.net/category/meta.html">Meta</a></li>
+            <li><a href="https://log.andvari.net/category/tech.html">Tech</a></li>
+            <li><a href="https://log.andvari.net/category/writing.html">Writing</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="/pages/about.html">About</a></li>
+            <li><a href="http://github.com/gerrowadat">GitHub</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://mastodon.ie/@gerrowadat">@gerrowadat@mastodon.ie</a></li>
+            <li><a href="https://bsky.app/profile/gerrowadat.bsky.social">@gerrowadat.bsky.social</a></li>
+            <li><a href="http://ie.linkedin.com/in/gerrowadat/">linkedin</a></li>
+        </ul>
+
+
+        <h5 class="sidebar-title">Feeds</h5>
+        <ul class="side-nav">
+        <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">All</a></li>
+            <li><a href="https://log.andvari.net/feeds/leadership.atom.xml">Leadership</a></li>
+            <li><a href="https://log.andvari.net/feeds/log.atom.xml">Log</a></li>
+            <li><a href="https://log.andvari.net/feeds/meta.atom.xml">Meta</a></li>
+            <li><a href="https://log.andvari.net/feeds/tech.atom.xml">Tech</a></li>
+            <li><a href="https://log.andvari.net/feeds/writing.atom.xml">Writing</a></li>
+   
+        </ul>
+
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>log.andvari.net by Dave O'Connor</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

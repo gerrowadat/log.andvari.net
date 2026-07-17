@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>CringeSweeper</title>
+
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/normalize.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/pygments.css" />	
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="https://log.andvari.net/theme/js/modernizr.js"></script>
+
+<!-- With thanks to https://lizdenys.com/journal/articles/adding-open-graph-to-pelican.html -->
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://log.andvari.net/cringesweeper.html" />
+<meta property="og:title" content="CringeSweeper" />
+<meta property="og:description" content="Something I've been reminded of the last while: old social media posts are not assets, they're liabilities. Not just because of cringe (though there's plenty of that), but because the actual..." />
+<meta property="og:image" content="https://log.andvari.net/images/daveoc-typewriter.png" />
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBXQ11Y6R7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YBXQ11Y6R7');
+</script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="https://log.andvari.net">log.andvari.net</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+            <li><a href="https://log.andvari.net/pages/about.html" class="button secondary small">About</a></li>
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="https://log.andvari.net/cringesweeper.html" rel="bookmark"
+        title="Permalink to CringeSweeper">CringeSweeper</a></h3>
+    </header>
+
+<h6 class="subheader" title="2026-05-23T12:00:00+01:00">Sat 23 May 2026
+</h6>
+
+
+    <p>Something I've been reminded of the last while: old social media posts are not assets, they're liabilities. Not just because of cringe (though there's plenty of that), but because the actual upside of preserving a bunch of posts from 2018 is approximately zero, and the downside is that they exist and people can read them. Anyone who once had a livejournal will probably tell you that.</p>
+<p>The nice theory about social media is that it's meant to be ephemeral. You say a thing, people see it or don't, and it passes. The problem is platforms are absolutely delighted to keep everything forever, because data has value to them. It just kind of sits there and has no value to you.</p>
+<p>This isn't really an argument about any particular platform being bad, or about the current political or ownership situation with any of them, which I'll leave as an exercise for the reader. It's more that I don't really know what argument there is for keeping a years-old record of shower thoughts and mild takes intact.  The theoretical "but what if I want to read back my old posts someday" has never once translated into me actually doing that, and I'm pretty sure it won't. The account history is there for someone elses benefit, not mine. This even applies to theretically non-profit stuff like Mastodon; there's still very little upside to haveing years of nonsense on there.</p>
+<p>The usual solution to this is some kind of bulk-delete tool. The usual problem with those tools is that they want you to upload a data archive or hand over API credentials to a website you've never heard of. I don't know who runs these things, and I generally want to do stuff myself.</p>
+<p>So, I made <a href="https://github.com/gerrowadat/cringesweeper">CringeSweeper</a>. It's a CLI tool that runs locally and talks directly to the APIs of whatever platforms you're using. At the moment that's Bluesky and Mastodon, which covers the things I actually post on. The usage looks something like:</p>
+<p><code>cringesweeper --platform bluesky --older-than 90d --dry-run
+cringesweeper --platform bluesky --older-than 90d</code></p>
+<p>Have a look at the README if it seem sinteresting; it's quite tweakable. I run it at home in the lab as a long-runnig job and it's been doing its job for quite a while (modulo a few patches recently for niggles).</p>
+<p>The codebase was generated through Claude; I'm not sure whether that's interesting or unremarkable at this point, but it works, and I read all of it, and the code is fairly inoffensive Go, which is all I wanted.</p>
+<p class="subheader">Category: <a href="https://log.andvari.net/category/tech.html">Tech</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/log.html">log </a>
+    <a href="https://log.andvari.net/tag/tech.html">tech </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/archives.html">Archives</a>
+            <li><a href="https://log.andvari.net/tags.html">Tags</a>
+            <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/category/leadership.html">Leadership</a></li>
+            <li><a href="https://log.andvari.net/category/log.html">Log</a></li>
+            <li><a href="https://log.andvari.net/category/meta.html">Meta</a></li>
+            <li><a href="https://log.andvari.net/category/tech.html">Tech</a></li>
+            <li><a href="https://log.andvari.net/category/writing.html">Writing</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="/pages/about.html">About</a></li>
+            <li><a href="http://github.com/gerrowadat">GitHub</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://mastodon.ie/@gerrowadat">@gerrowadat@mastodon.ie</a></li>
+            <li><a href="https://bsky.app/profile/gerrowadat.bsky.social">@gerrowadat.bsky.social</a></li>
+            <li><a href="http://ie.linkedin.com/in/gerrowadat/">linkedin</a></li>
+        </ul>
+
+
+        <h5 class="sidebar-title">Feeds</h5>
+        <ul class="side-nav">
+        <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">All</a></li>
+            <li><a href="https://log.andvari.net/feeds/leadership.atom.xml">Leadership</a></li>
+            <li><a href="https://log.andvari.net/feeds/log.atom.xml">Log</a></li>
+            <li><a href="https://log.andvari.net/feeds/meta.atom.xml">Meta</a></li>
+            <li><a href="https://log.andvari.net/feeds/tech.atom.xml">Tech</a></li>
+            <li><a href="https://log.andvari.net/feeds/writing.atom.xml">Writing</a></li>
+   
+        </ul>
+
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>log.andvari.net by Dave O'Connor</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

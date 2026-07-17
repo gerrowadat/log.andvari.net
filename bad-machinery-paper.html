@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Bad Machinery Paper</title>
+
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/normalize.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/style.css" />
+    <link rel="stylesheet" href="https://log.andvari.net/theme/css/pygments.css" />	
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="https://log.andvari.net/theme/js/modernizr.js"></script>
+
+<!-- With thanks to https://lizdenys.com/journal/articles/adding-open-graph-to-pelican.html -->
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://log.andvari.net/bad-machinery-paper.html" />
+<meta property="og:title" content="Bad Machinery Paper" />
+<meta property="og:description" content="Thanks to my accomodating erstwhile colleagues, I'm able to publish the original paper (with minor redactions so it makes sense for an external audience). A version of this paper later became..." />
+<meta property="og:image" content="https://log.andvari.net/images/daveoc-typewriter.png" />
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBXQ11Y6R7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YBXQ11Y6R7');
+</script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="https://log.andvari.net">log.andvari.net</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+            <li><a href="https://log.andvari.net/pages/about.html" class="button secondary small">About</a></li>
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="https://log.andvari.net/bad-machinery-paper.html" rel="bookmark"
+        title="Permalink to Bad Machinery Paper">Bad Machinery Paper</a></h3>
+    </header>
+
+<h6 class="subheader" title="2021-05-19T20:34:00+01:00">Wed 19 May 2021
+</h6>
+
+
+    <p>Thanks to my accomodating erstwhile colleagues, I'm able to publish the <a href="/pages/bad-machinery.html">original paper</a> (with minor redactions so it makes sense for an external audience). A version of this paper later became Chapter 29 of the <a href="https://sre.google/sre-book/table-of-contents/">SRE Book</a>.</p>
+<p>To add a little bit of extra colour, the document came out of some lessons learned on Storage SRE (specifically Bigtable/Colossus), that I ran directly back in the early 2010s -- The date I have on this document is 2016, but I know it was around long before that.</p>
+<p>Storage SRE back then was something of an anomaly -- there were a number of teams that managed storage services (the above, but also some various other services, some of which where purely internal and never saw the light of day). To amalgamate these services meant that we potentially won a bunch of <strong>OMG synergy</strong> because of the base assumptions made in design that were unique to services that kept data. Google started out as a search company with a throwaway, re-scrape-able corpus (built on GFS, which wasn't designed to persist data), so it was natural for us to have a couple of goes at stateful services, and see what stuck. </p>
+<p>So, while you might imagine that lumping services of a similar shape together is a good thing to reduce duplication of effort (and you'd be mostly right), other factors include service maturity, generalised attitude toward production, and even come down to the vagaries of the dev/SRE relationship, or of engineering leadership as a whole.</p>
+<p>So around then, we had a Bigtable and Colossus service that generally worked remarkably well. We had challenges in observability, and in developing the tech around load-sharing of users on a shared compute/storage pool. This later became known as running a <a href="https://www.oreilly.com/content/multi-single-tenant-architectures-in-cloud/">multi-single-tenant</a> architecture, although at the time we saw it as fairly chaotic - not all the tooling had been done, and some of the assumptions and prior art we have the benefit of today wasn't a thing, yet.</p>
+<p>While others looked at this as a purely technical problem, myself and a couple of key leads saw this as a problem of focus. Google in its earlier days had faced additional problems of scale like this -- where esentially we could keep digging, or we could put in place a set of attitudes and approaches that enabled us getting out of the hole we were in as far as interrupts are. Some of these problems fell into the "We will need 5000 people to edit config files" or "We will need more hard drives than humanity is making" variety, which really do need 'creative solutions').</p>
+<p>One of the anti-patterns we observed at the time was a tendency among folks on both Dev and SRE teams to concentrate on speedy detection and resolution of issues (The 'Rocks with Eyes" method, as succinctly described at the time). Being able to know when things are busted <strong>is</strong> important -- but the followup is key. Oncall and interrupts are fundamentally a waste of time and should be minimised, so signing up for extra seems not a great approach.</p>
+<p>I had a separate paper related to this one called something like 'email alerts are from the past' -- and my real-life experience of that was coaching some key team members through some of the above approaches. We had folks who felt that they needed to keep getting email alerts, as they had trained themselves to spot patterns, and believed they needed to keep doing this or we'd have more outages. You might step back from this a wee bit and recognise that this was a set of people who were inadvertently being profoundly disrespectful of their own time. It's not because they were bad people of course, it's because they were busy people, and firefighting had found its way into their muscle memory.</p>
+<p>In the end (in this example), myself and senior TL on the team ended up unilaterally turning off email alerts. She sent me the code review, I approved it, done. It was clear that we weren't going to reach consensus on whether or not it was a good idea; and while I'm not a fan of this approach in general, it became clear we weren't going to get there (see also the 'consensus is nice' section). In this case, nothing happened. A few folks were briefly sad, but ended up with more time on the clock and more spoons.</p>
+<p>That, to my mind, is the outcome of a successful strategy around interrupt management. The interrupts need to be addressed, and in a timely way -- but you as the team responsible hold the ability to do it in a way that doesn't treat people as machines. In addition, interupts are not a closed system - the interrupts you're getting a month from now need to be different from the ones you're getting today -- by finding a better set of first world problems. </p>
+<p>But moreso, the way you give yourself the ability to step back and really address the root causes in a noisy system is to respect your time, reduce context switches, and give people both the well-clock time and the spoons to be able to do so.</p>
+<p class="subheader">Category: <a href="https://log.andvari.net/category/writing.html">Writing</a>
+
+    Tagged: 
+    <a href="https://log.andvari.net/tag/log.html">log </a>
+    <a href="https://log.andvari.net/tag/writing.html">writing </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/archives.html">Archives</a>
+            <li><a href="https://log.andvari.net/tags.html">Tags</a>
+            <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="https://log.andvari.net/category/leadership.html">Leadership</a></li>
+            <li><a href="https://log.andvari.net/category/log.html">Log</a></li>
+            <li><a href="https://log.andvari.net/category/meta.html">Meta</a></li>
+            <li><a href="https://log.andvari.net/category/tech.html">Tech</a></li>
+            <li><a href="https://log.andvari.net/category/writing.html">Writing</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="/pages/about.html">About</a></li>
+            <li><a href="http://github.com/gerrowadat">GitHub</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://mastodon.ie/@gerrowadat">@gerrowadat@mastodon.ie</a></li>
+            <li><a href="https://bsky.app/profile/gerrowadat.bsky.social">@gerrowadat.bsky.social</a></li>
+            <li><a href="http://ie.linkedin.com/in/gerrowadat/">linkedin</a></li>
+        </ul>
+
+
+        <h5 class="sidebar-title">Feeds</h5>
+        <ul class="side-nav">
+        <li><a href="https://log.andvari.net/feeds/all.atom.xml" rel="alternate">All</a></li>
+            <li><a href="https://log.andvari.net/feeds/leadership.atom.xml">Leadership</a></li>
+            <li><a href="https://log.andvari.net/feeds/log.atom.xml">Log</a></li>
+            <li><a href="https://log.andvari.net/feeds/meta.atom.xml">Meta</a></li>
+            <li><a href="https://log.andvari.net/feeds/tech.atom.xml">Tech</a></li>
+            <li><a href="https://log.andvari.net/feeds/writing.atom.xml">Writing</a></li>
+   
+        </ul>
+
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>log.andvari.net by Dave O'Connor</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>
